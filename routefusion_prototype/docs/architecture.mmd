@@ -1,0 +1,13 @@
+flowchart TD
+    S[Server: directed road graph compiler] -->|versioned tile cache fills| T[Local graph tile cache]
+    I[Timestamped IMU increments] --> F[Map-free INS/GNSS filter]
+    I --> B[Alternative route-conditioned filter bank]
+    G[Original M9 PVT and covariance] --> F
+    G --> B
+    T --> C[Candidate edges and explicit successors]
+    C --> B
+    T --> M[Finite-width map constraints and persistent map error]
+    M --> B
+    B --> Q[Ambiguity and map-validity supervisor]
+    F --> Q
+    Q --> O[Physical estimate plus optional road identity and diagnostics]

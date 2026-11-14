@@ -1,0 +1,6 @@
+parallel_bias {"output_rmse_m": 5.8162, "fallback_rmse_m": 17.6988, "latch_availability": 0.9533, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}
+turn_outage {"output_rmse_m": 2.2971, "fallback_rmse_m": 8.8585, "latch_availability": 0.895, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}
+offroad_leave {"output_rmse_m": 3.7522, "fallback_rmse_m": 3.8401, "latch_availability": 0.95, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}
+ambiguous_parallel {"output_rmse_m": 13.0538, "fallback_rmse_m": 13.0538, "latch_availability": 0.0, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}
+map_offset {"output_rmse_m": 4.0135, "fallback_rmse_m": 2.1151, "latch_availability": 0.9542, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}
+missing_tiles {"output_rmse_m": 1.9864, "fallback_rmse_m": 2.1151, "latch_availability": 0.4489, "false_latch_rate": 0.0, "covariance_95_coverage": 1.0}

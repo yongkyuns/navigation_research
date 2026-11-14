@@ -1,0 +1,12 @@
+{
+  "original_archive": {
+    "name": "routefusion_prototype.zip",
+    "sha256": "018e07ba7b71eddd14fe44375dd4ff8339696355ee3fdc7e480065ab4d748d59",
+    "bytes": 1154460
+  },
+  "prototype_manifest_sha256": "266dfa440176d4114b2e58de5cd5419702604fa24a44e2444faf39a93d619adf",
+  "prototype_file_count": 433,
+  "report_sha256": "e06d9c95ef3560a988575232f874d372cbaccef0d11f0ec50337f758ee0a0872",
+  "chart_sha256": "4fca1a2f6232e49d36833a50a61fb85b4c23423d98aa04942f802f3dbcd3aecf",
+  "note": "Historical artifact identifiers. The repository ZIP is a separately labelled reproduction, not this original ZIP. Original timings are preserved in original-metrics.json."
+}

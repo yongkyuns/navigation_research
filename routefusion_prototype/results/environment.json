@@ -1,0 +1,11 @@
+{
+  "python": "3.13.5 (main, Jun 12 2025, 03:51:07) [GCC 13.3.0]",
+  "platform": "Linux-6.1.158.2-microsoft-standard-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "matplotlib": "3.10.8",
+  "Pillow": "12.3.0",
+  "kind": "Fresh synthetic reproduction; not the original experiment runtime",
+  "github_sha": "6d24fb0aeb959da789540fd11553d68af0e975ea",
+  "github_run_id": "43630551692"
+}

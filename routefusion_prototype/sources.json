@@ -1,0 +1,107 @@
+[
+  {
+    "id": "S1",
+    "title": "Newson and Krumm (2009), Hidden Markov Map Matching Through Noise and Sparseness",
+    "url": "https://www.microsoft.com/en-us/research/publication/hidden-markov-map-matching-noise-sparseness/",
+    "doi_or_report": "10.1145/1653771.1653818",
+    "inspection_and_use": "Official author page and paper; topology-aware sequence matching, not a consistent navigation-feedback interface."
+  },
+  {
+    "id": "S2",
+    "title": "Heirich (2016), Bayesian Train Localization with Particle Filter, Loosely Coupled GNSS, IMU, and a Track Map",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1155/2016/2672640",
+    "doi_or_report": "10.1155/2016/2672640",
+    "inspection_and_use": "Full publisher text. Discrete route and conditional continuous estimation; rail constraints are stronger than road constraints."
+  },
+  {
+    "id": "S3",
+    "title": "Falco, Einicke, Malos and Dovis (2012), Performance Analysis of Constrained Loosely Coupled GPS/INS Integration Solutions",
+    "url": "https://www.mdpi.com/1424-8220/12/11/15983",
+    "doi_or_report": "10.3390/s121115983",
+    "inspection_and_use": "Full publisher text. Precedent for road-boundary constraints with loose coupling; not adopted wholesale."
+  },
+  {
+    "id": "S4",
+    "title": "Simon and Simon (2006), Constrained Kalman Filtering via Density Function Truncation",
+    "url": "https://ntrs.nasa.gov/api/citations/20060012173/downloads/20060012173.pdf",
+    "doi_or_report": "NASA/TM-2006-214129",
+    "inspection_and_use": "NASA full report and page images. Basis for inequality conditioning rather than centerline projection."
+  },
+  {
+    "id": "S5",
+    "title": "Wang, Chen and Weng (2025), GNSS/IMU/map-matching feedback integration with adaptive GNSS accuracy estimation by using low-quality sensors for vehicle localization in urban canyon",
+    "url": "https://research.polyu.edu.hk/en/publications/gnssimumap-matching-feedback-integration-with-adaptive-gnss-accur/",
+    "doi_or_report": "10.1016/j.measurement.2024.115541",
+    "inspection_and_use": "Publisher abstract/highlights and institutional record only; full article not inspected. Incorrect feedback and motion-dependent validation are relevant cautions."
+  },
+  {
+    "id": "S6",
+    "title": "u-blox M9 SPG 4.04 Interface Description, UBX-21022436 R02",
+    "url": "https://content.u-blox.com/sites/default/files/u-blox-M9-SPG-4.04_InterfaceDescription_UBX-21022436.pdf",
+    "doi_or_report": "UBX-21022436 R02",
+    "inspection_and_use": "Official interface document, including NAV-PVT and NAV-COV page images. Separate position and velocity covariance blocks, not complete PVT temporal correlation."
+  },
+  {
+    "id": "S7",
+    "title": "u-blox GNSS raw data capability table",
+    "url": "https://www.u-blox.com/en/technologies/gnss-raw-data",
+    "doi_or_report": "",
+    "inspection_and_use": "Official capability table; full RAWX support is product/firmware dependent. Not needed for this road-map approach."
+  },
+  {
+    "id": "S8",
+    "title": "STMicroelectronics LSM6DSO product documentation",
+    "url": "https://www.st.com/content/st_com/en/products/mems-and-sensors/inemo-inertial-modules/lsm6dso.html",
+    "doi_or_report": "",
+    "inspection_and_use": "Official product information; no sensor-noise or outage-duration performance claims are inferred."
+  },
+  {
+    "id": "S9",
+    "title": "Valhalla Meili map-matching algorithms",
+    "url": "https://valhalla.github.io/valhalla/contributing/architecture/meili/algorithms/",
+    "doi_or_report": "",
+    "inspection_and_use": "Official project documentation; HMM baseline and implementation reference."
+  },
+  {
+    "id": "S10",
+    "title": "Valhalla Baldr tiled graph architecture",
+    "url": "https://valhalla.github.io/valhalla/contributing/architecture/baldr/",
+    "doi_or_report": "",
+    "inspection_and_use": "Official project documentation; server preprocessing and tiled graph design reference, not an MCU dependency."
+  },
+  {
+    "id": "S11",
+    "title": "Overture Maps transportation: Segments and Connectors",
+    "url": "https://docs.overturemaps.org/guides/transportation/segments-and-connectors/",
+    "doi_or_report": "",
+    "inspection_and_use": "Official schema guide. Connectivity comes from explicit connectors, not geometric intersections; level is not measured altitude."
+  },
+  {
+    "id": "S12",
+    "title": "UrbanNav dataset, PolyU IPN Lab",
+    "url": "https://www.polyu.edu.hk/aae/ipn-lab/us/en/resources/urbannav-dataset/",
+    "doi_or_report": "",
+    "inspection_and_use": "Official dataset page. Candidate future validation; no UrbanNav traces were run in this delivery. Check release-specific usage terms."
+  },
+  {
+    "id": "S13",
+    "title": "OpenStreetMap copyright and licensing",
+    "url": "https://www.openstreetmap.org/copyright",
+    "doi_or_report": "",
+    "inspection_and_use": "Official attribution/licensing information; check applicable obligations when building distributed map products."
+  },
+  {
+    "id": "S14",
+    "title": "UCL 3D mapping-aided GNSS research project",
+    "url": "https://www.ucl.ac.uk/engineering/research-projects/2017/sep/better-urban-positioning-using-3d-mapping-aided-global-satellite-systems-gnss",
+    "doi_or_report": "",
+    "inspection_and_use": "Primary research overview. Optional independent environmental likelihood, not part of this prototype."
+  },
+  {
+    "id": "S15",
+    "title": "OSRM HTTP API, Match service",
+    "url": "https://project-osrm.org/docs/v26.6.1/http.html",
+    "doi_or_report": "",
+    "inspection_and_use": "Official project documentation; useful offline route-matching baseline, not navigation-covariance truth."
+  }
+]

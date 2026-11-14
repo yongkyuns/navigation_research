@@ -1,0 +1,44 @@
+{
+  "note": "Exact historical numeric records copied from the original conversation archive. These are not runner timings. Decode with the repository publication script.",
+  "source_sha256": {
+    "README.md": "c144b1a486fe82c66b8fd0315ae5dcacb4a2c833eda551085fee7a8444f0544a",
+    "docs/DESIGN.md": "9e09303e58a1809983b19213bb444731a3cbbb7158599c25f08f01427c6c8719",
+    "docs/INTEGRATION.md": "892b176e3e01a431984c60aa5a77d989d5ef16e0d2742e7d42d6a5bf3d0050a6",
+    "docs/VALIDATION.md": "c95aea21a82632c9801dea7d5de4e4a0ea14bd3c0446e88e86eb7362f2f32032",
+    "docs/architecture.mmd": "d979d6859ec6e4512a980496475d7606ca9b8a684cd9b8646354422bfad082c6",
+    "pyproject.toml": "0841bbdaec6c60368f728232778b223d703052dac241d08e50b91042e960aa81",
+    "requirements-tested.txt": "30702d3dc61bc5d33853f1ff92cd2092a483a1d64f8a4f8f88c82295ca928bfe",
+    "routefusion/__init__.py": "c65c19a88196a1b1d83eef2917ab0aef6ed6024bb72a67793f3cc2bc9d8ffc1d",
+    "routefusion/build_tiles.py": "5127c736e31e25cb2e5ad81954ab22c26d8497a5f0e4a585e0bcae757643b318",
+    "routefusion/filter.py": "7575eaa7b019be17d6dff59098b0479a33ee7403ea8dac5bfc85c73c41a2c26c",
+    "routefusion/replay.py": "b33f73ee7b2f159ba50ec7afb91ac32618bd3f675f40009c760b360731f7c8c1",
+    "routefusion/simulate.py": "a54115623935f84004665a56b960fcc8a034007c70fd7bcb597776b1311e7ea3",
+    "routefusion/tiles.py": "bd0f35dc52abfbcaa48b29c024daa163a91287e485f6d804fda36c178a3e8473",
+    "routefusion/tracker.py": "75742c9d789398591060672b222f43495ffb73b63cb46baf5c67716df914d453",
+    "sources.json": "b6ef9c01879502ad6e797dc673b76f54da6473195f316a15ac026e4a96dbaca9",
+    "tests/test_math.py": "27e0be258c8c6e2db6fddc271c3b604753dd0afb031af2d15e235257427ea5ee",
+    "tests/test_tiles_tracker.py": "83a50d2e73e8c2d300325b99f4900ec6df1ca4f5ab0434ef4a9e16958175dbbe"
+  },
+  "files": {
+    "original-metrics.json": {
+      "sha256": "7420964dd7d7e87fc0d2e923784dc79ef295bd65b4e0ba8ea8230becdc8fcda7",
+      "encoding": "zlib-parts",
+      "parts": ["original-metrics.json.00", "original-metrics.json.01", "original-metrics.json.02", "original-metrics.json.03", "original-metrics.json.04", "original-metrics.json.05", "original-metrics.json.06", "original-metrics.json.07", "original-metrics.json.08", "original-metrics.json.09"]
+    },
+    "original-summary.json": {
+      "sha256": "47c84642dc300376b64f62de09bc329771bb693af4a98cca581579b39252e816",
+      "encoding": "zlib-parts",
+      "parts": ["original-summary.json.00", "original-summary.json.01", "original-summary.json.02", "original-summary.json.03"]
+    },
+    "original-environment.json": {
+      "sha256": "a4d006e65a2ad3ab6e70611c3dac1244a6196f329ac1ddab767b735869923196",
+      "encoding": "zlib-parts",
+      "parts": ["original-environment.json.00"]
+    },
+    "original-tests.txt": {
+      "sha256": "71564ccfdf82e9cd8a40a0f0ea44501dd062ff98be0f8a4de455e31a3da36874",
+      "encoding": "zlib-parts",
+      "parts": ["original-tests.txt.00"]
+    }
+  }
+}
