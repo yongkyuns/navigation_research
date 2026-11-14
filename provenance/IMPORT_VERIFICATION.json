@@ -1,0 +1,95 @@
+{
+  "scenario_seed_runs": 60,
+  "epochs": 7200,
+  "primary_navigation_metrics_match_original": true,
+  "all_non_timing_metrics_match_original": false,
+  "tie_sensitive_baseline_diagnostics": [
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 100,
+      "field": "naive_correct_rate",
+      "original": 0.875,
+      "reproduced": 1.0,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 101,
+      "field": "naive_correct_rate",
+      "original": 0.09166666666666666,
+      "reproduced": 0.3416666666666667,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 102,
+      "field": "naive_correct_rate",
+      "original": 0.6083333333333333,
+      "reproduced": 0.6916666666666667,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 103,
+      "field": "naive_correct_rate",
+      "original": 0.6833333333333333,
+      "reproduced": 0.7333333333333333,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 104,
+      "field": "naive_correct_rate",
+      "original": 0.7166666666666667,
+      "reproduced": 0.7666666666666667,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 105,
+      "field": "naive_correct_rate",
+      "original": 0.5833333333333334,
+      "reproduced": 0.775,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 106,
+      "field": "naive_correct_rate",
+      "original": 0.6416666666666667,
+      "reproduced": 0.5916666666666667,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 107,
+      "field": "naive_correct_rate",
+      "original": 0.7,
+      "reproduced": 0.8583333333333333,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    },
+    {
+      "scenario": "ambiguous_parallel",
+      "seed": 108,
+      "field": "naive_correct_rate",
+      "original": 0.65,
+      "reproduced": 0.7916666666666666,
+      "reason": "Validated exact-bisector nearest-road tie; navigation remains ambiguous"
+    }
+  ],
+  "relative_tolerance": 1e-09,
+  "absolute_tolerance": 1e-09,
+  "replayed_outputs": 720,
+  "original_source_files_verified": 17,
+  "synthetic_only": true,
+  "timing_fields": "Fresh measurements, never overwritten with historical timings",
+  "published_project_files": 441,
+  "published_manifest_sha256": "29771816b65715f5549a324b0206be234b00acda2d2b7f8775cd6feeeff570a0",
+  "combined_report_sha256": "e06d9c95ef3560a988575232f874d372cbaccef0d11f0ec50337f758ee0a0872",
+  "published_archive_sha256": "14d4e0b9ef2bbc26ecc599d9bdf5f39ecaf1296baf24ee88e537d5ae310e2c87",
+  "published_chart_sha256": "4fca1a2f6232e49d36833a50a61fb85b4c23423d98aa04942f802f3dbcd3aecf",
+  "original_archive_byte_identical": false,
+  "publication_note": "Original code/report/numerical records preserved; new traces, logs and ZIP explicitly labelled as reproduction.",
+  "github_run_id": "43630551692",
+  "github_sha": "6d24fb0aeb959da789540fd11553d68af0e975ea"
+}
