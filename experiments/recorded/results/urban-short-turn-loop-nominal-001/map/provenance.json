@@ -1,0 +1,15 @@
+{
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:90];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.4770755,-79.6960468,43.4853805,-79.6836568)->.roads;(.roads;rel(bw.roads)[\"type\"=\"restriction\"];);out geom;",
+  "bounds_s_w_n_e": [
+    43.4770755,
+    -79.69604679999999,
+    43.4853805,
+    -79.6836568
+  ],
+  "response_sha256": "83b0f6c35415f1ae4be6858c73b9ca1d7ca795adadba167b9422b3e82167dbcc",
+  "osm_base_timestamp": "2026-11-14T19:34:55Z",
+  "attribution": "\u00a9 OpenStreetMap contributors; Open Database License (ODbL) 1.0; https://www.openstreetmap.org/copyright",
+  "selection": "Full-trip bounding box selects coverage only; no road geometry derived from GNSS",
+  "temporal_limit": "Map retrieval is not contemporaneous with the recording"
+}
