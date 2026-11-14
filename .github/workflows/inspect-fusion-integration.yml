@@ -1,0 +1,43 @@
+name: Inspect pinned fusion integration
+on:
+  push:
+    branches: [research/imu-gnss-integration]
+    paths: [.github/workflows/inspect-fusion-integration.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-slim
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: upstream
+          persist-credentials: false
+      - name: Collect source and dataset evidence
+        shell: bash
+        run: |
+          mkdir -p evidence
+          cd upstream
+          git rev-parse HEAD > ../evidence/upstream-commit.txt
+          git ls-files > ../evidence/upstream-files.txt
+          python3 - <<'PY'
+          import json, pathlib, tarfile
+          root=pathlib.Path('.')
+          with tarfile.open('../evidence/fusion-source-datasets.tar.gz','w:gz') as out:
+              for p in sorted(root.rglob('*')):
+                  if not p.is_file() or '.git' in p.parts:
+                      continue
+                  selected=(p.parts[0] in ('sensor_fusion','tools','road_events','scripts') or str(p).startswith('web/datasets/') or str(p).startswith('.github/datasets/') or (p.parts[0]=='docs' and p.suffix in ('.md','.rst')) or str(p) in ('Cargo.toml','Cargo.lock','LICENSE','AGENTS.md','README.md'))
+                  if selected and p.suffix not in ('.ttf','.woff','.woff2','.otf'):
+                      out.add(p,arcname='upstream/'+str(p))
+          manifest=json.loads(pathlib.Path('.github/datasets/generic-datasets.json').read_text())
+          print(json.dumps([{'id':d['id'],'files':[f['path'] for f in d['files']]} for d in manifest['datasets']],indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pinned-fusion-inspection
+          path: evidence
+          retention-days: 7
