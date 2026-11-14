@@ -4,14 +4,21 @@ Only Clone, an f64 anchor getter, and a research moment-injection hook are added
 The original mechanization, updates, mount alignment and gating are unchanged.
 """
 from pathlib import Path
-import argparse, hashlib, json, shutil, subprocess
+import argparse, hashlib, json, shutil
 REV = '8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6'
 
 def prepare(upstream: Path, output: Path):
+    lock=Path(__file__).parent/'Cargo.lock'
+    expected_path=Path(__file__).parent/'upstream-source-sha256.json'
+    expected=json.loads(expected_path.read_text())
+    for name,digest in expected.items():
+        if hashlib.sha256((upstream/name).read_bytes()).hexdigest()!=digest:
+            raise ValueError('Upstream source differs from pinned revision: '+name)
     if output.exists(): raise ValueError('Build directory already exists')
     output.mkdir(parents=True)
     shutil.copytree(upstream/'sensor_fusion', output/'sensor_fusion')
     shutil.copytree(Path(__file__).parent/'rust_bridge', output/'bridge')
+    shutil.copyfile(lock,output/'Cargo.lock')
     original={p.relative_to(upstream).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
               for p in sorted((upstream/'sensor_fusion').rglob('*')) if p.is_file()}
     p=output/'sensor_fusion/src/fusion.rs'; s=p.read_text()
