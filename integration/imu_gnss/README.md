@@ -1,5 +1,7 @@
 # Native `imu_gnss_fusion` integration
 
+**Intersection revision:** see [INTERSECTIONS.md](INTERSECTIONS.md) for approach/junction/exit hypotheses, protected maneuver diversity, bounded rollback, and the measured loss of latch availability. Published output remains map-free.
+
 This experiment runs the actual Rust `SensorFusion` runtime, pinned to upstream
 commit `8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6`, on its hosted recordings.
 It adds alternative road-conditioned copies of that runtime, not a flattened
@@ -63,8 +65,9 @@ optimization or lane-level guarantee is claimed.
 Raw recordings are reused at the pinned upstream revision, not duplicated here.
 Input checksums, row counts and headers are verified; duplicate/backward times
 fail closed. The audit records rejected streams without inventing timestamps.
-`evidence/` holds per-recording JSON, compressed epoch traces, graph tiles,
-source/build/test provenance and checksums.
+`evidence/` holds historical pre-intersection per-recording JSON, compressed epoch
+traces, graph tiles, source/build/test provenance and checksums. Current replays
+write to a new run directory and are archived by the read-only CI workflow.
 
 `map_cache/` holds an independently fetched OSM extract with query, date and
 hash. Reproduction uses this exact snapshot, not today's roads. Coverage is

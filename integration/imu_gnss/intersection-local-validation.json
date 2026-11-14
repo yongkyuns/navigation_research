@@ -1,0 +1,39 @@
+{
+  "kind": "Local pre-commit validation; independent exact-head CI artifacts are authoritative for merge",
+  "baseline_revision": "bc8cbb91b6efc82cadd0ce2c67769b93a07b9352",
+  "upstream_revision": "8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6",
+  "python_integration_tests_passed": 39,
+  "original_planar_tests_passed": 24,
+  "datasets_replayed": 35,
+  "baseline_unchanged": true,
+  "paired_fallback_bit_identical": true,
+  "output_mode": "shadow/map-free",
+  "reference_independence": "unverified; no independent road labels",
+  "mapped_runs": [
+    {"id":"urban-short-turn-loop-nominal-001","previous_latch_fraction":0.5401459854014599,"new_latch_fraction":0.40145985401459855,"status_counts":{"AMBIGUOUS":22,"JUNCTION_AMBIGUOUS":60,"LATCHED":55,"NOT_READY":40}},
+    {"id":"urban-short-turn-loop-nominal-002","previous_latch_fraction":0.6904761904761905,"new_latch_fraction":0.4226190476190476,"status_counts":{"AMBIGUOUS":22,"JUNCTION_AMBIGUOUS":75,"LATCHED":71,"NOT_READY":22}},
+    {"id":"urban-stop-go-tight-turns-nominal-001","previous_latch_fraction":0.7244897959183674,"new_latch_fraction":0.24081632653061225,"status_counts":{"AMBIGUOUS":40,"JUNCTION_AMBIGUOUS":331,"LATCHED":118,"NOT_READY":40,"NO_CONSISTENT_ROUTE":1}},
+    {"id":"ios-mixed-road-drive-001","previous_latch_fraction":0.6375617792421746,"new_latch_fraction":0.42504118616144976,"status_counts":{"AMBIGUOUS":72,"HYPOTHESIS_OVERFLOW":33,"JUNCTION_AMBIGUOUS":242,"LATCHED":258,"NOT_READY":65,"NO_CONSISTENT_ROUTE":2}}
+  ],
+  "stress_runs": [
+    {"category":"stress-outage30","baseline_discrepancy_rmse_m":2.9266955454083594,"candidate_discrepancy_rmse_m":2.9284112482602795},
+    {"category":"stress-bias20","baseline_discrepancy_rmse_m":17.50596100654492,"candidate_discrepancy_rmse_m":17.477791945458083}
+  ],
+  "source_sha256": {
+    "datasets.py":"85ea589c0936ddcc279bed38636ae17159e62dccf963a46f21bcef5f8b5403f3",
+    "evaluate_baseline.py":"be8408f2e9e977f8d87b9e2dac94d9f1c9b30ad1a4e2d8d87ba76b35a1595ead",
+    "evaluate_map.py":"e98525cdebeb089b205e11fd8f4ad0c5600361ebda9565c6f23222f8ddd3ccba",
+    "intersections.py":"d3abf0c8901d93a77dcc44ea19cfb761820ef74569bac78d7d7cbb760a5fb698",
+    "native.py":"b314ae5380c38d2fb998fac04a801d182978db70ee980b1e0029995d375a1fa7",
+    "osm_graph.py":"b478ecd203d042c12743f63d4b25c38ec7738aa34b12201b2999a4bfe5524c5b",
+    "prepare_native.py":"c74b77c024bc8ebe0b6cdebfb8db08c390fca585d301034c1d6ee7191775b516",
+    "qualify_intersections.py":"92f24dd80c61eab6eb89344cbeb762e5974c92e581e690f067f20305b7affef7",
+    "recovery.py":"cd676f239535f8e9ba3186bf51749d214c894f8173a5e279015253ff1cb7e50a",
+    "report.py":"453ea777c7b9b8c6df391c477a9b7ff0dba16f686878629c71e6c6748009ffac",
+    "road_bank.py":"c8eb71a618bc882d282482d76861427feeb80d5d9f56d852a3a4ddde81cd90a0",
+    "run_evaluation.py":"d2b02a744a135278cc8da0c681107c82b335474c672283fb21c5d2c267350b57",
+    "tests/test_integration.py":"59430ec8752218fa355cd3f6570033ca91bedffe4e2590df8c1b708420cf2d2e",
+    "tests/test_intersections.py":"81a23f5713ecbb2e4e88e8300108c7248f754528eecd4cca3d1d74f5e333017f",
+    "tests/test_intersections_native.py":"ca2a54d43ff2d828465ed36589dd34a84529a4e6414a8cba13f7e2b99e7c0fa5"
+  }
+}

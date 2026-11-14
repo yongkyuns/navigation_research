@@ -1,18 +1,22 @@
-name: Evaluate native fusion on recorded datasets
+name: Qualify native fusion and intersection handling
 on:
-  push:
-    branches: [research/imu-gnss-integration]
+  pull_request:
     paths:
-      - integration/imu_gnss/*.py
-      - integration/imu_gnss/tests/**
-      - integration/imu_gnss/rust_bridge/**
-      - integration/imu_gnss/Cargo.lock
+      - integration/imu_gnss/**
       - .github/workflows/evaluate-native-recordings.yml
+  push:
+    branches: [main]
+    paths:
+      - integration/imu_gnss/**
+      - .github/workflows/evaluate-native-recordings.yml
+  workflow_dispatch:
 permissions:
-  contents: write
-  actions: read
+  contents: read
+concurrency:
+  group: native-qualification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
-  evaluate:
+  qualify:
     runs-on: ubuntu-slim
     timeout-minutes: 20
     env:
@@ -23,7 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: yongkyuns/imu_gnss_fusion
@@ -33,38 +38,13 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.13.5'
-      - name: Install recorded environment and fixed Rust toolchain
+      - name: Install reference dependencies and fixed Rust toolchain
         run: |
           set -euo pipefail
           python -m pip install -r requirements-reproduce.txt
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
           echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
-      - name: Retrieve the exact independently captured road snapshot
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python - <<'PY'
-          import hashlib,io,pathlib,urllib.request,zipfile,os
-          target=pathlib.Path('integration/imu_gnss/map_cache')
-          if (target/'osm-roads.json.gz').exists():
-              print('Using committed map snapshot')
-          else:
-              class NoRedirect(urllib.request.HTTPRedirectHandler):
-                  def redirect_request(self,*args,**kwargs): return None
-              req=urllib.request.Request('https://api.github.com/repos/yongkyuns/navigation_research/actions/artifacts/14128773612/zip',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
-              try:
-                  response=urllib.request.build_opener(NoRedirect).open(req,timeout=60)
-                  raw=response.read()
-              except urllib.error.HTTPError as exc:
-                  if exc.code not in (301,302,303,307,308):raise
-                  with urllib.request.urlopen(exc.headers['Location'],timeout=90) as response:raw=response.read()
-              if hashlib.sha256(raw).hexdigest()!='2931c1a0c281eadb28e130aeb9d0f66372d5c57481cbe67770b3e99dbfe8dcbd':raise ValueError('Artifact bytes differ')
-              target.mkdir(parents=True,exist_ok=True)
-              with zipfile.ZipFile(io.BytesIO(raw)) as archive:
-                  for name in ('osm-roads.json.gz','provenance.json'):
-                      (target/name).write_bytes(archive.read(name))
-          PY
-      - name: Verify pinned upstream, build bridge, and test native runtime
+      - name: Verify pinned source and build native runtime
         run: |
           set -euo pipefail
           test "$(git -C .cache/fusion-upstream rev-parse HEAD)" = 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
@@ -74,41 +54,23 @@ jobs:
           cargo test --manifest-path .cache/fusion-native/Cargo.toml --workspace --locked 2>&1 | tee runs/native-build/tests.txt
           cargo build --manifest-path .cache/fusion-native/Cargo.toml -p routefusion_native_bridge --release --locked
           cp .cache/fusion-native/source-provenance.json runs/native-build/
-          cp .cache/fusion-native/target/release/libroutefusion_native_bridge.so runs/native-build/
-      - name: Replay every package, paired map experiments and controlled stresses
+      - name: Replay recordings and qualify intersection/fallback invariants
         run: |
+          set -euo pipefail
           python integration/imu_gnss/run_evaluation.py \
             --upstream .cache/fusion-upstream \
             --library .cache/fusion-native/target/release/libroutefusion_native_bridge.so \
             --map-cache integration/imu_gnss/map_cache \
             --output runs/native-evaluation --report runs/native-report.md
-      - name: Publish complete evidence without changing the source filter
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import pathlib,shutil,json,hashlib,os
-          destination=pathlib.Path('integration/imu_gnss/evidence')
-          if destination.exists():shutil.rmtree(destination)
-          shutil.copytree('runs/native-evaluation',destination)
-          shutil.copyfile('runs/native-report.md','integration/imu_gnss/REPORT.md')
-          for name in ('rustc.txt','tests.txt','source-provenance.json'):
-              shutil.copyfile(pathlib.Path('runs/native-build')/name,destination/('native-'+name))
-          (destination/'run-provenance.json').write_text(json.dumps({'github_sha':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'upstream_revision':'8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6','synthetic_perturbations_are_labelled':True,'reference_independence':'unverified','hardware_accuracy_claim':False},indent=2)+'\n')
-          checks={p.relative_to(destination).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(destination.rglob('*')) if p.is_file() and p.name!='SHA256SUMS.json'}
-          (destination/'SHA256SUMS.json').write_text(json.dumps(checks,indent=2)+'\n')
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- integration/imu_gnss/evidence integration/imu_gnss/map_cache integration/imu_gnss/REPORT.md
-          git diff --cached --quiet || git commit -m 'Record native fusion replay, independent maps and measured limitations'
-          git push origin HEAD:research/imu-gnss-integration
+          python integration/imu_gnss/qualify_intersections.py --results runs/native-evaluation
+          git diff --exit-code
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: native-recording-evaluation-${{ github.run_id }}
+          name: native-intersection-qualification-${{ github.run_id }}
           path: |
             runs/native-build
             runs/native-evaluation
             runs/native-report.md
           retention-days: 30
-          if-no-files-found: ignore
+          if-no-files-found: error

@@ -42,7 +42,7 @@ def main():
         if completed.returncode:
             raise RuntimeError(f'{name} failed; preserved log: {out / (name + ".log")}')
 
-    run('integration-tests', ['-m', 'pytest', '-q', HERE / 'tests'])
+    run('integration-tests', ['-m', 'pytest', '-q', HERE / 'tests', '--junitxml', out / 'integration-tests.xml'])
     run('baseline', [HERE / 'evaluate_baseline.py', '--library', library,
                     '--datasets', dataset, '--output', out / 'baseline'])
     common = ['--library', library, '--datasets', dataset,
