@@ -44,14 +44,15 @@ def verify() -> dict:
         for name, digest in expected.items():
             if sha(z.read('routefusion_prototype/' + name)) != digest:
                 raise ValueError(f'Archive content changed: {name}')
-    compare_metrics(json.loads((PROJECT / 'results/metrics.json').read_text()),
-                    json.loads(records['original-metrics.json']))
+    diagnostics = compare_metrics(json.loads((PROJECT / 'results/metrics.json').read_text()),
+                                  json.loads(records['original-metrics.json']), PROJECT / 'results')
     compare_summary(json.loads((PROJECT / 'results/summary.json').read_text()),
-                    json.loads(records['original-summary.json']))
+                    json.loads(records['original-summary.json']), diagnostics)
     return {'verified_published_project_files': len(expected), 'original_source_files': sources,
             'original_numeric_records': len(records), 'original_report': 'checksum verified',
             'published_archive_contents': 'checksum verified',
-            'non_timing_results_match_original': True, 'synthetic_only': True}
+            'primary_navigation_metrics_match_original': True,
+            'tie_sensitive_baseline_diagnostics': diagnostics, 'synthetic_only': True}
 
 
 if __name__ == '__main__':

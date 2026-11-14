@@ -79,7 +79,31 @@ def close(actual, expected, label='value') -> None:
         raise TypeError(f'Unsupported comparison type: {type(expected)}')
 
 
-def compare_metrics(actual: list[dict], expected: list[dict]) -> None:
+def validate_symmetric_tie(trace: Path, observed_rate: float) -> None:
+    """Qualify only the known diagnostic tie; never exempt navigation errors.
+
+    In this frozen scenario road centerlines are at north=0 and north=26 m.
+    Every fallback fix must remain on the 13 m bisector and the estimator must
+    abstain. This allows a nearest-road diagnostic to choose either equal road.
+    """
+    with trace.open(newline='') as stream:
+        rows = list(csv.DictReader(stream))
+    if len(rows) != 120:
+        raise ValueError('Tie qualification needs all 120 original scenario epochs')
+    for i, row in enumerate(rows, 1):
+        close(float(row['t']), float(i), 'tie epoch')
+        if (not math.isfinite(float(row['fallback_n']))
+                or abs(float(row['fallback_n']) - 13.) > 1e-10
+                or row['status'] != 'AMBIGUOUS' or row['route_group']
+                or row['true_group'] != 'main'
+                or row['naive_group'] not in ('main', 'parallel')):
+            raise ValueError('Nearest-road discrepancy is not an unresolved symmetric tie')
+        close(float(row['top_weight']), .5, 'equal route weights')
+    rate = sum(r['naive_group'] == r['true_group'] for r in rows) / len(rows)
+    close(observed_rate, rate, 'tie diagnostic versus trace')
+
+
+def compare_metrics(actual: list[dict], expected: list[dict], traces: Path | None = None) -> list[dict]:
     def keyed(rows):
         result = {(r['scenario'], r['seed']): r for r in rows}
         if len(result) != len(rows):
@@ -88,17 +112,46 @@ def compare_metrics(actual: list[dict], expected: list[dict]) -> None:
     candidate, reference = keyed(actual), keyed(expected)
     if candidate.keys() != reference.keys():
         raise ValueError('Scenario/seed coverage differs')
+    diagnostics = []
     for key, row in reference.items():
         if candidate[key].keys() != row.keys():
             raise ValueError(f'{key}: metric schema differs')
         for field in row:
-            if field != 'runtime_s':
+            if field == 'runtime_s':
+                continue
+            try:
                 close(candidate[key][field], row[field], f'{key}/{field}')
+            except ValueError:
+                if traces is None or key[0] != 'ambiguous_parallel' or field != 'naive_correct_rate':
+                    raise
+                validate_symmetric_tie(traces / f'{key[0]}_seed{key[1]}.csv', candidate[key][field])
+                diagnostics.append({'scenario': key[0], 'seed': key[1], 'field': field,
+                                    'original': row[field], 'reproduced': candidate[key][field],
+                                    'reason': 'Validated exact-bisector nearest-road tie; navigation remains ambiguous'})
+    return diagnostics
 
 
-def compare_summary(actual: dict, expected: dict) -> None:
-    strip = lambda d: {s: {k: v for k, v in values.items() if k != 'runtime_s'}
-                       for s, values in d.items()}
+def compare_summary(actual: dict, expected: dict, tie_diagnostics=()) -> None:
+    if tie_diagnostics:
+        # Recompute the diagnostic aggregate from the exact original per-run values
+        # plus only the trace-qualified replacements. Do not exempt the summary.
+        import numpy as np
+        _, records = original_records()
+        rates = {r['seed']: r['naive_correct_rate']
+                 for r in json.loads(records['original-metrics.json'])
+                 if r['scenario'] == 'ambiguous_parallel'}
+        for diagnostic in tie_diagnostics:
+            rates[diagnostic['seed']] = diagnostic['reproduced']
+        values = list(rates.values())
+        aggregate = {'mean': float(np.mean(values)), 'min': float(np.min(values)),
+                     'max': float(np.max(values))}
+        close(actual['ambiguous_parallel']['naive_correct_rate'], aggregate,
+              'qualified nearest-road summary')
+    def strip(d):
+        return {scenario: {k: v for k, v in values.items()
+                           if k != 'runtime_s' and not (tie_diagnostics
+                           and scenario == 'ambiguous_parallel' and k == 'naive_correct_rate')}
+                for scenario, values in d.items()}
     close(strip(actual), strip(expected), 'summary')
 
 
@@ -129,9 +182,9 @@ def evaluate(output: Path) -> dict:
              '--start-seed', '100', '--save-traces', '--output', str(results)],
             results / 'evaluation_console.txt')
     metrics = json.loads((results / 'metrics.json').read_text())
-    compare_metrics(metrics, json.loads(records['original-metrics.json']))
+    diagnostics = compare_metrics(metrics, json.loads(records['original-metrics.json']), results)
     compare_summary(json.loads((results / 'summary.json').read_text()),
-                    json.loads(records['original-summary.json']))
+                    json.loads(records['original-summary.json']), diagnostics)
     scenarios = sorted({m['scenario'] for m in metrics})
     replays = results / 'replays'
     replays.mkdir()
@@ -171,7 +224,9 @@ def evaluate(output: Path) -> dict:
                    'github_run_id': os.environ.get('GITHUB_RUN_ID')}
     (results / 'environment.json').write_text(json.dumps(environment, indent=2) + '\n')
     verification = {'scenario_seed_runs': len(metrics), 'epochs': sum(m['epochs'] for m in metrics),
-                    'original_non_timing_metrics_match': True, 'original_summary_matches': True,
+                    'primary_navigation_metrics_match_original': True,
+                    'all_non_timing_metrics_match_original': not diagnostics,
+                    'tie_sensitive_baseline_diagnostics': diagnostics,
                     'relative_tolerance': TOLERANCE, 'absolute_tolerance': TOLERANCE,
                     'replayed_outputs': replayed, 'original_source_files_verified': check_sources(),
                     'synthetic_only': True, 'timing_fields': 'Fresh measurements, never overwritten with historical timings'}

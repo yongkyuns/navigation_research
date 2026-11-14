@@ -52,7 +52,7 @@ python scripts/verify_snapshot.py
 python scripts/reproduce.py --output runs/my-evaluation
 ```
 
-On Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`. The reproduction command sets its numerical-library threading environment, refuses to overwrite existing runs, and writes fresh evidence to the requested directory. It runs the original 24 algorithm tests plus four publication-tool checks, evaluates all 60 scenario/seed combinations, compares non-timing metrics with the original records, and checks all six example replays (720 outputs).
+On Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`. The reproduction command sets its numerical-library threading environment, refuses to overwrite existing runs, and writes fresh evidence to the requested directory. It runs the original 24 algorithm tests plus six publication-tool checks, evaluates all 60 scenario/seed combinations, compares navigation metrics with the original records, and checks all six example replays (720 outputs).
 
 The original package README is preserved as historical documentation. Prefer the root commands above rather than its old command that writes directly into `results/`.
 
@@ -62,7 +62,9 @@ The original package README is preserved as historical documentation. Prefer the
 
 The study used seeds 100–109, six scenarios, 120 seconds per run, and 7,200 map epochs. It is not an M9/LSM6DSO field trial, an UrbanNav evaluation, or a benchmark of an existing production filter.
 
-The original code, report, per-run metrics, summary, environment record, and test log are preserved with checksum verification. The repository's traces, tile examples, figure, logs and ZIP were produced in a **fresh reproduction**; they are not presented as byte-identical copies of the original ZIP. Numerical comparisons use 1e-9 absolute/relative tolerance and exclude runtime only. Fresh runtime values are never replaced with historical values. See [the publication record](provenance/IMPORT_VERIFICATION.json).
+The original code, report, per-run metrics, summary, environment record, and test log are preserved with checksum verification. The repository's traces, tile examples, figure, logs and ZIP were produced in a **fresh reproduction**; they are not presented as byte-identical copies of the original ZIP. Numerical comparisons use 1e-9 absolute/relative tolerance. Fresh runtime values are never replaced with historical values.
+
+The naive nearest-road diagnostic can break exact parallel-road ties differently across CPUs. Such differences are recorded, not hidden: the check requires all 120 relevant fixes to remain on the equal-distance bisector, equal route weights, and an ambiguous navigation output. All other non-timing metric comparisons remain strict. See [provenance](docs/PROVENANCE.md) and [the publication record](provenance/IMPORT_VERIFICATION.json).
 
 A shifted map worsened position RMSE despite correct road identification. Symmetric parallel roads remained unresolved. An old road latch persisted for three seconds after departure in the synthetic case. Conditional branch weights are not calibrated integrity probabilities. These limitations remain in the research record.
 
