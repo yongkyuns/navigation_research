@@ -1,0 +1,57 @@
+name: Import exact evidence on alternate runners
+on:
+  push:
+    branches: [research/routefusion-initial-import]
+    paths: [.github/workflows/import-evidence-alternate.yml]
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'yongkyuns/navigation_research' && github.ref == 'refs/heads/research/routefusion-initial-import'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-slim, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Install captured versions
+        run: python -m pip install -r routefusion_prototype/requirements-tested.txt matplotlib==3.10.8 Pillow==12.3.0 -e ./routefusion_prototype
+      - name: Reconstruct only an exact original snapshot
+        shell: bash
+        run: |
+          if test -f routefusion_prototype/SHA256SUMS.txt; then
+            python scripts/verify_snapshot.py
+          else
+            python scripts/restore_original_evidence.py || {
+              test ! -f runs/import-verification/candidate-SHA256SUMS.txt || cat runs/import-verification/candidate-SHA256SUMS.txt
+              exit 1
+            }
+          fi
+      - name: Publish verified snapshot without overwriting other work
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- routefusion_prototype/results routefusion_prototype/SHA256SUMS.txt routefusion_research_and_design.md artifacts/routefusion_prototype.zip provenance/IMPORT_VERIFICATION.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Preserve checksum-verified original RouteFusion research evidence'
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - name: Preserve separate current verification logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: import-verification-${{ matrix.os }}-${{ github.run_id }}
+          path: runs/import-verification
+          if-no-files-found: ignore
