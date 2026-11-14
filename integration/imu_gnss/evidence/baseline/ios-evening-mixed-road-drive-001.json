@@ -1,0 +1,36 @@
+{
+  "id": "ios-evening-mixed-road-drive-001",
+  "manifest_sha256": "b7ffe01b672186ed729fe54026d7f474e0aff73d215a98919aa8ecd69b822f58",
+  "input_sha256": {
+    "imu": "5f99db37a65e1bd3d182f3f1f7458cc25e8dfa1df344d77b21e12c7990e6827e",
+    "gnss": "c993190083e5266f8f6a4393d83e9b664f047bad9ed31ba20f4b69c5f13bbad1"
+  },
+  "rows": {
+    "imu": 70493,
+    "gnss": 706
+  },
+  "reference_available": false,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 707.1241723299026,
+  "wall_runtime_s": 1.3813013200000057,
+  "initialization_t_s": 136.890998005867,
+  "sampled_epochs": 1410,
+  "ready_fraction": 0.8063829787234043,
+  "usable_fraction": 0.8063829787234043,
+  "nonfinite_outputs": 0,
+  "reference_rows": 0,
+  "reference_discrepancy": null,
+  "reference_repeated_position_fraction": null,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 1136,
+    "rmse_m": 4.00466100598073,
+    "median_m": 1.559706159207056,
+    "p95_m": 10.679007047663521,
+    "max_m": 18.89716983473816
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

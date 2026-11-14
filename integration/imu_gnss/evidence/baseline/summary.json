@@ -1,0 +1,1393 @@
+[
+  {
+    "id": "covered-parking-urban-drive-data-gap-001",
+    "status": "INPUT_REJECTED",
+    "reason": "Invalid shape or timestamps: /home/runner/work/navigation_research/navigation_research/.cache/fusion-upstream/web/datasets/covered-parking-urban-drive-data-gap-001/imu.csv.gz"
+  },
+  {
+    "id": "covered-parking-urban-drive-gnss-outage-001",
+    "manifest_sha256": "8c21098a86cf21a966cbd2173d4a8d232d7531fdb1a3c57ab2b6b92ae1f92d66",
+    "input_sha256": {
+      "imu": "2c78534d6e163174090d40975d7d36b2911fee393b5eef278333e6783e11ddb4",
+      "gnss": "aac22e84e37e6b829d6aaa33cbb3d5c852732315a8e326012fec14d44bb96816"
+    },
+    "rows": {
+      "imu": 213790,
+      "gnss": 3710
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 2148.502715737104,
+    "wall_runtime_s": 4.329745330000009,
+    "initialization_t_s": 382.5800012718439,
+    "sampled_epochs": 4276,
+    "ready_fraction": 0.8220299345182414,
+    "usable_fraction": 0.8220299345182414,
+    "nonfinite_outputs": 0,
+    "reference_rows": 61833,
+    "reference_discrepancy": {
+      "n": 3508,
+      "rmse_m": 5.066380884124552,
+      "median_m": 1.1824065881171746,
+      "p95_m": 11.165021786833803,
+      "max_m": 40.83979553116275
+    },
+    "reference_repeated_position_fraction": 0.16117867770733602,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 3137,
+      "rmse_m": 0.46844307931266266,
+      "median_m": 0.25365332630683696,
+      "p95_m": 0.8350844308466298,
+      "max_m": 7.254163369152975
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260521-121635",
+    "manifest_sha256": "9aaf9bfc4a70f4a7850eaebf3c0f6bd7a4d51eef9e5c3ce9f5d3dd414b2cbe33",
+    "input_sha256": {
+      "imu": "8e2386a6c46370e70dd7ea3a1b9968ccce996e205bad726622f6f24c4bdbe79f",
+      "gnss": "7375fadb48ee5a35fc7e1a98ddc1dd14f33b0c09b0ed9d835a5a7f676591fcdd"
+    },
+    "rows": {
+      "imu": 186335,
+      "gnss": 1869
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1869.3532670736313,
+    "wall_runtime_s": 4.8209141780000095,
+    "initialization_t_s": 274.8212056159973,
+    "sampled_epochs": 3727,
+    "ready_fraction": 0.8529648510866649,
+    "usable_fraction": 0.8529648510866649,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 3178,
+      "rmse_m": 2.320061445616226,
+      "median_m": 1.3855034748413004,
+      "p95_m": 4.415598724341127,
+      "max_m": 10.067755734533714
+    },
+    "reanchors": 2,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260521-130835",
+    "manifest_sha256": "c8899fbc02782e44176fbabf5f58671ce40a69363dbc3d48c3ca7c70716130db",
+    "input_sha256": {
+      "imu": "1d41ee013e396c5637c6590299d3585ebb2452a09357f5895b7add0ed7a65945",
+      "gnss": "507911bc57576722959a28cd85d7b99e107a504ce6ea6393b8d0a8c1ee20896f"
+    },
+    "rows": {
+      "imu": 24518,
+      "gnss": 246
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 245.95713412761688,
+    "wall_runtime_s": 0.6093784360000143,
+    "initialization_t_s": 167.04325425624847,
+    "sampled_epochs": 491,
+    "ready_fraction": 0.32179226069246436,
+    "usable_fraction": 0.32179226069246436,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 157,
+      "rmse_m": 0.6098858426089687,
+      "median_m": 0.4055941815512779,
+      "p95_m": 1.1971492441058833,
+      "max_m": 1.6317526152760142
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260521-131420",
+    "manifest_sha256": "24e7e4b89afe2e525967b664d23e4623db5fa214db0d02b80d904aeaa49385ca",
+    "input_sha256": {
+      "imu": "f2438218edc0246685ae863d6befe153d77d53a57a2726cd1c9b5cfc42823ca1",
+      "gnss": "29a0600fede3f24dcbf827a82181ec9a1ab727854c5734e270e337be4da0088c"
+    },
+    "rows": {
+      "imu": 110166,
+      "gnss": 1106
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1105.1669263839722,
+    "wall_runtime_s": 2.3327288849999945,
+    "initialization_t_s": 337.0808584690094,
+    "sampled_epochs": 2204,
+    "ready_fraction": 0.6950998185117967,
+    "usable_fraction": 0.6950998185117967,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1532,
+      "rmse_m": 1.8502470107797588,
+      "median_m": 1.1408253973312354,
+      "p95_m": 3.5565692493027434,
+      "max_m": 9.206222981202
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260521-164415",
+    "manifest_sha256": "be3290edd706ee1421219ed4bd1ed552ff291389863cb743425d256e5917f675",
+    "input_sha256": {
+      "imu": "2a0b43252104961911c733a25da5a22ef974e685cca77933e727fde903cf1a6c",
+      "gnss": "568a95e36788f8465b472b64887b802003e0079294630ceff88e3b478d519929"
+    },
+    "rows": {
+      "imu": 53939,
+      "gnss": 541
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 541.1728855371475,
+    "wall_runtime_s": 0.44608172700000637,
+    "initialization_t_s": 520.2278652191162,
+    "sampled_epochs": 1079,
+    "ready_fraction": 0.03892493049119555,
+    "usable_fraction": 0.03892493049119555,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 42,
+      "rmse_m": 3.1123221460718526,
+      "median_m": 0.916184255370798,
+      "p95_m": 6.724625538854492,
+      "max_m": 7.3679158732876475
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260521-180601",
+    "manifest_sha256": "7a1a01caea177d31a8e994d5cc5992f1ed1776a01e476514475b763d24982c35",
+    "input_sha256": {
+      "imu": "74b3130df064c8c480135443941477897cda54a99cd41277cc9a27f343dc21d0",
+      "gnss": "af3644755ffa59d117f50139c2761fa4dc857acdf378f90b1aa09717cf3f4f34"
+    },
+    "rows": {
+      "imu": 89846,
+      "gnss": 896
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 901.4177070856094,
+    "wall_runtime_s": 1.4086621339999965,
+    "initialization_t_s": 511.1610281467438,
+    "sampled_epochs": 1797,
+    "ready_fraction": 0.432943795214246,
+    "usable_fraction": 0.432943795214246,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 777,
+      "rmse_m": 6.9756375047956976,
+      "median_m": 3.2674400149621254,
+      "p95_m": 16.53844154471848,
+      "max_m": 19.65793006306744
+    },
+    "reanchors": 1,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260526-174206",
+    "manifest_sha256": "3175523a8f56ac57870541b8ae9d7b4f16816c065a44fef0b1e16a803a7d163b",
+    "input_sha256": {
+      "imu": "980fd2df67c6dfac739103d57e6aa03316da9f57479d57b859565da47f87a66a",
+      "gnss": "9b05a750ad13ffe8187f1603eaa0590088c39e6b7066ab9dc642a688c93d9801"
+    },
+    "rows": {
+      "imu": 394286,
+      "gnss": 3956
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 3955.633926153183,
+    "wall_runtime_s": 7.858188640999998,
+    "initialization_t_s": 831.6340047121048,
+    "sampled_epochs": 7886,
+    "ready_fraction": 0.789753994420492,
+    "usable_fraction": 0.789753994420492,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 6228,
+      "rmse_m": 5.162745809884804,
+      "median_m": 2.2569508296559952,
+      "p95_m": 11.000335080514157,
+      "max_m": 32.49812573244532
+    },
+    "reanchors": 7,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260527-123747",
+    "manifest_sha256": "0c459d6ebea335e0b12e60557700b623a988e49c7e1ecb7067e4ec39f1cd3be0",
+    "input_sha256": {
+      "imu": "f61a268c29149cdef09a3c5af045dcb53246a0da9c01dc7a509b471a2c0d0940",
+      "gnss": "e3036a3d468693d13cae84149ff22b640819ea584b95734283fad8587f8bb9c6"
+    },
+    "rows": {
+      "imu": 262095,
+      "gnss": 2624
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 2629.3758405447006,
+    "wall_runtime_s": 6.679751130999989,
+    "initialization_t_s": 183.03475844860077,
+    "sampled_epochs": 5242,
+    "ready_fraction": 0.9303700877527661,
+    "usable_fraction": 0.9303700877527661,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 4877,
+      "rmse_m": 2.039100972931804,
+      "median_m": 0.9082290367311542,
+      "p95_m": 4.452998369463468,
+      "max_m": 11.655090001818142
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260528-183859",
+    "manifest_sha256": "a84680eac152aae9c15720206b8881c61fe065dce2ec4e42e5c252832f2c7c8f",
+    "input_sha256": {
+      "imu": "3db30d896c6bc7d7fceb1ed601b440a3f20d00306eed1666768128041fed0ffa",
+      "gnss": "d2681636dc60338f719b8d5eb8f08739ebc6c0875b2098c4075d4cdef024f8f4"
+    },
+    "rows": {
+      "imu": 109213,
+      "gnss": 1092
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1095.7279043197632,
+    "wall_runtime_s": 2.304605534999979,
+    "initialization_t_s": 112.83658444881439,
+    "sampled_epochs": 2185,
+    "ready_fraction": 0.897025171624714,
+    "usable_fraction": 0.897025171624714,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1958,
+      "rmse_m": 1.9375137937117617,
+      "median_m": 1.1834842321843198,
+      "p95_m": 3.8194247953431355,
+      "max_m": 6.496785094357476
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260530-110409",
+    "manifest_sha256": "ddf231d1ad0f3bfc0c5d2d66ec4dc91d02f8b32bcf4a25465551143def4331a2",
+    "input_sha256": {
+      "imu": "88af01d4a78b94922145649691cc2cbc856b58dc07315373550f96cd4b573ccd",
+      "gnss": "104803991b96795c949e3fe74f2e99d53fc1b040f0513a2f3ccb05379ae9dc03"
+    },
+    "rows": {
+      "imu": 52831,
+      "gnss": 529
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 530.0002664327621,
+    "wall_runtime_s": 1.0615291580000132,
+    "initialization_t_s": 68.34975135326385,
+    "sampled_epochs": 1057,
+    "ready_fraction": 0.8713339640491958,
+    "usable_fraction": 0.8713339640491958,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 921,
+      "rmse_m": 2.2259976705906923,
+      "median_m": 0.9831767027753485,
+      "p95_m": 5.382314458968808,
+      "max_m": 8.247394562160078
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-drive-20260530-164847",
+    "manifest_sha256": "db627486f47eab00ccf56bb94bcf57485538d87e8a39c8cb276e7f1cc07726e0",
+    "input_sha256": {
+      "imu": "4e6678f49246fbeedaca6b744c3f8904cde7d84606fc9648a40254da30baa260",
+      "gnss": "2ae49bfe00cb8f5942eaccad9800e582e1f6c68e1892fab9758aa4e047bf3071"
+    },
+    "rows": {
+      "imu": 220663,
+      "gnss": 2213
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 2213.7465612888336,
+    "wall_runtime_s": 4.845524582000024,
+    "initialization_t_s": 115.36180138587952,
+    "sampled_epochs": 4414,
+    "ready_fraction": 0.9478930675124604,
+    "usable_fraction": 0.9478930675124604,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 4182,
+      "rmse_m": 3.609349565326685,
+      "median_m": 1.612561011641045,
+      "p95_m": 8.123138506027724,
+      "max_m": 17.653580001660114
+    },
+    "reanchors": 3,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-evening-mixed-road-drive-001",
+    "manifest_sha256": "b7ffe01b672186ed729fe54026d7f474e0aff73d215a98919aa8ecd69b822f58",
+    "input_sha256": {
+      "imu": "5f99db37a65e1bd3d182f3f1f7458cc25e8dfa1df344d77b21e12c7990e6827e",
+      "gnss": "c993190083e5266f8f6a4393d83e9b664f047bad9ed31ba20f4b69c5f13bbad1"
+    },
+    "rows": {
+      "imu": 70493,
+      "gnss": 706
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 707.1241723299026,
+    "wall_runtime_s": 1.3813013200000057,
+    "initialization_t_s": 136.890998005867,
+    "sampled_epochs": 1410,
+    "ready_fraction": 0.8063829787234043,
+    "usable_fraction": 0.8063829787234043,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1136,
+      "rmse_m": 4.00466100598073,
+      "median_m": 1.559706159207056,
+      "p95_m": 10.679007047663521,
+      "max_m": 18.89716983473816
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-evening-mixed-road-drive-002",
+    "manifest_sha256": "2d8e237b15093bc442c445c30d8632a07cdb81178cfae65ee937a2ec3c563431",
+    "input_sha256": {
+      "imu": "52ef3c9dc55220ed8e0bdde871c7fca0d91da6d5a1145736fca6a1174511a29d",
+      "gnss": "a6ef11ca25ea283850591ed440296184d4f8e1ff9420a00649623f84990a8332"
+    },
+    "rows": {
+      "imu": 56637,
+      "gnss": 524
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 567.8173948526382,
+    "wall_runtime_s": 0.9772089550000089,
+    "initialization_t_s": 192.53622698783875,
+    "sampled_epochs": 1133,
+    "ready_fraction": 0.6610767872903796,
+    "usable_fraction": 0.6610767872903796,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 748,
+      "rmse_m": 3.1729544302168637,
+      "median_m": 1.1042985477977378,
+      "p95_m": 6.033998120558981,
+      "max_m": 15.22627850649849
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-mixed-drive-reverse-parking-001",
+    "manifest_sha256": "39223a189427635f7ec7300727d7a99bec7923b0b1a9698e2ae09312f266d206",
+    "input_sha256": {
+      "imu": "d35084906e234f84a91445fe1c1433256c2e37a946e5f011150171e98482e4a1",
+      "gnss": "7188c006748a6eb25ff386d4ba88ddffeef2bfa8531f77e978b09e8806ec9e11"
+    },
+    "rows": {
+      "imu": 257734,
+      "gnss": 2586
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 2585.6658465862274,
+    "wall_runtime_s": 5.375157747000003,
+    "initialization_t_s": 138.38815581798553,
+    "sampled_epochs": 5155,
+    "ready_fraction": 0.9464597478176527,
+    "usable_fraction": 0.9464597478176527,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 4878,
+      "rmse_m": 2.6075933676062673,
+      "median_m": 1.2757036650193392,
+      "p95_m": 4.938923798597115,
+      "max_m": 16.31206534285624
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-mixed-road-drive-001",
+    "manifest_sha256": "d1dbb0c5feef2e18169685decc7ccb3e85f1f8af0afeea21d341e7f215e34958",
+    "input_sha256": {
+      "imu": "168e260ba2180b73b2a7f7df88871e26e2c0133e12426aa8b964d749559213d5",
+      "gnss": "4d0ae8b11927f6b83ba24155ffadfc4b7750e9d9f0a619c7529819186b7f4c2f"
+    },
+    "rows": {
+      "imu": 67101,
+      "gnss": 673
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 673.0427106618881,
+    "wall_runtime_s": 1.3264962050000122,
+    "initialization_t_s": 64.68673193454742,
+    "sampled_epochs": 1343,
+    "ready_fraction": 0.9039463886820551,
+    "usable_fraction": 0.9039463886820551,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1213,
+      "rmse_m": 2.896255948333776,
+      "median_m": 1.5589436551509441,
+      "p95_m": 5.233514553925268,
+      "max_m": 14.2044053681201
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-mixed-road-drive-002",
+    "manifest_sha256": "c57ddb00531140c135c2867684e11c917cf21c435185f6b8a94908aafaa29a3f",
+    "input_sha256": {
+      "imu": "9311c386b5fde0797e32db5f6a478483efce4fc58acac658fff298666ff1f7aa",
+      "gnss": "6af8ae915690278bc4fe123ce3be3f89447da86331410bcff2f2c0061b1b3601"
+    },
+    "rows": {
+      "imu": 90378,
+      "gnss": 906
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 906.6217257976532,
+    "wall_runtime_s": 1.632640232,
+    "initialization_t_s": 192.05711221694946,
+    "sampled_epochs": 1808,
+    "ready_fraction": 0.7881637168141593,
+    "usable_fraction": 0.7881637168141593,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1423,
+      "rmse_m": 2.0374178356192294,
+      "median_m": 0.8825947866454941,
+      "p95_m": 4.499948416121062,
+      "max_m": 7.197735776756714
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-mixed-road-loop-001",
+    "manifest_sha256": "4c321e3a2f8c5e04f44221d4457bb0aa713f8335de1e5da341c527683ed2dbdf",
+    "input_sha256": {
+      "imu": "24dcae4a94e8209284fd8bd144b9663397ff5fc6dbca99a40586bd8e83143f96",
+      "gnss": "55145e6bef0a5942dc3aa9a34b8e1a9567ca5978f78a138ffdf23b83b530ccca"
+    },
+    "rows": {
+      "imu": 167310,
+      "gnss": 1679
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1678.4899837970734,
+    "wall_runtime_s": 3.6870521380000127,
+    "initialization_t_s": 83.24343121051788,
+    "sampled_epochs": 3347,
+    "ready_fraction": 0.9504033462802509,
+    "usable_fraction": 0.9504033462802509,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 3179,
+      "rmse_m": 2.465050899888936,
+      "median_m": 1.1211270579435169,
+      "p95_m": 5.47833375464865,
+      "max_m": 14.016718420887564
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-stationary-smoke-001",
+    "manifest_sha256": "1373956a219c9e8cfc829f1c1acb4e140ca85e8507b6be56b5b67292138c58d5",
+    "input_sha256": {
+      "imu": "fcb751a0871b7b48ee238925539e47f780bd04b9bbb7cdfc72ae7e87ed99060c",
+      "gnss": "69f6d7c4cc73f82c0d8f99c8e024f23036aec2602f6551928a22b01d684e5257"
+    },
+    "rows": {
+      "imu": 338,
+      "gnss": 4
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 3.383277416229248,
+    "wall_runtime_s": 0.0021413119999920127,
+    "initialization_t_s": null,
+    "sampled_epochs": 7,
+    "ready_fraction": 0.0,
+    "usable_fraction": 0.0,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": null,
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "ios-stationary-smoke-002",
+    "manifest_sha256": "df7156517d86a4bb899e0392677347760946af0d568b563da92452ad44bfa2b3",
+    "input_sha256": {
+      "imu": "cf4831ce9b90e9c80afcc02372200a6c333fd3a3daab65bf1b131c3ac0b72b10",
+      "gnss": "af4b656efff2a809d95447884b1475dcb894ac7efa4c3b750eb14fcfd3d82c60"
+    },
+    "rows": {
+      "imu": 2523,
+      "gnss": 13
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 25.288395524024963,
+    "wall_runtime_s": 0.02572620999998776,
+    "initialization_t_s": null,
+    "sampled_epochs": 51,
+    "ready_fraction": 0.0,
+    "usable_fraction": 0.0,
+    "nonfinite_outputs": 0,
+    "reference_rows": 0,
+    "reference_discrepancy": null,
+    "reference_repeated_position_fraction": null,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": null,
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "mixed-road-highway-low-signal-001",
+    "manifest_sha256": "5e10e3dab6f7af19d84827a5c20d9fbc5fd64b81506d93865d6bc3c7e377a4c9",
+    "input_sha256": {
+      "imu": "b021f36a57763d9347b8a0d343dd9c276fdd76a4c0c300505360168c0868eb78",
+      "gnss": "0ced3e39bd080d2406204298bac44803233094d3b329a02010bf045e07e192ff"
+    },
+    "rows": {
+      "imu": 128406,
+      "gnss": 2577
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1290.526803810835,
+    "wall_runtime_s": 1.3099347859999853,
+    "initialization_t_s": 1045.9592275732755,
+    "sampled_epochs": 2569,
+    "ready_fraction": 0.18995718178279486,
+    "usable_fraction": 0.18995718178279486,
+    "nonfinite_outputs": 0,
+    "reference_rows": 39046,
+    "reference_discrepancy": {
+      "n": 488,
+      "rmse_m": 1.49942178209989,
+      "median_m": 0.530766123545247,
+      "p95_m": 4.232702405567448,
+      "max_m": 5.894473890461042
+    },
+    "reference_repeated_position_fraction": 0.17746190293251377,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 486,
+      "rmse_m": 0.1774317971647625,
+      "median_m": 0.16207593812577104,
+      "p95_m": 0.2907119492326754,
+      "max_m": 0.3737840841368464
+    },
+    "reanchors": 3,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "mixed-road-long-drive-large-mount-001",
+    "manifest_sha256": "bdd3024051c69b82b0ff61b438151980de288b80dc7e8a4fd4da7e8366624705",
+    "input_sha256": {
+      "imu": "9525e74be1abcb82266976997258753fbe83f27dc53934d7af20c6db16126fb4",
+      "gnss": "9148b06b8290215e7a8590d56c7ecf8c82eb154b81f1f6dbb2afc7cf9a4a68c0"
+    },
+    "rows": {
+      "imu": 127198,
+      "gnss": 2556
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1278.803943507731,
+    "wall_runtime_s": 2.5937184999999943,
+    "initialization_t_s": 106.4072526433766,
+    "sampled_epochs": 2544,
+    "ready_fraction": 0.9170597484276729,
+    "usable_fraction": 0.9170597484276729,
+    "nonfinite_outputs": 0,
+    "reference_rows": 38741,
+    "reference_discrepancy": {
+      "n": 2333,
+      "rmse_m": 0.8534103142071985,
+      "median_m": 0.34236172827285416,
+      "p95_m": 1.4140656235545443,
+      "max_m": 5.497078322551342
+    },
+    "reference_repeated_position_fraction": 0.16770779556014456,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 2332,
+      "rmse_m": 0.1273067748807048,
+      "median_m": 0.0924347123268038,
+      "p95_m": 0.1942267305665466,
+      "max_m": 0.9667713670818253
+    },
+    "reanchors": 2,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "mixed-road-long-drive-large-mount-002",
+    "manifest_sha256": "f1ed5ba2e47eb28645fafe9aec4aeb347cad92bd96a712700ef135611acbf30c",
+    "input_sha256": {
+      "imu": "88b31137e3d1af44899fbd35ff8611b8e924f157ec78c0f61d88923ed52add73",
+      "gnss": "ce37e8b725e6868667fbf4a71b601a94047b2bb466599f0fd13ade9b60de6509"
+    },
+    "rows": {
+      "imu": 259460,
+      "gnss": 5207
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 2608.077281409383,
+    "wall_runtime_s": 2.049187988,
+    "initialization_t_s": 2478.7523335318565,
+    "sampled_epochs": 5190,
+    "ready_fraction": 0.04971098265895954,
+    "usable_fraction": 0.04971098265895954,
+    "nonfinite_outputs": 0,
+    "reference_rows": 79032,
+    "reference_discrepancy": {
+      "n": 258,
+      "rmse_m": 0.41776437056492816,
+      "median_m": 0.4150261366889962,
+      "p95_m": 0.5066815281529605,
+      "max_m": 0.5406797949950667
+    },
+    "reference_repeated_position_fraction": 0.11772595563766117,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 257,
+      "rmse_m": 0.0941873509750512,
+      "median_m": 0.05228837542174767,
+      "p95_m": 0.18876595452389056,
+      "max_m": 0.2139155598497453
+    },
+    "reanchors": 5,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "mixed-road-long-drive-nominal-001",
+    "manifest_sha256": "79e978d789a416cca4b7be674c64fa9cea02366c5933e7f31d022cafaa1575f9",
+    "input_sha256": {
+      "imu": "19976f79486f1247ac2f3379d24437a290ed8bfb1682e1152f5c19eac43ef75b",
+      "gnss": "0e0fd61bf69c417e95e7daf263ed11912ce65c2bd2298a2e8728bfecdeda9d62"
+    },
+    "rows": {
+      "imu": 141403,
+      "gnss": 2737
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1421.0496190775632,
+    "wall_runtime_s": 1.7918570410000143,
+    "initialization_t_s": 882.333194498539,
+    "sampled_epochs": 2829,
+    "ready_fraction": 0.3792859667727112,
+    "usable_fraction": 0.3792859667727112,
+    "nonfinite_outputs": 0,
+    "reference_rows": 41517,
+    "reference_discrepancy": {
+      "n": 1073,
+      "rmse_m": 0.7236598295758592,
+      "median_m": 0.3617606098034618,
+      "p95_m": 1.6281562118016337,
+      "max_m": 2.6341693581298276
+    },
+    "reference_repeated_position_fraction": 0.1628528759996146,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1071,
+      "rmse_m": 0.10744502883949526,
+      "median_m": 0.07796018683713246,
+      "p95_m": 0.20473097092099896,
+      "max_m": 0.41556622828191286
+    },
+    "reanchors": 2,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "parking-lot-circle-turns-nominal-001",
+    "manifest_sha256": "8301e5e02dd468bd94cd56f794b10e522a7ec19586d32dd8d482abbbddafa15f",
+    "input_sha256": {
+      "imu": "72da1742885b0f8c3c843849c57f44e0d9abed653277fd4a63e3d47ce9d73497",
+      "gnss": "1cc273056632df21d1cc85018e069878600cf1ab255af9b57f1ef2458aa2cae0"
+    },
+    "rows": {
+      "imu": 9502,
+      "gnss": 191
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 95.72213172686101,
+    "wall_runtime_s": 0.16535464300000058,
+    "initialization_t_s": 20.0898323276639,
+    "sampled_epochs": 191,
+    "ready_fraction": 0.7905759162303665,
+    "usable_fraction": 0.7905759162303665,
+    "nonfinite_outputs": 0,
+    "reference_rows": 2893,
+    "reference_discrepancy": {
+      "n": 151,
+      "rmse_m": 1.0644187718800193,
+      "median_m": 0.29585470710766426,
+      "p95_m": 2.0774114140352755,
+      "max_m": 3.0367419263416013
+    },
+    "reference_repeated_position_fraction": 0.05463347164591978,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 149,
+      "rmse_m": 0.18284149966712657,
+      "median_m": 0.10816239263977453,
+      "p95_m": 0.3824209996649191,
+      "max_m": 0.44431316431175993
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "parking-lot-figure8-nominal-001",
+    "manifest_sha256": "67f0c3b3433ca374c4649abb282e189b764b7c0e1ef46a0ca6a561ef50178e10",
+    "input_sha256": {
+      "imu": "54c4430f015c269c5b2adc6c73cb15460823c009e261cf7dc5644eb54a736e78",
+      "gnss": "ef46f0451a8276a4d3ef09fe5569b16becc71de3d66fe3c848e2f69fad3c69d4"
+    },
+    "rows": {
+      "imu": 15010,
+      "gnss": 302
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 150.98219485408066,
+    "wall_runtime_s": 0.2538988780000011,
+    "initialization_t_s": 29.621997348427772,
+    "sampled_epochs": 301,
+    "ready_fraction": 0.8039867109634552,
+    "usable_fraction": 0.8039867109634552,
+    "nonfinite_outputs": 0,
+    "reference_rows": 4572,
+    "reference_discrepancy": {
+      "n": 242,
+      "rmse_m": 2.4905394220669574,
+      "median_m": 0.5529281880503987,
+      "p95_m": 5.275358027261169,
+      "max_m": 7.293364870723177
+    },
+    "reference_repeated_position_fraction": 0.1190111572959965,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 241,
+      "rmse_m": 0.4931844429353024,
+      "median_m": 0.31223588162878424,
+      "p95_m": 0.9687650323462591,
+      "max_m": 2.2090853879102452
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "parkinglot-maneuvers",
+    "manifest_sha256": "485f24dd8a7b457cbb9a793f74805e86980f2d4176cd3b01108a7308c41ae854",
+    "input_sha256": {
+      "imu": "a292bf6853ef386a276f48896e6ec2a8525b50bca2746f5b99daa2592482c10f",
+      "gnss": "2a34daaea1b0d2e1fdc59f3e7f7cb265da80b6a0a0223585b67b908e5a8889c9"
+    },
+    "rows": {
+      "imu": 65893,
+      "gnss": 1292
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic",
+      "input_path": "/Users/ykshin/Dev/me/ekf/simulation/ubx_viewer/data/ubx_raw_20260513_213028"
+    },
+    "duration_s": 662.3025303176045,
+    "wall_runtime_s": 1.195989376,
+    "initialization_t_s": 146.71712477827072,
+    "sampled_epochs": 1318,
+    "ready_fraction": 0.7784522003034902,
+    "usable_fraction": 0.7784522003034902,
+    "nonfinite_outputs": 0,
+    "reference_rows": 19565,
+    "reference_discrepancy": {
+      "n": 1026,
+      "rmse_m": 1.4978915956958807,
+      "median_m": 1.0292124972016279,
+      "p95_m": 2.8782702240857505,
+      "max_m": 5.26394721274878
+    },
+    "reference_repeated_position_fraction": 0.06731752197914537,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1026,
+      "rmse_m": 0.16603837410410663,
+      "median_m": 0.13540403584747007,
+      "p95_m": 0.2908339920957045,
+      "max_m": 0.5560099487072565
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-long-turn-loop-nominal-001",
+    "manifest_sha256": "bc37b99964a0d8094e128c093db75fecdd6bfb287228cba99ee621c862f856f5",
+    "input_sha256": {
+      "imu": "7dade6307b827d6e59dd251f5c2dd6436d218c2e718ff0154d6e83e317d66939",
+      "gnss": "7887f55036e844c77923e99822ffe684b87427ba1f0515fd530233e46ae27313"
+    },
+    "rows": {
+      "imu": 39703,
+      "gnss": 799
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 399.27955511158706,
+    "wall_runtime_s": 0.7913512830000116,
+    "initialization_t_s": 38.43881753283739,
+    "sampled_epochs": 795,
+    "ready_fraction": 0.9044025157232705,
+    "usable_fraction": 0.9044025157232705,
+    "nonfinite_outputs": 0,
+    "reference_rows": 12092,
+    "reference_discrepancy": {
+      "n": 719,
+      "rmse_m": 0.9467228699262414,
+      "median_m": 0.398967742020838,
+      "p95_m": 2.178656301907377,
+      "max_m": 3.1603950101984535
+    },
+    "reference_repeated_position_fraction": 0.03779670829542635,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 718,
+      "rmse_m": 0.11016456580204916,
+      "median_m": 0.0959360281058275,
+      "p95_m": 0.18306101412844247,
+      "max_m": 0.2723229215444504
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-low-speed-low-signal-001",
+    "manifest_sha256": "80029d2d6a9a8bf30415a9f031a0f9a09261e746fc93f8737c8dbb3c91e5a85b",
+    "input_sha256": {
+      "imu": "2354998adc41507b79f251a4a305296f4197a51b3d82bfa1d3bb6e7049fcbcba",
+      "gnss": "cbb3abcefffc1e7007e79786f216d44f7615a450a7f1a359ecaca9022c66b599"
+    },
+    "rows": {
+      "imu": 124975,
+      "gnss": 2484
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 1256.037756273985,
+    "wall_runtime_s": 2.053914106999997,
+    "initialization_t_s": 509.04452612519265,
+    "sampled_epochs": 2500,
+    "ready_fraction": 0.5948,
+    "usable_fraction": 0.5948,
+    "nonfinite_outputs": 0,
+    "reference_rows": 37636,
+    "reference_discrepancy": {
+      "n": 1487,
+      "rmse_m": 0.36223657694085254,
+      "median_m": 0.208868164322966,
+      "p95_m": 0.7190112314887258,
+      "max_m": 2.6658191920397067
+    },
+    "reference_repeated_position_fraction": 0.3651388335326159,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 1486,
+      "rmse_m": 0.332753604463507,
+      "median_m": 0.20315275724632187,
+      "p95_m": 0.6727886255812477,
+      "max_m": 1.5131170832252792
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-medium-turn-loop-nominal-001",
+    "manifest_sha256": "290275b9361b9d9467b8d9e8c02e1b87a381b10cbd356ea682a6ae1b15a889cf",
+    "input_sha256": {
+      "imu": "b36cc0905b9beb52273e8f0d7daade0802077e788bed8f705c9807ed69542e80",
+      "gnss": "af31e854627e009fbfb2875035078ca2d1a7062751ea14d1ac32bad8b1e49953"
+    },
+    "rows": {
+      "imu": 30794,
+      "gnss": 619
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 309.6726274699569,
+    "wall_runtime_s": 0.6219853129999819,
+    "initialization_t_s": 23.606831533253192,
+    "sampled_epochs": 616,
+    "ready_fraction": 0.9237012987012987,
+    "usable_fraction": 0.9237012987012987,
+    "nonfinite_outputs": 0,
+    "reference_rows": 9379,
+    "reference_discrepancy": {
+      "n": 569,
+      "rmse_m": 0.6563481352317849,
+      "median_m": 0.20244650746307036,
+      "p95_m": 1.5225080882108113,
+      "max_m": 3.285210022999488
+    },
+    "reference_repeated_position_fraction": 0.08893154190658989,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 568,
+      "rmse_m": 0.10410351581653907,
+      "median_m": 0.08161572837580394,
+      "p95_m": 0.18340237759881206,
+      "max_m": 0.262760614352068
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-medium-turn-loop-nominal-002",
+    "manifest_sha256": "4dfb5c78f3020c75a643f302212881c1f9d6a12f45be682675d72c107307a7d2",
+    "input_sha256": {
+      "imu": "c8a4be22f334b0c6ece6db8e34acc7967552de94c6bb2645479e7800f72c4492",
+      "gnss": "895347d1d7fd85d961ea6c1a2a80fc3acdcfbbab0e2a47bdd3ef2bca4f33bb0e"
+    },
+    "rows": {
+      "imu": 24403,
+      "gnss": 491
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 245.32407692784074,
+    "wall_runtime_s": 0.44564775499998177,
+    "initialization_t_s": 41.699227133393286,
+    "sampled_epochs": 489,
+    "ready_fraction": 0.8302658486707567,
+    "usable_fraction": 0.8302658486707567,
+    "nonfinite_outputs": 0,
+    "reference_rows": 7432,
+    "reference_discrepancy": {
+      "n": 406,
+      "rmse_m": 1.2488101197981598,
+      "median_m": 0.48570643170070843,
+      "p95_m": 2.8034049145232087,
+      "max_m": 4.393401495313869
+    },
+    "reference_repeated_position_fraction": 0.08693311801910913,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 405,
+      "rmse_m": 0.12385769134338757,
+      "median_m": 0.08946004460630458,
+      "p95_m": 0.24142091331494064,
+      "max_m": 0.3855467847206524
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-mixed-turns-nominal-001",
+    "manifest_sha256": "85535cae58f8009889d4c84fdafa1aed79103831d7e6a53ac5fdfee819ea7adb",
+    "input_sha256": {
+      "imu": "bec365b835ac07eaf7af7a06a5f56008d85c240bd00bac406c39d71cacd18fc5",
+      "gnss": "641e10cfacbcbc60211cf918b9e63466efd6b120cfcda70d92d6ea81a3082d07"
+    },
+    "rows": {
+      "imu": 51891,
+      "gnss": 1043
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 521.7054276146292,
+    "wall_runtime_s": 0.9942026779999935,
+    "initialization_t_s": 107.00713143450022,
+    "sampled_epochs": 1038,
+    "ready_fraction": 0.7947976878612717,
+    "usable_fraction": 0.7947976878612717,
+    "nonfinite_outputs": 0,
+    "reference_rows": 15805,
+    "reference_discrepancy": {
+      "n": 825,
+      "rmse_m": 1.9726782420297206,
+      "median_m": 0.7228371254145356,
+      "p95_m": 4.032902648258841,
+      "max_m": 6.879902005993249
+    },
+    "reference_repeated_position_fraction": 0.15407491774234372,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 824,
+      "rmse_m": 0.20036702961386116,
+      "median_m": 0.10716136509489911,
+      "p95_m": 0.38520151970324845,
+      "max_m": 1.4584493945064396
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-short-turn-loop-nominal-001",
+    "manifest_sha256": "edc26371d7298265ff1d20e3cb263d581e05f667012122fda7adfccf403d27f7",
+    "input_sha256": {
+      "imu": "db585024923ad4b4cc7f905b794901949d5465913f570da02704501d39db6308",
+      "gnss": "a418674086cdb42743706259232695c31c8bbe3556c2c60afa7365985579c195"
+    },
+    "rows": {
+      "imu": 17604,
+      "gnss": 354
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 176.9697995237708,
+    "wall_runtime_s": 0.3832883069999866,
+    "initialization_t_s": 39.667982652783394,
+    "sampled_epochs": 353,
+    "ready_fraction": 0.7762039660056658,
+    "usable_fraction": 0.7762039660056658,
+    "nonfinite_outputs": 0,
+    "reference_rows": 5361,
+    "reference_discrepancy": {
+      "n": 274,
+      "rmse_m": 3.682458856227372,
+      "median_m": 0.19107706952860531,
+      "p95_m": 2.261867006755532,
+      "max_m": 23.95767717412113
+    },
+    "reference_repeated_position_fraction": 0.11455223880597015,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 273,
+      "rmse_m": 0.1039343254083837,
+      "median_m": 0.0945704269235455,
+      "p95_m": 0.16528342944065502,
+      "max_m": 0.2440902509169223
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-short-turn-loop-nominal-002",
+    "manifest_sha256": "20c6a083bb8b9497c49344e863c7eac9ce133a77a82b62c1e75af1cb607e098c",
+    "input_sha256": {
+      "imu": "e2728d1318add67525a5098b942782f0964c0ee895882b09b459622677c95cbe",
+      "gnss": "e189e0ea14515ca2a58e477063dcb4046b520eda02d554549e825dbf55171aa8"
+    },
+    "rows": {
+      "imu": 18904,
+      "gnss": 380
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 189.99702326995134,
+    "wall_runtime_s": 0.3721494840000048,
+    "initialization_t_s": 22.099844696819783,
+    "sampled_epochs": 379,
+    "ready_fraction": 0.8839050131926122,
+    "usable_fraction": 0.8839050131926122,
+    "nonfinite_outputs": 0,
+    "reference_rows": 5758,
+    "reference_discrepancy": {
+      "n": 335,
+      "rmse_m": 0.6091948476315167,
+      "median_m": 0.4226665031952929,
+      "p95_m": 1.120927960095609,
+      "max_m": 1.8189594881112132
+    },
+    "reference_repeated_position_fraction": 0.14990446413062358,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 334,
+      "rmse_m": 0.1316333728853109,
+      "median_m": 0.10920848093388977,
+      "p95_m": 0.2114320644943855,
+      "max_m": 0.3339559413365482
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-stop-go-large-mount-001",
+    "manifest_sha256": "cb16f065a9d0d0d6aea1c7933257fab6303f38c9041d2ae96c9684dd7076af46",
+    "input_sha256": {
+      "imu": "23d08f1b1282c47b1986f50fe7cac1d0fe964f06b4552b0a541ec40568c6594e",
+      "gnss": "0de734b37cbd382556b16f7cf534465380f87ede8f0ccfb46da4a4c8e7d01016"
+    },
+    "rows": {
+      "imu": 48805,
+      "gnss": 950
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 490.49619323971865,
+    "wall_runtime_s": 0.802300659999986,
+    "initialization_t_s": 188.3377540562749,
+    "sampled_epochs": 977,
+    "ready_fraction": 0.6161719549641761,
+    "usable_fraction": 0.6161719549641761,
+    "nonfinite_outputs": 0,
+    "reference_rows": 14385,
+    "reference_discrepancy": {
+      "n": 602,
+      "rmse_m": 1.0356996254339135,
+      "median_m": 0.956188024158177,
+      "p95_m": 1.5683159366405868,
+      "max_m": 2.9987819680660985
+    },
+    "reference_repeated_position_fraction": 0.4136540600667408,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 601,
+      "rmse_m": 0.13356376973266368,
+      "median_m": 0.07488390837931291,
+      "p95_m": 0.2804095888282593,
+      "max_m": 0.4292245911588275
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  },
+  {
+    "id": "urban-stop-go-tight-turns-nominal-001",
+    "manifest_sha256": "8724cbdb8d5ead4baf717a21687db1e5f155a87b9204d0251f725656323d335b",
+    "input_sha256": {
+      "imu": "0f2bb818c010f1ae6eafa710d03432a91d171709cca4ec3d95e404e0ffa98620",
+      "gnss": "551f4108469f611ca68a6eaa6feaf702177887c159d154aeb264b1517a77f44f"
+    },
+    "rows": {
+      "imu": 52994,
+      "gnss": 1065
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "duration_s": 532.6281326853633,
+    "wall_runtime_s": 1.0820237429999793,
+    "initialization_t_s": 40.19187380903959,
+    "sampled_epochs": 1060,
+    "ready_fraction": 0.9245283018867925,
+    "usable_fraction": 0.9245283018867925,
+    "nonfinite_outputs": 0,
+    "reference_rows": 16140,
+    "reference_discrepancy": {
+      "n": 980,
+      "rmse_m": 0.747331422568707,
+      "median_m": 0.1614011452380693,
+      "p95_m": 2.154113505504279,
+      "max_m": 3.4144839014941186
+    },
+    "reference_repeated_position_fraction": 0.36687527108247103,
+    "reference_independence": "unverified; not ground-truth accuracy",
+    "gnss_agreement_not_accuracy": {
+      "n": 979,
+      "rmse_m": 0.11487792411144855,
+      "median_m": 0.08340960471058634,
+      "p95_m": 0.20971763444515415,
+      "max_m": 0.4486184194114598
+    },
+    "reanchors": 0,
+    "native_instance_bytes": 14880,
+    "status": "REPLAYED"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "python": "3.13.5 (main, Jun 12 2025, 03:51:07) [GCC 13.3.0]",
+  "platform": "Linux-6.1.158.2-microsoft-standard-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "upstream_revision": "8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6"
+}

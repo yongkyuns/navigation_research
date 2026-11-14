@@ -1,0 +1,42 @@
+{
+  "id": "parking-lot-figure8-nominal-001",
+  "manifest_sha256": "67f0c3b3433ca374c4649abb282e189b764b7c0e1ef46a0ca6a561ef50178e10",
+  "input_sha256": {
+    "imu": "54c4430f015c269c5b2adc6c73cb15460823c009e261cf7dc5644eb54a736e78",
+    "gnss": "ef46f0451a8276a4d3ef09fe5569b16becc71de3d66fe3c848e2f69fad3c69d4"
+  },
+  "rows": {
+    "imu": 15010,
+    "gnss": 302
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 150.98219485408066,
+  "wall_runtime_s": 0.2538988780000011,
+  "initialization_t_s": 29.621997348427772,
+  "sampled_epochs": 301,
+  "ready_fraction": 0.8039867109634552,
+  "usable_fraction": 0.8039867109634552,
+  "nonfinite_outputs": 0,
+  "reference_rows": 4572,
+  "reference_discrepancy": {
+    "n": 242,
+    "rmse_m": 2.4905394220669574,
+    "median_m": 0.5529281880503987,
+    "p95_m": 5.275358027261169,
+    "max_m": 7.293364870723177
+  },
+  "reference_repeated_position_fraction": 0.1190111572959965,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 241,
+    "rmse_m": 0.4931844429353024,
+    "median_m": 0.31223588162878424,
+    "p95_m": 0.9687650323462591,
+    "max_m": 2.2090853879102452
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

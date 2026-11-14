@@ -1,0 +1,30 @@
+{
+  "id": "ios-stationary-smoke-002",
+  "manifest_sha256": "df7156517d86a4bb899e0392677347760946af0d568b563da92452ad44bfa2b3",
+  "input_sha256": {
+    "imu": "cf4831ce9b90e9c80afcc02372200a6c333fd3a3daab65bf1b131c3ac0b72b10",
+    "gnss": "af4b656efff2a809d95447884b1475dcb894ac7efa4c3b750eb14fcfd3d82c60"
+  },
+  "rows": {
+    "imu": 2523,
+    "gnss": 13
+  },
+  "reference_available": false,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 25.288395524024963,
+  "wall_runtime_s": 0.02572620999998776,
+  "initialization_t_s": null,
+  "sampled_epochs": 51,
+  "ready_fraction": 0.0,
+  "usable_fraction": 0.0,
+  "nonfinite_outputs": 0,
+  "reference_rows": 0,
+  "reference_discrepancy": null,
+  "reference_repeated_position_fraction": null,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": null,
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

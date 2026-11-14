@@ -1,0 +1,4 @@
+{
+  "sha256": "5ad7955f748154e3ae66ed6fd5f04c0519991aac3ca3298dbcd772d4cd93affd",
+  "note": "Linux shared library is retained in the CI artifact, not required in source control."
+}

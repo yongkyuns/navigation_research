@@ -1,0 +1,36 @@
+{
+  "id": "ios-mixed-drive-reverse-parking-001",
+  "manifest_sha256": "39223a189427635f7ec7300727d7a99bec7923b0b1a9698e2ae09312f266d206",
+  "input_sha256": {
+    "imu": "d35084906e234f84a91445fe1c1433256c2e37a946e5f011150171e98482e4a1",
+    "gnss": "7188c006748a6eb25ff386d4ba88ddffeef2bfa8531f77e978b09e8806ec9e11"
+  },
+  "rows": {
+    "imu": 257734,
+    "gnss": 2586
+  },
+  "reference_available": false,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 2585.6658465862274,
+  "wall_runtime_s": 5.375157747000003,
+  "initialization_t_s": 138.38815581798553,
+  "sampled_epochs": 5155,
+  "ready_fraction": 0.9464597478176527,
+  "usable_fraction": 0.9464597478176527,
+  "nonfinite_outputs": 0,
+  "reference_rows": 0,
+  "reference_discrepancy": null,
+  "reference_repeated_position_fraction": null,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 4878,
+    "rmse_m": 2.6075933676062673,
+    "median_m": 1.2757036650193392,
+    "p95_m": 4.938923798597115,
+    "max_m": 16.31206534285624
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

@@ -1,0 +1,42 @@
+{
+  "id": "mixed-road-highway-low-signal-001",
+  "manifest_sha256": "5e10e3dab6f7af19d84827a5c20d9fbc5fd64b81506d93865d6bc3c7e377a4c9",
+  "input_sha256": {
+    "imu": "b021f36a57763d9347b8a0d343dd9c276fdd76a4c0c300505360168c0868eb78",
+    "gnss": "0ced3e39bd080d2406204298bac44803233094d3b329a02010bf045e07e192ff"
+  },
+  "rows": {
+    "imu": 128406,
+    "gnss": 2577
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 1290.526803810835,
+  "wall_runtime_s": 1.3099347859999853,
+  "initialization_t_s": 1045.9592275732755,
+  "sampled_epochs": 2569,
+  "ready_fraction": 0.18995718178279486,
+  "usable_fraction": 0.18995718178279486,
+  "nonfinite_outputs": 0,
+  "reference_rows": 39046,
+  "reference_discrepancy": {
+    "n": 488,
+    "rmse_m": 1.49942178209989,
+    "median_m": 0.530766123545247,
+    "p95_m": 4.232702405567448,
+    "max_m": 5.894473890461042
+  },
+  "reference_repeated_position_fraction": 0.17746190293251377,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 486,
+    "rmse_m": 0.1774317971647625,
+    "median_m": 0.16207593812577104,
+    "p95_m": 0.2907119492326754,
+    "max_m": 0.3737840841368464
+  },
+  "reanchors": 3,
+  "native_instance_bytes": 14880
+}

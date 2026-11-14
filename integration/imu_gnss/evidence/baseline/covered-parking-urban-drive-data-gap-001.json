@@ -1,0 +1,5 @@
+{
+  "id": "covered-parking-urban-drive-data-gap-001",
+  "status": "INPUT_REJECTED",
+  "reason": "Invalid shape or timestamps: /home/runner/work/navigation_research/navigation_research/.cache/fusion-upstream/web/datasets/covered-parking-urban-drive-data-gap-001/imu.csv.gz"
+}

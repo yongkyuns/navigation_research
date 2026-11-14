@@ -1,0 +1,42 @@
+{
+  "id": "parking-lot-circle-turns-nominal-001",
+  "manifest_sha256": "8301e5e02dd468bd94cd56f794b10e522a7ec19586d32dd8d482abbbddafa15f",
+  "input_sha256": {
+    "imu": "72da1742885b0f8c3c843849c57f44e0d9abed653277fd4a63e3d47ce9d73497",
+    "gnss": "1cc273056632df21d1cc85018e069878600cf1ab255af9b57f1ef2458aa2cae0"
+  },
+  "rows": {
+    "imu": 9502,
+    "gnss": 191
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 95.72213172686101,
+  "wall_runtime_s": 0.16535464300000058,
+  "initialization_t_s": 20.0898323276639,
+  "sampled_epochs": 191,
+  "ready_fraction": 0.7905759162303665,
+  "usable_fraction": 0.7905759162303665,
+  "nonfinite_outputs": 0,
+  "reference_rows": 2893,
+  "reference_discrepancy": {
+    "n": 151,
+    "rmse_m": 1.0644187718800193,
+    "median_m": 0.29585470710766426,
+    "p95_m": 2.0774114140352755,
+    "max_m": 3.0367419263416013
+  },
+  "reference_repeated_position_fraction": 0.05463347164591978,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 149,
+    "rmse_m": 0.18284149966712657,
+    "median_m": 0.10816239263977453,
+    "p95_m": 0.3824209996649191,
+    "max_m": 0.44431316431175993
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

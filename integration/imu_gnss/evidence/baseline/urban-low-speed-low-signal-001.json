@@ -1,0 +1,42 @@
+{
+  "id": "urban-low-speed-low-signal-001",
+  "manifest_sha256": "80029d2d6a9a8bf30415a9f031a0f9a09261e746fc93f8737c8dbb3c91e5a85b",
+  "input_sha256": {
+    "imu": "2354998adc41507b79f251a4a305296f4197a51b3d82bfa1d3bb6e7049fcbcba",
+    "gnss": "cbb3abcefffc1e7007e79786f216d44f7615a450a7f1a359ecaca9022c66b599"
+  },
+  "rows": {
+    "imu": 124975,
+    "gnss": 2484
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 1256.037756273985,
+  "wall_runtime_s": 2.053914106999997,
+  "initialization_t_s": 509.04452612519265,
+  "sampled_epochs": 2500,
+  "ready_fraction": 0.5948,
+  "usable_fraction": 0.5948,
+  "nonfinite_outputs": 0,
+  "reference_rows": 37636,
+  "reference_discrepancy": {
+    "n": 1487,
+    "rmse_m": 0.36223657694085254,
+    "median_m": 0.208868164322966,
+    "p95_m": 0.7190112314887258,
+    "max_m": 2.6658191920397067
+  },
+  "reference_repeated_position_fraction": 0.3651388335326159,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 1486,
+    "rmse_m": 0.332753604463507,
+    "median_m": 0.20315275724632187,
+    "p95_m": 0.6727886255812477,
+    "max_m": 1.5131170832252792
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

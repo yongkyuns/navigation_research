@@ -1,0 +1,52 @@
+{
+  "id": "ios-mixed-road-drive-001",
+  "manifest_sha256": "d1dbb0c5feef2e18169685decc7ccb3e85f1f8af0afeea21d341e7f215e34958",
+  "input_sha256": {
+    "imu": "168e260ba2180b73b2a7f7df88871e26e2c0133e12426aa8b964d749559213d5",
+    "gnss": "4d0ae8b11927f6b83ba24155ffadfc4b7750e9d9f0a619c7529819186b7f4c2f"
+  },
+  "rows": {
+    "imu": 67101,
+    "gnss": 673
+  },
+  "reference_available": false,
+  "source": {
+    "format": "generic"
+  },
+  "input_stress": "none",
+  "source_runtime": "actual pinned Rust SensorFusion",
+  "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+  "map_is_independent_of_reference": true,
+  "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+  "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+  "epochs": 672,
+  "ready_epochs": 607,
+  "map_available_epochs": 607,
+  "latched_epochs": 387,
+  "latch_fraction_available": 0.6375617792421746,
+  "map_free_exactly_matches_independent_replay": true,
+  "base_reference_discrepancy": null,
+  "stress_window_base_discrepancy": null,
+  "stress_window_candidate_discrepancy": null,
+  "candidate_reference_discrepancy": null,
+  "correction_m": {
+    "n": 607,
+    "rmse_m": 0.37308726195424985,
+    "median_m": 0.033832388006295025,
+    "p95_m": 0.8131834251552382,
+    "max_m": 2.1844302066516135
+  },
+  "max_branches": 24,
+  "configured_cap": 24,
+  "max_pruned_mass": 0.4404754117860864,
+  "map_update_count": 11644,
+  "negative_position_covariance_epochs": 0,
+  "wall_runtime_s": 41.273402239999996,
+  "native_instance_bytes": 14880,
+  "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+  "map_step_ms": {
+    "p50": 12.545122500000616,
+    "p95": 31.373177900005082,
+    "max": 46.93017800002508
+  }
+}

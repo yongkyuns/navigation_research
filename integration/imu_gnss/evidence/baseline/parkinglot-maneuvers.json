@@ -1,0 +1,43 @@
+{
+  "id": "parkinglot-maneuvers",
+  "manifest_sha256": "485f24dd8a7b457cbb9a793f74805e86980f2d4176cd3b01108a7308c41ae854",
+  "input_sha256": {
+    "imu": "a292bf6853ef386a276f48896e6ec2a8525b50bca2746f5b99daa2592482c10f",
+    "gnss": "2a34daaea1b0d2e1fdc59f3e7f7cb265da80b6a0a0223585b67b908e5a8889c9"
+  },
+  "rows": {
+    "imu": 65893,
+    "gnss": 1292
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic",
+    "input_path": "/Users/ykshin/Dev/me/ekf/simulation/ubx_viewer/data/ubx_raw_20260513_213028"
+  },
+  "duration_s": 662.3025303176045,
+  "wall_runtime_s": 1.195989376,
+  "initialization_t_s": 146.71712477827072,
+  "sampled_epochs": 1318,
+  "ready_fraction": 0.7784522003034902,
+  "usable_fraction": 0.7784522003034902,
+  "nonfinite_outputs": 0,
+  "reference_rows": 19565,
+  "reference_discrepancy": {
+    "n": 1026,
+    "rmse_m": 1.4978915956958807,
+    "median_m": 1.0292124972016279,
+    "p95_m": 2.8782702240857505,
+    "max_m": 5.26394721274878
+  },
+  "reference_repeated_position_fraction": 0.06731752197914537,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 1026,
+    "rmse_m": 0.16603837410410663,
+    "median_m": 0.13540403584747007,
+    "p95_m": 0.2908339920957045,
+    "max_m": 0.5560099487072565
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

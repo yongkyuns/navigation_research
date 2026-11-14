@@ -1,0 +1,42 @@
+{
+  "id": "urban-stop-go-tight-turns-nominal-001",
+  "manifest_sha256": "8724cbdb8d5ead4baf717a21687db1e5f155a87b9204d0251f725656323d335b",
+  "input_sha256": {
+    "imu": "0f2bb818c010f1ae6eafa710d03432a91d171709cca4ec3d95e404e0ffa98620",
+    "gnss": "551f4108469f611ca68a6eaa6feaf702177887c159d154aeb264b1517a77f44f"
+  },
+  "rows": {
+    "imu": 52994,
+    "gnss": 1065
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 532.6281326853633,
+  "wall_runtime_s": 1.0820237429999793,
+  "initialization_t_s": 40.19187380903959,
+  "sampled_epochs": 1060,
+  "ready_fraction": 0.9245283018867925,
+  "usable_fraction": 0.9245283018867925,
+  "nonfinite_outputs": 0,
+  "reference_rows": 16140,
+  "reference_discrepancy": {
+    "n": 980,
+    "rmse_m": 0.747331422568707,
+    "median_m": 0.1614011452380693,
+    "p95_m": 2.154113505504279,
+    "max_m": 3.4144839014941186
+  },
+  "reference_repeated_position_fraction": 0.36687527108247103,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 979,
+    "rmse_m": 0.11487792411144855,
+    "median_m": 0.08340960471058634,
+    "p95_m": 0.20971763444515415,
+    "max_m": 0.4486184194114598
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

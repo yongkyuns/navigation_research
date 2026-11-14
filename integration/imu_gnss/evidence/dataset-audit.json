@@ -1,0 +1,1011 @@
+[
+  {
+    "id": "covered-parking-urban-drive-data-gap-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 197512,
+        "duplicate_intervals": 87003,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 130,
+        "largest_gap_s": 173.99199999999996
+      },
+      "gnss": {
+        "rows": 3615,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 3614,
+        "largest_gap_s": 174.5
+      },
+      "reference_position": {
+        "rows": 58540,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1,
+        "largest_gap_s": 174.1740000000002
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.26896598848630826,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.005705500512470106,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "covered-parking-urban-drive-gnss-outage-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 213790,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010049641132383158
+      },
+      "gnss": {
+        "rows": 3710,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 3709,
+        "largest_gap_s": 127.5
+      },
+      "reference_position": {
+        "rows": 61833,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 3,
+        "largest_gap_s": 2.540999999999997
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.16117867770733602,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.0676176151893002,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "ios-drive-20260521-121635",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 186335,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010393619537353516
+      },
+      "gnss": {
+        "rows": 1869,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1868,
+        "largest_gap_s": 1.0013607740402222
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260521-130835",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 24518,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010172247886657715
+      },
+      "gnss": {
+        "rows": 246,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 245,
+        "largest_gap_s": 1.104996919631958
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260521-131420",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 110166,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010296821594238281
+      },
+      "gnss": {
+        "rows": 1106,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1105,
+        "largest_gap_s": 1.0000516176223755
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260521-164415",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 53939,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010286569595336914
+      },
+      "gnss": {
+        "rows": 541,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 540,
+        "largest_gap_s": 1.0007561445236206
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260521-180601",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 89846,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.030099987983703613
+      },
+      "gnss": {
+        "rows": 896,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 895,
+        "largest_gap_s": 1.9999409914016724
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260526-174206",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 394286,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.018305659294128418
+      },
+      "gnss": {
+        "rows": 3956,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 3955,
+        "largest_gap_s": 1.0014309883117676
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260527-123747",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 262095,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.015312790870666504
+      },
+      "gnss": {
+        "rows": 2624,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2623,
+        "largest_gap_s": 3.9999207258224487
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260528-183859",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 109213,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1,
+        "largest_gap_s": 0.08396255970001221
+      },
+      "gnss": {
+        "rows": 1092,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1091,
+        "largest_gap_s": 3.000078558921814
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260530-110409",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 52831,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1,
+        "largest_gap_s": 0.17423725128173828
+      },
+      "gnss": {
+        "rows": 529,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 528,
+        "largest_gap_s": 1.999937653541565
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-drive-20260530-164847",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 220663,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.011166930198669434
+      },
+      "gnss": {
+        "rows": 2213,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2212,
+        "largest_gap_s": 1.0010126829147339
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-evening-mixed-road-drive-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 70493,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010082006454467773
+      },
+      "gnss": {
+        "rows": 706,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 705,
+        "largest_gap_s": 1.587997555732727
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-evening-mixed-road-drive-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 56637,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010070204734802246
+      },
+      "gnss": {
+        "rows": 524,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 523,
+        "largest_gap_s": 1.0019035339355469
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-mixed-drive-reverse-parking-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 257734,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.02006518840789795
+      },
+      "gnss": {
+        "rows": 2586,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2585,
+        "largest_gap_s": 1.0018198490142822
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-mixed-road-drive-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 67101,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010088562965393066
+      },
+      "gnss": {
+        "rows": 673,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 672,
+        "largest_gap_s": 1.1179810762405396
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-mixed-road-drive-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 90378,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.01005566120147705
+      },
+      "gnss": {
+        "rows": 906,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 905,
+        "largest_gap_s": 1.001824140548706
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-mixed-road-loop-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 167310,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.015048623085021973
+      },
+      "gnss": {
+        "rows": 1679,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1678,
+        "largest_gap_s": 1.0012120008468628
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-stationary-smoke-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 338,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010029792785644531
+      },
+      "gnss": {
+        "rows": 4,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 3,
+        "largest_gap_s": 0.9999842643737793
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "ios-stationary-smoke-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 2523,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.01003110408782959
+      },
+      "gnss": {
+        "rows": 13,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 12,
+        "largest_gap_s": 1.2218739986419678
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established"
+  },
+  {
+    "id": "mixed-road-highway-low-signal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 128406,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050440550003259
+      },
+      "gnss": {
+        "rows": 2577,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2576,
+        "largest_gap_s": 0.5000000000000568
+      },
+      "reference_position": {
+        "rows": 39046,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000012915
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.17746190293251377,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.18234902422783383,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "mixed-road-long-drive-large-mount-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 127198,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050808787354981
+      },
+      "gnss": {
+        "rows": 2556,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2555,
+        "largest_gap_s": 1.0
+      },
+      "reference_position": {
+        "rows": 38741,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000012915
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.16770779556014456,
+    "reference_within_1mm_of_any_input_gnss_fraction": 2.5812446761828554e-05,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "mixed-road-long-drive-large-mount-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 259460,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010051982403183501
+      },
+      "gnss": {
+        "rows": 5207,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 5206,
+        "largest_gap_s": 2.0
+      },
+      "reference_position": {
+        "rows": 79032,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000035652
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.11772595563766117,
+    "reference_within_1mm_of_any_input_gnss_fraction": 2.530620508148598e-05,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "mixed-road-long-drive-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 141403,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010049713730950316
+      },
+      "gnss": {
+        "rows": 2737,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2736,
+        "largest_gap_s": 1.5
+      },
+      "reference_position": {
+        "rows": 41517,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000012915
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.1628528759996146,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.00040947081918250356,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "parking-lot-circle-turns-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 9502,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050433218481203
+      },
+      "gnss": {
+        "rows": 191,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 190,
+        "largest_gap_s": 0.5009999999999977
+      },
+      "reference_position": {
+        "rows": 2893,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000000125
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.05463347164591978,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.015900449360525405,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "parking-lot-figure8-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 15010,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050766885285611
+      },
+      "gnss": {
+        "rows": 302,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 301,
+        "largest_gap_s": 0.5000000000000142
+      },
+      "reference_position": {
+        "rows": 4572,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.1190111572959965,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.025153105861767278,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "parkinglot-maneuvers",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 65893,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010051334500417397
+      },
+      "gnss": {
+        "rows": 1292,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1291,
+        "largest_gap_s": 0.5000000000000568
+      },
+      "reference_position": {
+        "rows": 19565,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic",
+      "input_path": "/Users/ykshin/Dev/me/ekf/simulation/ubx_viewer/data/ubx_raw_20260513_213028"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.06731752197914537,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.043342703807820085,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-long-turn-loop-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 39703,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050714135218186
+      },
+      "gnss": {
+        "rows": 799,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 798,
+        "largest_gap_s": 0.5
+      },
+      "reference_position": {
+        "rows": 12092,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.03779670829542635,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.01364538537876282,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-low-speed-low-signal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 124975,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050392627817928
+      },
+      "gnss": {
+        "rows": 2484,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 2483,
+        "largest_gap_s": 0.5009999999999764
+      },
+      "reference_position": {
+        "rows": 37636,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1,
+        "largest_gap_s": 14.058
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.3651388335326159,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.38431289191199913,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-medium-turn-loop-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 30794,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050620436686586
+      },
+      "gnss": {
+        "rows": 619,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 618,
+        "largest_gap_s": 0.5000000000000284
+      },
+      "reference_position": {
+        "rows": 9379,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.08893154190658989,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.05501652628211963,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-medium-turn-loop-nominal-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 24403,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050604879864977
+      },
+      "gnss": {
+        "rows": 491,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 490,
+        "largest_gap_s": 0.5010000000000048
+      },
+      "reference_position": {
+        "rows": 7432,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.08693311801910913,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.00013455328310010763,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-mixed-turns-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 51891,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010051049888147645
+      },
+      "gnss": {
+        "rows": 1043,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1042,
+        "largest_gap_s": 0.5000000000000142
+      },
+      "reference_position": {
+        "rows": 15805,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.15407491774234372,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.09920911104080987,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-short-turn-loop-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 17604,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050524950031559
+      },
+      "gnss": {
+        "rows": 354,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 353,
+        "largest_gap_s": 0.5000000000000071
+      },
+      "reference_position": {
+        "rows": 5361,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.11455223880597015,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.07647826897966797,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-short-turn-loop-nominal-002",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 18904,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050660312202808
+      },
+      "gnss": {
+        "rows": 380,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 379,
+        "largest_gap_s": 0.5000000000000142
+      },
+      "reference_position": {
+        "rows": 5758,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.14990446413062358,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.007815213615838833,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-stop-go-large-mount-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 48805,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.02010024356842041
+      },
+      "gnss": {
+        "rows": 950,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 949,
+        "largest_gap_s": 0.5
+      },
+      "reference_position": {
+        "rows": 14385,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.4136540600667408,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.2111226972540841,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  },
+  {
+    "id": "urban-stop-go-tight-turns-nominal-001",
+    "timestamp_findings": {
+      "imu": {
+        "rows": 52994,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.010050914943235512
+      },
+      "gnss": {
+        "rows": 1065,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 1064,
+        "largest_gap_s": 0.5000000000000568
+      },
+      "reference_position": {
+        "rows": 16140,
+        "duplicate_intervals": 0,
+        "backward_intervals": 0,
+        "gaps_above_50ms": 0,
+        "largest_gap_s": 0.03300000000001546
+      }
+    },
+    "source": {
+      "format": "generic"
+    },
+    "reference_provenance": "not independently established",
+    "reference_repeated_position_fraction": 0.36687527108247103,
+    "reference_within_1mm_of_any_input_gnss_fraction": 0.304275092936803,
+    "matching_note": "Diagnostic, not proof of source dependence; stationary repeats are possible. No surveyed reference-device provenance is established by inspected package metadata."
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "github_sha": "48825fa45b5dd495e704bfc05fada1d99aef02bd",
+  "run_id": "43634896673",
+  "upstream_revision": "8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6",
+  "synthetic_perturbations_are_labelled": true,
+  "reference_independence": "unverified",
+  "hardware_accuracy_claim": false
+}
