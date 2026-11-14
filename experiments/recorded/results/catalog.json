@@ -1,0 +1,364 @@
+{
+  "datasets": [
+    {
+      "id": "urban-short-turn-loop-nominal-001",
+      "label": "Urban short turn loop 001",
+      "description": "Short urban drive with repeated low-speed turns and nominal GNSS coverage.",
+      "base_url": "urban-short-turn-loop-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-short-turn-loop-nominal-002",
+      "label": "Urban short turn loop 002",
+      "description": "Short urban drive with repeated low-speed turns and nominal GNSS coverage.",
+      "base_url": "urban-short-turn-loop-nominal-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-medium-turn-loop-nominal-001",
+      "label": "Urban medium turn loop 001",
+      "description": "Medium urban drive with repeated turns and nominal GNSS coverage.",
+      "base_url": "urban-medium-turn-loop-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-medium-turn-loop-nominal-002",
+      "label": "Urban medium turn loop 002",
+      "description": "Medium urban drive with repeated turns and nominal GNSS coverage.",
+      "base_url": "urban-medium-turn-loop-nominal-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "parkinglot-maneuvers",
+      "label": "Parking lot maneuvers",
+      "description": "Parking-lot maneuver dataset with several turns, brief stops, nominal GNSS coverage, and a large sensor mount offset.",
+      "base_url": "parkinglot-maneuvers",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-long-turn-loop-nominal-001",
+      "label": "Urban long turn loop 001",
+      "description": "Longer urban drive with repeated turns and nominal GNSS coverage.",
+      "base_url": "urban-long-turn-loop-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "parking-lot-figure8-nominal-001",
+      "label": "Parking-lot figure eight 001",
+      "description": "Parking-lot figure-eight maneuver with nominal GNSS coverage.",
+      "base_url": "parking-lot-figure8-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "parking-lot-circle-turns-nominal-001",
+      "label": "Parking-lot circle turns 001",
+      "description": "Parking-lot circular turn maneuver with nominal GNSS coverage.",
+      "base_url": "parking-lot-circle-turns-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-mixed-turns-nominal-001",
+      "label": "Urban mixed turns 001",
+      "description": "Urban drive with mixed turns and nominal GNSS coverage.",
+      "base_url": "urban-mixed-turns-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-stop-go-tight-turns-nominal-001",
+      "label": "Urban stop-go tight turns 001",
+      "description": "Urban stop-go drive with tight turns and nominal GNSS coverage.",
+      "base_url": "urban-stop-go-tight-turns-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "mixed-road-long-drive-nominal-001",
+      "label": "Mixed-road long drive 001",
+      "description": "Long mixed-road drive with urban and highway-speed sections.",
+      "base_url": "mixed-road-long-drive-nominal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "mixed-road-long-drive-large-mount-001",
+      "label": "Mixed-road long drive, large mount offset 001",
+      "description": "Long mixed-road drive with highway-speed sections and a large sensor mount offset.",
+      "base_url": "mixed-road-long-drive-large-mount-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "mixed-road-long-drive-large-mount-002",
+      "label": "Mixed-road long drive, large mount offset 002",
+      "description": "Long mixed-road drive with highway-speed sections and a large sensor mount offset.",
+      "base_url": "mixed-road-long-drive-large-mount-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-stop-go-large-mount-001",
+      "label": "Urban stop-go drive, large mount offset 001",
+      "description": "Urban stop-go drive with extended stationary periods and a large sensor mount offset.",
+      "base_url": "urban-stop-go-large-mount-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "urban-low-speed-low-signal-001",
+      "label": "Urban low-speed drive, low signal 001",
+      "description": "Low-speed urban drive with degraded positioning/reference signal quality.",
+      "base_url": "urban-low-speed-low-signal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "mixed-road-highway-low-signal-001",
+      "label": "Mixed-road highway drive, low signal 001",
+      "description": "Mixed-road drive with highway-speed sections and degraded positioning/reference signal quality.",
+      "base_url": "mixed-road-highway-low-signal-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "covered-parking-urban-drive-gnss-outage-001",
+      "label": "Covered-parking urban drive, GNSS outage 001",
+      "description": "Urban drive through covered parking structures with GNSS outage intervals.",
+      "base_url": "covered-parking-urban-drive-gnss-outage-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "covered-parking-urban-drive-data-gap-001",
+      "label": "Covered-parking urban drive, data gap 001",
+      "description": "Urban drive through covered parking structures with a long sensor/reference data gap.",
+      "base_url": "covered-parking-urban-drive-data-gap-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz",
+      "reference_attitude_gz": "reference_attitude.csv.gz",
+      "reference_mount_gz": "reference_mount.csv.gz",
+      "reference_position_gz": "reference_position.csv.gz",
+      "reference_motion_gz": "reference_motion.csv.gz"
+    },
+    {
+      "id": "ios-mixed-drive-reverse-parking-001",
+      "label": "iOS mixed drive, reverse parking 001",
+      "description": "iOS MotionFusion mixed-road drive with a low-speed reverse-parking maneuver; exported with course-accuracy velocity covariance.",
+      "base_url": "ios-mixed-drive-reverse-parking-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-stationary-smoke-001",
+      "label": "iOS stationary smoke 001",
+      "description": "Short stationary iOS MotionFusion smoke recording with raw IMU and GNSS samples.",
+      "base_url": "ios-stationary-smoke-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-stationary-smoke-002",
+      "label": "iOS stationary smoke 002",
+      "description": "Stationary iOS MotionFusion smoke recording with raw IMU and GNSS samples.",
+      "base_url": "ios-stationary-smoke-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-mixed-road-drive-001",
+      "label": "iOS mixed-road drive 001",
+      "description": "iOS MotionFusion mixed-road point-to-point drive with raw IMU and 1 Hz CoreLocation GNSS.",
+      "base_url": "ios-mixed-road-drive-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-mixed-road-drive-002",
+      "label": "iOS mixed-road drive 002",
+      "description": "iOS MotionFusion mixed-road drive with raw IMU and 1 Hz CoreLocation GNSS.",
+      "base_url": "ios-mixed-road-drive-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-mixed-road-loop-001",
+      "label": "iOS mixed-road loop 001",
+      "description": "iOS MotionFusion mixed-road loop drive with raw IMU and 1 Hz CoreLocation GNSS.",
+      "base_url": "ios-mixed-road-loop-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-evening-mixed-road-drive-001",
+      "label": "iOS evening mixed-road drive 001",
+      "description": "Evening iOS MotionFusion mixed-road drive with raw IMU and 1 Hz CoreLocation GNSS.",
+      "base_url": "ios-evening-mixed-road-drive-001",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-evening-mixed-road-drive-002",
+      "label": "iOS evening mixed-road drive 002",
+      "description": "Evening iOS MotionFusion mixed-road drive with raw IMU and 1 Hz CoreLocation GNSS.",
+      "base_url": "ios-evening-mixed-road-drive-002",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260521-121635",
+      "label": "iOS drive 2026-05-21 12:16Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-21 at 12:16:35Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260521-121635",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260521-130835",
+      "label": "iOS drive 2026-05-21 13:08Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-21 at 13:08:35Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260521-130835",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260521-131420",
+      "label": "iOS drive 2026-05-21 13:14Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-21 at 13:14:20Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260521-131420",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260521-164415",
+      "label": "iOS drive 2026-05-21 16:44Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-21 at 16:44:15Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260521-164415",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260521-180601",
+      "label": "iOS drive 2026-05-21 18:06Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-21 at 18:06:01Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260521-180601",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260526-174206",
+      "label": "iOS drive 2026-05-26 17:42Z",
+      "description": "Long iOS MotionFusion drive recorded on 2026-05-26 at 17:42:06Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260526-174206",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260527-123747",
+      "label": "iOS drive 2026-05-27 12:37Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-27 at 12:37:47Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260527-123747",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260528-183859",
+      "label": "iOS drive 2026-05-28 18:38Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-28 at 18:38:59Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260528-183859",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260530-110409",
+      "label": "iOS drive 2026-05-30 11:04Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-30 at 11:04:09Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260530-110409",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    },
+    {
+      "id": "ios-drive-20260530-164847",
+      "label": "iOS drive 2026-05-30 16:48Z",
+      "description": "iOS MotionFusion drive recorded on 2026-05-30 at 16:48:47Z; exported to generic IMU/GNSS replay format.",
+      "base_url": "ios-drive-20260530-164847",
+      "imu_gz": "imu.csv.gz",
+      "gnss_gz": "gnss.csv.gz"
+    }
+  ]
+}
