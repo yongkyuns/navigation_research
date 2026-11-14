@@ -1,0 +1,41 @@
+name: Build pinned native fusion bridge
+on:
+  push:
+    branches: [research/imu-gnss-integration]
+    paths: ['integration/imu_gnss/rust_bridge/**', 'integration/imu_gnss/prepare_native.py', '.github/workflows/build-fusion-bridge.yml']
+permissions:
+  contents: read
+jobs:
+  native:
+    runs-on: ubuntu-slim
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/fusion-upstream
+          persist-credentials: false
+      - name: Install fixed Rust toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - name: Prepare isolated research hooks and compile actual upstream runtime
+        run: |
+          python3 integration/imu_gnss/prepare_native.py --upstream .cache/fusion-upstream --output .cache/fusion-native
+          mkdir -p native-artifact
+          rustc -Vv > native-artifact/rustc.txt
+          cargo generate-lockfile --manifest-path .cache/fusion-native/Cargo.toml
+          cargo test --manifest-path .cache/fusion-native/Cargo.toml --workspace --locked 2>&1 | tee native-artifact/tests.txt
+          cargo build --manifest-path .cache/fusion-native/Cargo.toml -p routefusion_native_bridge --release --locked
+          cp .cache/fusion-native/target/release/libroutefusion_native_bridge.so native-artifact/
+          cp .cache/fusion-native/{Cargo.lock,source-provenance.json} native-artifact/
+          sha256sum native-artifact/libroutefusion_native_bridge.so > native-artifact/SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: native-fusion-bridge
+          path: native-artifact
+          retention-days: 14
