@@ -1,0 +1,3 @@
+-r routefusion_prototype/requirements-tested.txt
+matplotlib==3.10.8
+Pillow==12.3.0

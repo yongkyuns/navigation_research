@@ -1,55 +1,57 @@
-"""Verify the frozen original project, standalone report, chart and ZIP entries."""
+"""Verify published bytes and preserved historical records without conflating them."""
 from __future__ import annotations
-import hashlib
 import json
-from pathlib import Path, PurePosixPath
+from pathlib import PurePosixPath
 import zipfile
-
-ROOT = Path(__file__).resolve().parents[1]
-PROJECT = ROOT / 'routefusion_prototype'
-
-
-def sha(data: bytes) -> str:
-    return hashlib.sha256(data).hexdigest()
+from evidence import ROOT, PROJECT, sha, original_records, check_sources, compare_metrics, compare_summary
 
 
 def verify() -> dict:
-    meta = json.loads((ROOT / 'provenance/original-artifacts.json').read_text())
+    sources = check_sources()
+    _, records = original_records()
+    for name, data in records.items():
+        if (ROOT / 'provenance' / name).read_bytes() != data:
+            raise ValueError(f'Historical record changed: {name}')
     record = json.loads((ROOT / 'provenance/IMPORT_VERIFICATION.json').read_text())
+    metadata = json.loads((ROOT / 'provenance/original-artifacts.json').read_text())
     listing = (PROJECT / 'SHA256SUMS.txt').read_bytes()
-    if sha(listing) != meta['prototype_manifest_sha256']:
-        raise ValueError('Original aggregate manifest changed')
+    if sha(listing) != record['published_manifest_sha256']:
+        raise ValueError('Published manifest changed')
     expected = {}
     for line in listing.decode().splitlines():
         digest, name = line.split('  ', 1)
-        path = PurePosixPath(name)
-        if path.is_absolute() or '..' in path.parts or name in expected:
-            raise ValueError(f'Unsafe/duplicate manifest entry: {name}')
-        data = (PROJECT / name).read_bytes()
-        if sha(data) != digest:
-            raise ValueError(f'Frozen file changed: {name}')
+        p = PurePosixPath(name)
+        if p.is_absolute() or '..' in p.parts or name in expected:
+            raise ValueError('Unsafe or duplicate manifest entry')
+        if sha((PROJECT / name).read_bytes()) != digest:
+            raise ValueError(f'Published file changed: {name}')
         expected[name] = digest
     expected['SHA256SUMS.txt'] = sha(listing)
-    if len(expected) != meta['prototype_file_count']:
-        raise ValueError('Unexpected original file count')
+    if len(expected) != record['published_project_files']:
+        raise ValueError('Published file count differs')
     checks = {
-        ROOT / 'routefusion_research_and_design.md': meta['report_sha256'],
-        PROJECT / 'results/figures/synthetic_evaluation.png': meta['chart_sha256'],
-        ROOT / 'artifacts/routefusion_prototype.zip': record['repacked_archive_sha256'],
+        ROOT / 'routefusion_research_and_design.md': metadata['report_sha256'],
+        PROJECT / 'results/figures/synthetic_evaluation.png': record['published_chart_sha256'],
+        ROOT / 'artifacts/routefusion_prototype.zip': record['published_archive_sha256'],
     }
     for path, digest in checks.items():
         if sha(path.read_bytes()) != digest:
             raise ValueError(f'Artifact changed: {path.relative_to(ROOT)}')
-    with zipfile.ZipFile(ROOT / 'artifacts/routefusion_prototype.zip') as archive:
-        entries = archive.namelist()
+    with zipfile.ZipFile(ROOT / 'artifacts/routefusion_prototype.zip') as z:
         names = {'routefusion_prototype/' + name for name in expected}
-        if len(entries) != len(names) or set(entries) != names:
-            raise ValueError('Archive entries differ from the frozen project')
+        if len(z.namelist()) != len(names) or set(z.namelist()) != names:
+            raise ValueError('Archive entry set differs')
         for name, digest in expected.items():
-            if sha(archive.read('routefusion_prototype/' + name)) != digest:
-                raise ValueError(f'Archive entry changed: {name}')
-    return {'verified_project_files': len(expected), 'report': 'verified',
-            'chart': 'verified', 'archive_contents': 'verified', 'synthetic_only': True}
+            if sha(z.read('routefusion_prototype/' + name)) != digest:
+                raise ValueError(f'Archive content changed: {name}')
+    compare_metrics(json.loads((PROJECT / 'results/metrics.json').read_text()),
+                    json.loads(records['original-metrics.json']))
+    compare_summary(json.loads((PROJECT / 'results/summary.json').read_text()),
+                    json.loads(records['original-summary.json']))
+    return {'verified_published_project_files': len(expected), 'original_source_files': sources,
+            'original_numeric_records': len(records), 'original_report': 'checksum verified',
+            'published_archive_contents': 'checksum verified',
+            'non_timing_results_match_original': True, 'synthetic_only': True}
 
 
 if __name__ == '__main__':

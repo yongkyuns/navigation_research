@@ -1,5 +1,6 @@
 * text=auto eol=lf
 routefusion_prototype/results/** -text
+provenance/import-parts/** -text
 *.png binary
 *.zip binary
 *.gz binary
