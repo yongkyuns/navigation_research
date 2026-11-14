@@ -1,0 +1,21 @@
+{
+  "bbox_south_west_north_east": [
+    43.462,
+    -79.744,
+    43.486,
+    -79.676
+  ],
+  "query": "[out:json][timeout:60];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.462,-79.744,43.486,-79.676);(._;>;);out body;",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "retrieved_utc": "2026-11-14T19:42:17.402964+00:00",
+  "response_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+  "osm_base": {
+    "timestamp_osm_base": "2026-11-14T19:41:01Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "attribution": "OpenStreetMap contributors",
+  "license": "ODbL 1.0",
+  "purpose": "Independent geometry, not derived from the evaluation reference trajectory",
+  "elements": 12714,
+  "earlier_errors": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "covered-parking-urban-drive-gnss-outage-001",
+  "manifest_sha256": "8c21098a86cf21a966cbd2173d4a8d232d7531fdb1a3c57ab2b6b92ae1f92d66",
+  "input_sha256": {
+    "imu": "2c78534d6e163174090d40975d7d36b2911fee393b5eef278333e6783e11ddb4",
+    "gnss": "aac22e84e37e6b829d6aaa33cbb3d5c852732315a8e326012fec14d44bb96816"
+  },
+  "rows": {
+    "imu": 213790,
+    "gnss": 3710
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 2148.502715737104,
+  "wall_runtime_s": 4.329745330000009,
+  "initialization_t_s": 382.5800012718439,
+  "sampled_epochs": 4276,
+  "ready_fraction": 0.8220299345182414,
+  "usable_fraction": 0.8220299345182414,
+  "nonfinite_outputs": 0,
+  "reference_rows": 61833,
+  "reference_discrepancy": {
+    "n": 3508,
+    "rmse_m": 5.066380884124552,
+    "median_m": 1.1824065881171746,
+    "p95_m": 11.165021786833803,
+    "max_m": 40.83979553116275
+  },
+  "reference_repeated_position_fraction": 0.16117867770733602,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 3137,
+    "rmse_m": 0.46844307931266266,
+    "median_m": 0.25365332630683696,
+    "p95_m": 0.8350844308466298,
+    "max_m": 7.254163369152975
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

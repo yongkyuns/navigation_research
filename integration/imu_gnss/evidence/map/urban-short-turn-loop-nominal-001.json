@@ -1,0 +1,76 @@
+{
+  "id": "urban-short-turn-loop-nominal-001",
+  "manifest_sha256": "edc26371d7298265ff1d20e3cb263d581e05f667012122fda7adfccf403d27f7",
+  "input_sha256": {
+    "imu": "db585024923ad4b4cc7f905b794901949d5465913f570da02704501d39db6308",
+    "gnss": "a418674086cdb42743706259232695c31c8bbe3556c2c60afa7365985579c195"
+  },
+  "rows": {
+    "imu": 17604,
+    "gnss": 354
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "input_stress": "none",
+  "source_runtime": "actual pinned Rust SensorFusion",
+  "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+  "map_is_independent_of_reference": true,
+  "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+  "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+  "epochs": 177,
+  "ready_epochs": 137,
+  "map_available_epochs": 137,
+  "latched_epochs": 74,
+  "latch_fraction_available": 0.5401459854014599,
+  "map_free_exactly_matches_independent_replay": true,
+  "base_reference_discrepancy": {
+    "n": 137,
+    "rmse_m": 3.6677559829038895,
+    "median_m": 0.18832823545129931,
+    "p95_m": 2.139113212315168,
+    "max_m": 23.95782144228003
+  },
+  "stress_window_base_discrepancy": {
+    "n": 30,
+    "rmse_m": 0.1807145152291472,
+    "median_m": 0.13848941045705843,
+    "p95_m": 0.30403549081466336,
+    "max_m": 0.33141503244578663
+  },
+  "stress_window_candidate_discrepancy": {
+    "n": 30,
+    "rmse_m": 0.18107347759227477,
+    "median_m": 0.14238288976759833,
+    "p95_m": 0.3006030183071568,
+    "max_m": 0.3283409503364911
+  },
+  "candidate_reference_discrepancy": {
+    "n": 137,
+    "rmse_m": 3.6681040807221317,
+    "median_m": 0.18062588430674603,
+    "p95_m": 2.139113212315168,
+    "max_m": 23.961199089945744
+  },
+  "correction_m": {
+    "n": 137,
+    "rmse_m": 0.018269051288961096,
+    "median_m": 0.00032019664274433044,
+    "p95_m": 0.046549264261120084,
+    "max_m": 0.06753102189901566
+  },
+  "max_branches": 24,
+  "configured_cap": 24,
+  "max_pruned_mass": 0.213699013065072,
+  "map_update_count": 3071,
+  "negative_position_covariance_epochs": 0,
+  "wall_runtime_s": 7.956863699999985,
+  "native_instance_bytes": 14880,
+  "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+  "map_step_ms": {
+    "p50": 11.680075000015222,
+    "p95": 27.281096799981693,
+    "max": 46.215002999986154
+  }
+}

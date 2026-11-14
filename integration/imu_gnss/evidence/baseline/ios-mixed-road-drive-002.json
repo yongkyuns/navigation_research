@@ -1,0 +1,36 @@
+{
+  "id": "ios-mixed-road-drive-002",
+  "manifest_sha256": "c57ddb00531140c135c2867684e11c917cf21c435185f6b8a94908aafaa29a3f",
+  "input_sha256": {
+    "imu": "9311c386b5fde0797e32db5f6a478483efce4fc58acac658fff298666ff1f7aa",
+    "gnss": "6af8ae915690278bc4fe123ce3be3f89447da86331410bcff2f2c0061b1b3601"
+  },
+  "rows": {
+    "imu": 90378,
+    "gnss": 906
+  },
+  "reference_available": false,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 906.6217257976532,
+  "wall_runtime_s": 1.632640232,
+  "initialization_t_s": 192.05711221694946,
+  "sampled_epochs": 1808,
+  "ready_fraction": 0.7881637168141593,
+  "usable_fraction": 0.7881637168141593,
+  "nonfinite_outputs": 0,
+  "reference_rows": 0,
+  "reference_discrepancy": null,
+  "reference_repeated_position_fraction": null,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 1423,
+    "rmse_m": 2.0374178356192294,
+    "median_m": 0.8825947866454941,
+    "p95_m": 4.499948416121062,
+    "max_m": 7.197735776756714
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

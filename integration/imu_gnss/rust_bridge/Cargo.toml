@@ -1,0 +1,9 @@
+[package]
+name = "routefusion_native_bridge"
+version = "0.1.0"
+edition = "2024"
+[lib]
+crate-type = ["cdylib", "rlib"]
+[dependencies]
+sensor_fusion = { path = "../sensor_fusion" }
+libm = "=0.2.16"

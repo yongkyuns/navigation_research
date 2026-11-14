@@ -1,0 +1,42 @@
+{
+  "id": "urban-medium-turn-loop-nominal-001",
+  "manifest_sha256": "290275b9361b9d9467b8d9e8c02e1b87a381b10cbd356ea682a6ae1b15a889cf",
+  "input_sha256": {
+    "imu": "b36cc0905b9beb52273e8f0d7daade0802077e788bed8f705c9807ed69542e80",
+    "gnss": "af31e854627e009fbfb2875035078ca2d1a7062751ea14d1ac32bad8b1e49953"
+  },
+  "rows": {
+    "imu": 30794,
+    "gnss": 619
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 309.6726274699569,
+  "wall_runtime_s": 0.6219853129999819,
+  "initialization_t_s": 23.606831533253192,
+  "sampled_epochs": 616,
+  "ready_fraction": 0.9237012987012987,
+  "usable_fraction": 0.9237012987012987,
+  "nonfinite_outputs": 0,
+  "reference_rows": 9379,
+  "reference_discrepancy": {
+    "n": 569,
+    "rmse_m": 0.6563481352317849,
+    "median_m": 0.20244650746307036,
+    "p95_m": 1.5225080882108113,
+    "max_m": 3.285210022999488
+  },
+  "reference_repeated_position_fraction": 0.08893154190658989,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 568,
+    "rmse_m": 0.10410351581653907,
+    "median_m": 0.08161572837580394,
+    "p95_m": 0.18340237759881206,
+    "max_m": 0.262760614352068
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

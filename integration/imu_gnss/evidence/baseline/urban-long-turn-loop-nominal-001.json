@@ -1,0 +1,42 @@
+{
+  "id": "urban-long-turn-loop-nominal-001",
+  "manifest_sha256": "bc37b99964a0d8094e128c093db75fecdd6bfb287228cba99ee621c862f856f5",
+  "input_sha256": {
+    "imu": "7dade6307b827d6e59dd251f5c2dd6436d218c2e718ff0154d6e83e317d66939",
+    "gnss": "7887f55036e844c77923e99822ffe684b87427ba1f0515fd530233e46ae27313"
+  },
+  "rows": {
+    "imu": 39703,
+    "gnss": 799
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 399.27955511158706,
+  "wall_runtime_s": 0.7913512830000116,
+  "initialization_t_s": 38.43881753283739,
+  "sampled_epochs": 795,
+  "ready_fraction": 0.9044025157232705,
+  "usable_fraction": 0.9044025157232705,
+  "nonfinite_outputs": 0,
+  "reference_rows": 12092,
+  "reference_discrepancy": {
+    "n": 719,
+    "rmse_m": 0.9467228699262414,
+    "median_m": 0.398967742020838,
+    "p95_m": 2.178656301907377,
+    "max_m": 3.1603950101984535
+  },
+  "reference_repeated_position_fraction": 0.03779670829542635,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 718,
+    "rmse_m": 0.11016456580204916,
+    "median_m": 0.0959360281058275,
+    "p95_m": 0.18306101412844247,
+    "max_m": 0.2723229215444504
+  },
+  "reanchors": 0,
+  "native_instance_bytes": 14880
+}

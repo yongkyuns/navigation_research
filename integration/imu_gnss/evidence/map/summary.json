@@ -1,0 +1,282 @@
+[
+  {
+    "id": "urban-short-turn-loop-nominal-001",
+    "manifest_sha256": "edc26371d7298265ff1d20e3cb263d581e05f667012122fda7adfccf403d27f7",
+    "input_sha256": {
+      "imu": "db585024923ad4b4cc7f905b794901949d5465913f570da02704501d39db6308",
+      "gnss": "a418674086cdb42743706259232695c31c8bbe3556c2c60afa7365985579c195"
+    },
+    "rows": {
+      "imu": 17604,
+      "gnss": 354
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "input_stress": "none",
+    "source_runtime": "actual pinned Rust SensorFusion",
+    "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+    "map_is_independent_of_reference": true,
+    "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+    "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+    "epochs": 177,
+    "ready_epochs": 137,
+    "map_available_epochs": 137,
+    "latched_epochs": 74,
+    "latch_fraction_available": 0.5401459854014599,
+    "map_free_exactly_matches_independent_replay": true,
+    "base_reference_discrepancy": {
+      "n": 137,
+      "rmse_m": 3.6677559829038895,
+      "median_m": 0.18832823545129931,
+      "p95_m": 2.139113212315168,
+      "max_m": 23.95782144228003
+    },
+    "stress_window_base_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.1807145152291472,
+      "median_m": 0.13848941045705843,
+      "p95_m": 0.30403549081466336,
+      "max_m": 0.33141503244578663
+    },
+    "stress_window_candidate_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.18107347759227477,
+      "median_m": 0.14238288976759833,
+      "p95_m": 0.3006030183071568,
+      "max_m": 0.3283409503364911
+    },
+    "candidate_reference_discrepancy": {
+      "n": 137,
+      "rmse_m": 3.6681040807221317,
+      "median_m": 0.18062588430674603,
+      "p95_m": 2.139113212315168,
+      "max_m": 23.961199089945744
+    },
+    "correction_m": {
+      "n": 137,
+      "rmse_m": 0.018269051288961096,
+      "median_m": 0.00032019664274433044,
+      "p95_m": 0.046549264261120084,
+      "max_m": 0.06753102189901566
+    },
+    "max_branches": 24,
+    "configured_cap": 24,
+    "max_pruned_mass": 0.213699013065072,
+    "map_update_count": 3071,
+    "negative_position_covariance_epochs": 0,
+    "wall_runtime_s": 7.956863699999985,
+    "native_instance_bytes": 14880,
+    "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+    "map_step_ms": {
+      "p50": 11.680075000015222,
+      "p95": 27.281096799981693,
+      "max": 46.215002999986154
+    }
+  },
+  {
+    "id": "urban-short-turn-loop-nominal-002",
+    "manifest_sha256": "20c6a083bb8b9497c49344e863c7eac9ce133a77a82b62c1e75af1cb607e098c",
+    "input_sha256": {
+      "imu": "e2728d1318add67525a5098b942782f0964c0ee895882b09b459622677c95cbe",
+      "gnss": "e189e0ea14515ca2a58e477063dcb4046b520eda02d554549e825dbf55171aa8"
+    },
+    "rows": {
+      "imu": 18904,
+      "gnss": 380
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "input_stress": "none",
+    "source_runtime": "actual pinned Rust SensorFusion",
+    "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+    "map_is_independent_of_reference": true,
+    "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+    "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+    "epochs": 190,
+    "ready_epochs": 168,
+    "map_available_epochs": 168,
+    "latched_epochs": 116,
+    "latch_fraction_available": 0.6904761904761905,
+    "map_free_exactly_matches_independent_replay": true,
+    "base_reference_discrepancy": {
+      "n": 168,
+      "rmse_m": 0.6076092144969942,
+      "median_m": 0.4179385005841153,
+      "p95_m": 1.1188512513093252,
+      "max_m": 1.689224977369777
+    },
+    "stress_window_base_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.7210485728576252,
+      "median_m": 0.6195967942173006,
+      "p95_m": 1.0793424664709776,
+      "max_m": 1.2521040631479792
+    },
+    "stress_window_candidate_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.7208261673619851,
+      "median_m": 0.6195850700574133,
+      "p95_m": 1.0787978406815606,
+      "max_m": 1.2516005732141955
+    },
+    "candidate_reference_discrepancy": {
+      "n": 168,
+      "rmse_m": 0.6070520039062054,
+      "median_m": 0.4177632139764418,
+      "p95_m": 1.1188365243501002,
+      "max_m": 1.689224977369777
+    },
+    "correction_m": {
+      "n": 168,
+      "rmse_m": 0.004874133114455428,
+      "median_m": 0.0003137251516643331,
+      "p95_m": 0.014744132807333513,
+      "max_m": 0.01906266089411248
+    },
+    "max_branches": 24,
+    "configured_cap": 24,
+    "max_pruned_mass": 0.23030773439570185,
+    "map_update_count": 2796,
+    "negative_position_covariance_epochs": 0,
+    "wall_runtime_s": 10.213529937000033,
+    "native_instance_bytes": 14880,
+    "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+    "map_step_ms": {
+      "p50": 12.065476499969918,
+      "p95": 30.116705450009782,
+      "max": 50.229739000030804
+    }
+  },
+  {
+    "id": "urban-stop-go-tight-turns-nominal-001",
+    "manifest_sha256": "8724cbdb8d5ead4baf717a21687db1e5f155a87b9204d0251f725656323d335b",
+    "input_sha256": {
+      "imu": "0f2bb818c010f1ae6eafa710d03432a91d171709cca4ec3d95e404e0ffa98620",
+      "gnss": "551f4108469f611ca68a6eaa6feaf702177887c159d154aeb264b1517a77f44f"
+    },
+    "rows": {
+      "imu": 52994,
+      "gnss": 1065
+    },
+    "reference_available": true,
+    "source": {
+      "format": "generic"
+    },
+    "input_stress": "none",
+    "source_runtime": "actual pinned Rust SensorFusion",
+    "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+    "map_is_independent_of_reference": true,
+    "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+    "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+    "epochs": 530,
+    "ready_epochs": 490,
+    "map_available_epochs": 490,
+    "latched_epochs": 355,
+    "latch_fraction_available": 0.7244897959183674,
+    "map_free_exactly_matches_independent_replay": true,
+    "base_reference_discrepancy": {
+      "n": 490,
+      "rmse_m": 0.7444308784452682,
+      "median_m": 0.15891929326963228,
+      "p95_m": 2.118241392805425,
+      "max_m": 3.414456319718318
+    },
+    "stress_window_base_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.05219935469143211,
+      "median_m": 0.044347201043177624,
+      "p95_m": 0.09097820334994636,
+      "max_m": 0.09293920999363207
+    },
+    "stress_window_candidate_discrepancy": {
+      "n": 30,
+      "rmse_m": 0.05220336789819268,
+      "median_m": 0.04431089073311739,
+      "p95_m": 0.09097820334994636,
+      "max_m": 0.09297742350118594
+    },
+    "candidate_reference_discrepancy": {
+      "n": 490,
+      "rmse_m": 0.7443614908575512,
+      "median_m": 0.15891929326963228,
+      "p95_m": 2.1182105389039516,
+      "max_m": 3.4138181898385267
+    },
+    "correction_m": {
+      "n": 490,
+      "rmse_m": 0.0013748865859272955,
+      "median_m": 0.0001432977107102347,
+      "p95_m": 0.003157077441235209,
+      "max_m": 0.01074287003277946
+    },
+    "max_branches": 24,
+    "configured_cap": 24,
+    "max_pruned_mass": 0.5530731756261724,
+    "map_update_count": 7102,
+    "negative_position_covariance_epochs": 0,
+    "wall_runtime_s": 33.149223291,
+    "native_instance_bytes": 14880,
+    "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+    "map_step_ms": {
+      "p50": 12.236471499988966,
+      "p95": 32.36289915000725,
+      "max": 54.53839400001925
+    }
+  },
+  {
+    "id": "ios-mixed-road-drive-001",
+    "manifest_sha256": "d1dbb0c5feef2e18169685decc7ccb3e85f1f8af0afeea21d341e7f215e34958",
+    "input_sha256": {
+      "imu": "168e260ba2180b73b2a7f7df88871e26e2c0133e12426aa8b964d749559213d5",
+      "gnss": "4d0ae8b11927f6b83ba24155ffadfc4b7750e9d9f0a619c7529819186b7f4c2f"
+    },
+    "rows": {
+      "imu": 67101,
+      "gnss": 673
+    },
+    "reference_available": false,
+    "source": {
+      "format": "generic"
+    },
+    "input_stress": "none",
+    "source_runtime": "actual pinned Rust SensorFusion",
+    "mode": "shadow publication; experimental road-conditioned estimate evaluated separately",
+    "map_is_independent_of_reference": true,
+    "map_sha256": "b47a3bf3e88fb37bce8f0cb3c96e0041b4eaf04b63008e276c005fcb0c8fec16",
+    "reference_independence": "unverified; discrepancies, NOT ground-truth accuracy",
+    "epochs": 672,
+    "ready_epochs": 607,
+    "map_available_epochs": 607,
+    "latched_epochs": 387,
+    "latch_fraction_available": 0.6375617792421746,
+    "map_free_exactly_matches_independent_replay": true,
+    "base_reference_discrepancy": null,
+    "stress_window_base_discrepancy": null,
+    "stress_window_candidate_discrepancy": null,
+    "candidate_reference_discrepancy": null,
+    "correction_m": {
+      "n": 607,
+      "rmse_m": 0.37308726195424985,
+      "median_m": 0.033832388006295025,
+      "p95_m": 0.8131834251552382,
+      "max_m": 2.1844302066516135
+    },
+    "max_branches": 24,
+    "configured_cap": 24,
+    "max_pruned_mass": 0.4404754117860864,
+    "map_update_count": 11644,
+    "negative_position_covariance_epochs": 0,
+    "wall_runtime_s": 41.273402239999996,
+    "native_instance_bytes": 14880,
+    "native_branch_storage_bytes_excludes_python_and_maps": 372000,
+    "map_step_ms": {
+      "p50": 12.545122500000616,
+      "p95": 31.373177900005082,
+      "max": 46.93017800002508
+    }
+  }
+]

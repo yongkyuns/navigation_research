@@ -1,0 +1,76 @@
+name: Qualify native fusion and intersection handling
+on:
+  pull_request:
+    paths:
+      - integration/imu_gnss/**
+      - .github/workflows/evaluate-native-recordings.yml
+  push:
+    branches: [main]
+    paths:
+      - integration/imu_gnss/**
+      - .github/workflows/evaluate-native-recordings.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-qualification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  qualify:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/fusion-upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Install reference dependencies and fixed Rust toolchain
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-reproduce.txt
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - name: Verify pinned source and build native runtime
+        run: |
+          set -euo pipefail
+          test "$(git -C .cache/fusion-upstream rev-parse HEAD)" = 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          python integration/imu_gnss/prepare_native.py --upstream .cache/fusion-upstream --output .cache/fusion-native
+          mkdir -p runs/native-build
+          rustc -Vv > runs/native-build/rustc.txt
+          cargo test --manifest-path .cache/fusion-native/Cargo.toml --workspace --locked 2>&1 | tee runs/native-build/tests.txt
+          cargo build --manifest-path .cache/fusion-native/Cargo.toml -p routefusion_native_bridge --release --locked
+          cp .cache/fusion-native/source-provenance.json runs/native-build/
+      - name: Replay recordings and qualify intersection/fallback invariants
+        run: |
+          set -euo pipefail
+          python integration/imu_gnss/run_evaluation.py \
+            --upstream .cache/fusion-upstream \
+            --library .cache/fusion-native/target/release/libroutefusion_native_bridge.so \
+            --map-cache integration/imu_gnss/map_cache \
+            --output runs/native-evaluation --report runs/native-report.md
+          python integration/imu_gnss/qualify_intersections.py --results runs/native-evaluation
+          git diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: native-intersection-qualification-${{ github.run_id }}
+          path: |
+            runs/native-build
+            runs/native-evaluation
+            runs/native-report.md
+          retention-days: 30
+          if-no-files-found: error

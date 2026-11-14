@@ -1,0 +1,42 @@
+{
+  "id": "mixed-road-long-drive-large-mount-002",
+  "manifest_sha256": "f1ed5ba2e47eb28645fafe9aec4aeb347cad92bd96a712700ef135611acbf30c",
+  "input_sha256": {
+    "imu": "88b31137e3d1af44899fbd35ff8611b8e924f157ec78c0f61d88923ed52add73",
+    "gnss": "ce37e8b725e6868667fbf4a71b601a94047b2bb466599f0fd13ade9b60de6509"
+  },
+  "rows": {
+    "imu": 259460,
+    "gnss": 5207
+  },
+  "reference_available": true,
+  "source": {
+    "format": "generic"
+  },
+  "duration_s": 2608.077281409383,
+  "wall_runtime_s": 2.049187988,
+  "initialization_t_s": 2478.7523335318565,
+  "sampled_epochs": 5190,
+  "ready_fraction": 0.04971098265895954,
+  "usable_fraction": 0.04971098265895954,
+  "nonfinite_outputs": 0,
+  "reference_rows": 79032,
+  "reference_discrepancy": {
+    "n": 258,
+    "rmse_m": 0.41776437056492816,
+    "median_m": 0.4150261366889962,
+    "p95_m": 0.5066815281529605,
+    "max_m": 0.5406797949950667
+  },
+  "reference_repeated_position_fraction": 0.11772595563766117,
+  "reference_independence": "unverified; not ground-truth accuracy",
+  "gnss_agreement_not_accuracy": {
+    "n": 257,
+    "rmse_m": 0.0941873509750512,
+    "median_m": 0.05228837542174767,
+    "p95_m": 0.18876595452389056,
+    "max_m": 0.2139155598497453
+  },
+  "reanchors": 5,
+  "native_instance_bytes": 14880
+}
