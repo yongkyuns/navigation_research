@@ -1,0 +1,89 @@
+name: Recorded data replay
+on:
+  push:
+    branches: [research/recorded-dataset-replay]
+    paths:
+      - '.github/workflows/recorded-replay.yml'
+      - 'experiments/recorded/*.py'
+      - 'experiments/recorded/*.json'
+permissions:
+  contents: write
+jobs:
+  replay:
+    runs-on: ubuntu-slim
+    timeout-minutes: 25
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install numerical environment
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 pytest matplotlib -e ./routefusion_prototype
+      - name: Inspect pinned recordings
+        run: |
+          python - <<'PY'
+          import csv, gzip, hashlib, io, json, pathlib, urllib.request
+          import numpy as np
+          pin='8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6'
+          base=f'https://raw.githubusercontent.com/yongkyuns/imu_gnss_fusion/{pin}/'
+          root=pathlib.Path('runs/recorded-inputs');root.mkdir(parents=True,exist_ok=True)
+          out=pathlib.Path('experiments/recorded/results');out.mkdir(parents=True,exist_ok=True)
+          def get(p):
+              with urllib.request.urlopen(base+p,timeout=90) as r:return r.read()
+          catalog=json.loads(get('web/datasets/manifest.json'))
+          (out/'catalog.json').write_text(json.dumps(catalog,indent=2)+'\n')
+          ids=['urban-short-turn-loop-nominal-001','ios-mixed-drive-reverse-parking-001','ios-drive-20260521-130835','ios-drive-20260521-131420']
+          records=[]
+          for name in ids:
+              folder=root/name;folder.mkdir(exist_ok=True)
+              mdata=get(f'web/datasets/{name}/manifest.json');m=json.loads(mdata)
+              (folder/'manifest.json').write_bytes(mdata)
+              record={'id':name,'manifest':m,'streams':{}}
+              for kind,f in m['files'].items():
+                  data=get(f'web/datasets/{name}/{f["path"]}')
+                  if hashlib.sha256(data).hexdigest()!=f['sha256']:raise ValueError('checksum mismatch '+name+'/'+kind)
+                  (folder/f['path']).write_bytes(data)
+                  a=np.genfromtxt(io.StringIO(gzip.decompress(data).decode()),delimiter=',',names=True)
+                  times=a['t_s']; stats={'rows':len(a),'time_start':float(times[0]),'time_end':float(times[-1]),'max_gap_s':float(np.diff(times).max()),'nonpositive_dt':int(np.sum(np.diff(times)<=0)),'columns':list(a.dtype.names)}
+                  stats['first_rows']=[{k:float(a[k][i]) for k in a.dtype.names} for i in range(min(3,len(a)))]
+                  if kind=='imu':
+                      stats['first_10s_means']={k:float(np.mean(a[k][times<times[0]+10])) for k in a.dtype.names[1:]}
+                      stats['accel_norm_quantiles']=np.quantile(np.sqrt(sum(a[k]**2 for k in ['ax_mps2','ay_mps2','az_mps2'])),[0,.1,.5,.9,1]).tolist()
+                  if kind=='gnss':
+                      stats['bounds']={k:[float(np.min(a[k])),float(np.max(a[k]))] for k in ['lat_deg','lon_deg']}
+                      stats['speed_quantiles']=np.quantile(np.hypot(a['vn_mps'],a['ve_mps']),[0,.1,.5,.9,1]).tolist()
+                      stats['position_std_quantiles']=np.quantile(a['pos_std_n_m'],[0,.5,.9,1]).tolist()
+                  record['streams'][kind]=stats
+              records.append(record)
+          result={'source_repo':'yongkyuns/imu_gnss_fusion','source_sha':pin,'datasets':records}
+          (out/'inventory.json').write_text(json.dumps(result,indent=2,allow_nan=True)+'\n')
+          print(json.dumps(result,indent=2,allow_nan=True))
+          PY
+      - name: Run recorded experiment when installed
+        run: |
+          if test -f experiments/recorded/run.py; then
+            python -m pytest -q experiments/recorded/test_recorded.py
+            python experiments/recorded/run.py --input runs/recorded-inputs --output experiments/recorded/results
+          fi
+      - name: Publish replay evidence on the research branch
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- experiments/recorded/results
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record pinned dataset inspection and executed replay evidence'
+            git push origin HEAD:research/recorded-dataset-replay
+          fi
+      - name: Preserve full run products
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recorded-replay-${{ github.run_id }}
+          path: |
+            experiments/recorded/results
+          if-no-files-found: ignore
