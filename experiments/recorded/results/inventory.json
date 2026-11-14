@@ -1,0 +1,1146 @@
+{
+  "source_repo": "yongkyuns/imu_gnss_fusion",
+  "source_sha": "8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6",
+  "datasets": [
+    {
+      "id": "urban-short-turn-loop-nominal-001",
+      "manifest": {
+        "created_utc": "2026-05-06T16:57:18Z",
+        "dataset_id": "urban-short-turn-loop-nominal-001",
+        "description": "Short urban drive with repeated low-speed turns and nominal GNSS coverage.",
+        "files": {
+          "gnss": {
+            "bytes": 18820,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.082,
+            "last_t_s": 176.418,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 354,
+            "sha256": "a418674086cdb42743706259232695c31c8bbe3556c2c60afa7365985579c195"
+          },
+          "imu": {
+            "bytes": 578953,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.03159082120656967,
+            "last_t_s": 176.8877995237708,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 17604,
+            "sha256": "db585024923ad4b4cc7f905b794901949d5465913f570da02704501d39db6308"
+          },
+          "reference_attitude": {
+            "bytes": 72362,
+            "columns": [
+              "t_s",
+              "roll_deg",
+              "pitch_deg",
+              "yaw_deg"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_attitude.csv.gz",
+            "rows": 5361,
+            "sha256": "d43e84633e0f550ef940dcb3de5c1b329fc5047dfc8a1bf4b2f6e57de70e4e50"
+          },
+          "reference_motion": {
+            "bytes": 105433,
+            "columns": [
+              "t_s",
+              "wx_radps",
+              "wy_radps",
+              "wz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_motion.csv.gz",
+            "rows": 5361,
+            "sha256": "d30d5e40222b914dca0e5075db345c42e0728a984490c4c0d1edf40a8852bd87"
+          },
+          "reference_mount": {
+            "bytes": 1772,
+            "columns": [
+              "t_s",
+              "roll_deg",
+              "pitch_deg",
+              "yaw_deg"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.082,
+            "last_t_s": 176.418,
+            "media_type": "text/csv",
+            "path": "reference_mount.csv.gz",
+            "rows": 354,
+            "sha256": "bbaaab7033e524c040fda104019a7dc93e8fe62f6fdb5977ec4ef681188cd5b8"
+          },
+          "reference_position": {
+            "bytes": 141003,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_position.csv.gz",
+            "rows": 5361,
+            "sha256": "53d871801d686ee053ee1f22e4e79785afc154ae96dc98629a53058e9e9041e5"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 354,
+          "imu": 17604,
+          "reference_attitude": 5361,
+          "reference_motion": 5361,
+          "reference_mount": 354,
+          "reference_position": 5361
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 176.8877995237708,
+          "start": -0.082
+        },
+        "title": "Urban short turn loop 001"
+      },
+      "streams": {
+        "gnss": {
+          "rows": 354,
+          "time_start": -0.082,
+          "time_end": 176.418,
+          "max_gap_s": 0.5000000000000071,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "lat_deg",
+            "lon_deg",
+            "height_m",
+            "vn_mps",
+            "ve_mps",
+            "vd_mps",
+            "pos_std_n_m",
+            "pos_std_e_m",
+            "pos_std_d_m",
+            "vel_std_n_mps",
+            "vel_std_e_mps",
+            "vel_std_d_mps",
+            "heading_rad"
+          ],
+          "first_rows": [
+            {
+              "t_s": -0.082,
+              "lat_deg": 43.4818437,
+              "lon_deg": -79.6870122,
+              "height_m": 115.19800000000001,
+              "vn_mps": -0.007,
+              "ve_mps": -0.008,
+              "vd_mps": 0.016,
+              "pos_std_n_m": 0.8620368901619002,
+              "pos_std_e_m": 0.8620368901619002,
+              "pos_std_d_m": 1.3319513504629212,
+              "vel_std_n_mps": 0.27886018001858925,
+              "vel_std_e_mps": 0.27886018001858925,
+              "vel_std_d_mps": 0.27886018001858925,
+              "heading_rad": 0.0
+            },
+            {
+              "t_s": 0.418,
+              "lat_deg": 43.4818433,
+              "lon_deg": -79.6870112,
+              "height_m": 115.21000000000001,
+              "vn_mps": -0.01,
+              "ve_mps": -0.009000000000000001,
+              "vd_mps": 0.013000000000000001,
+              "pos_std_n_m": 0.8202948250476776,
+              "pos_std_e_m": 0.8202948250476776,
+              "pos_std_d_m": 1.2677571139615034,
+              "vel_std_n_mps": 0.2753960784034515,
+              "vel_std_e_mps": 0.2753960784034515,
+              "vel_std_d_mps": 0.2753960784034515,
+              "heading_rad": 0.0
+            },
+            {
+              "t_s": 0.918,
+              "lat_deg": 43.4818432,
+              "lon_deg": -79.6870106,
+              "height_m": 115.157,
+              "vn_mps": -0.008,
+              "ve_mps": -0.002,
+              "vd_mps": 0.011,
+              "pos_std_n_m": 0.7858259985518422,
+              "pos_std_e_m": 0.7858259985518422,
+              "pos_std_d_m": 1.2149470770366915,
+              "vel_std_n_mps": 0.27886018001858925,
+              "vel_std_e_mps": 0.27886018001858925,
+              "vel_std_d_mps": 0.27886018001858925,
+              "heading_rad": 0.0
+            }
+          ],
+          "bounds": {
+            "lat_deg": [
+              43.4790755,
+              43.483380499999996
+            ],
+            "lon_deg": [
+              -79.69304679999999,
+              -79.6866568
+            ]
+          },
+          "speed_quantiles": [
+            0.0031622776601683794,
+            0.013497977985572231,
+            8.114006614077251,
+            11.513530246451841,
+            12.62736615450744
+          ],
+          "position_std_quantiles": [
+            0.33456897644581457,
+            0.36271324762131313,
+            0.41207640189654143,
+            0.8620368901619002
+          ]
+        },
+        "imu": {
+          "rows": 17604,
+          "time_start": -0.03159082120656967,
+          "time_end": 176.8877995237708,
+          "max_gap_s": 0.010050524950031559,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "gx_radps",
+            "gy_radps",
+            "gz_radps",
+            "ax_mps2",
+            "ay_mps2",
+            "az_mps2"
+          ],
+          "first_rows": [
+            {
+              "t_s": -0.03159082120656967,
+              "gx_radps": -0.0027995149378912954,
+              "gy_radps": -0.008394283755929759,
+              "gz_radps": 0.005062136600022616,
+              "ax_mps2": -0.3330078125,
+              "ay_mps2": -0.2900390625,
+              "az_mps2": 9.9013671875
+            },
+            {
+              "t_s": -0.021540296256542205,
+              "gx_radps": -0.0027995149378912954,
+              "gy_radps": -0.009063269821757664,
+              "gz_radps": 0.004925782752210559,
+              "ax_mps2": -0.341796875,
+              "ay_mps2": -0.2841796875,
+              "az_mps2": 9.9189453125
+            },
+            {
+              "t_s": -0.011489771366119386,
+              "gx_radps": -0.0021347899298075172,
+              "gy_radps": -0.008926915973945607,
+              "gz_radps": 0.005458414970226407,
+              "ax_mps2": -0.333984375,
+              "ay_mps2": -0.29296875,
+              "az_mps2": 9.9013671875
+            }
+          ],
+          "first_10s_means": {
+            "gx_radps": -0.002040986704855404,
+            "gy_radps": -0.008843502021442993,
+            "gz_radps": 0.005372003288657573,
+            "ax_mps2": -0.34208739007537686,
+            "ay_mps2": -0.2866853800251256,
+            "az_mps2": 9.918668538002512
+          },
+          "accel_norm_quantiles": [
+            5.859331461426783,
+            9.585851274388968,
+            9.978324166942848,
+            10.453269681482066,
+            13.656194446721333
+          ]
+        },
+        "reference_attitude": {
+          "rows": 5361,
+          "time_start": 0.0,
+          "time_end": 176.88,
+          "max_gap_s": 0.03300000000001546,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "roll_deg",
+            "pitch_deg",
+            "yaw_deg"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0,
+              "roll_deg": 0.0,
+              "pitch_deg": -0.040850000000000004,
+              "yaw_deg": 0.0
+            },
+            {
+              "t_s": 0.033,
+              "roll_deg": 0.0,
+              "pitch_deg": -0.040850000000000004,
+              "yaw_deg": 0.0
+            },
+            {
+              "t_s": 0.066,
+              "roll_deg": 0.0,
+              "pitch_deg": -0.040850000000000004,
+              "yaw_deg": 0.0
+            }
+          ]
+        },
+        "reference_motion": {
+          "rows": 5361,
+          "time_start": 0.0,
+          "time_end": 176.88,
+          "max_gap_s": 0.03300000000001546,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "wx_radps",
+            "wy_radps",
+            "wz_radps",
+            "ax_mps2",
+            "ay_mps2",
+            "az_mps2"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0,
+              "wx_radps": 0.0,
+              "wy_radps": 0.0,
+              "wz_radps": 0.0,
+              "ax_mps2": 0.0,
+              "ay_mps2": 0.0,
+              "az_mps2": 0.0
+            },
+            {
+              "t_s": 0.033,
+              "wx_radps": 0.0,
+              "wy_radps": 0.0,
+              "wz_radps": 0.0,
+              "ax_mps2": 0.0,
+              "ay_mps2": 0.0,
+              "az_mps2": 0.0
+            },
+            {
+              "t_s": 0.066,
+              "wx_radps": 0.0,
+              "wy_radps": 0.0,
+              "wz_radps": 0.0,
+              "ax_mps2": 0.0,
+              "ay_mps2": 0.0,
+              "az_mps2": 0.0
+            }
+          ]
+        },
+        "reference_mount": {
+          "rows": 354,
+          "time_start": -0.082,
+          "time_end": 176.418,
+          "max_gap_s": 0.5000000000000071,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "roll_deg",
+            "pitch_deg",
+            "yaw_deg"
+          ],
+          "first_rows": [
+            {
+              "t_s": -0.082,
+              "roll_deg": 0.0,
+              "pitch_deg": 0.0,
+              "yaw_deg": 0.0
+            },
+            {
+              "t_s": 0.418,
+              "roll_deg": 0.0,
+              "pitch_deg": 0.0,
+              "yaw_deg": 0.0
+            },
+            {
+              "t_s": 0.918,
+              "roll_deg": 0.0,
+              "pitch_deg": 0.0,
+              "yaw_deg": 0.0
+            }
+          ]
+        },
+        "reference_position": {
+          "rows": 5361,
+          "time_start": 0.0,
+          "time_end": 176.88,
+          "max_gap_s": 0.03300000000001546,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "lat_deg",
+            "lon_deg",
+            "height_m",
+            "vn_mps",
+            "ve_mps",
+            "vd_mps",
+            "heading_rad"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0,
+              "lat_deg": 43.481844099999996,
+              "lon_deg": -79.6870132,
+              "height_m": 115.117,
+              "vn_mps": 0.008,
+              "ve_mps": -0.002,
+              "vd_mps": 0.025,
+              "heading_rad": 0.0
+            },
+            {
+              "t_s": 0.033,
+              "lat_deg": 43.481844099999996,
+              "lon_deg": -79.6870132,
+              "height_m": 115.117,
+              "vn_mps": 0.008,
+              "ve_mps": -0.002,
+              "vd_mps": 0.025,
+              "heading_rad": 0.0
+            },
+            {
+              "t_s": 0.066,
+              "lat_deg": 43.481844099999996,
+              "lon_deg": -79.6870132,
+              "height_m": 115.117,
+              "vn_mps": 0.008,
+              "ve_mps": -0.002,
+              "vd_mps": 0.025,
+              "heading_rad": 0.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ios-mixed-drive-reverse-parking-001",
+      "manifest": {
+        "created_utc": "2026-05-23T11:00:03Z",
+        "dataset_id": "ios-mixed-drive-reverse-parking-001",
+        "files": {
+          "gnss": {
+            "bytes": 200827,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.06527566909790039,
+            "last_t_s": 2585.065373301506,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 2586,
+            "sha256": "7188c006748a6eb25ff386d4ba88ddffeef2bfa8531f77e978b09e8806ec9e11"
+          },
+          "imu": {
+            "bytes": 15605107,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0026912689208984375,
+            "last_t_s": 2585.6685378551483,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 257734,
+            "sha256": "d35084906e234f84a91445fe1c1433256c2e37a946e5f011150171e98482e4a1"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 2586,
+          "imu": 257734
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 2585.6685378551483,
+          "start": 0.0026912689208984375
+        },
+        "title": "iOS mixed drive with reverse parking 001"
+      },
+      "streams": {
+        "gnss": {
+          "rows": 2586,
+          "time_start": 0.06527566909790039,
+          "time_end": 2585.065373301506,
+          "max_gap_s": 1.0018198490142822,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "lat_deg",
+            "lon_deg",
+            "height_m",
+            "vn_mps",
+            "ve_mps",
+            "vd_mps",
+            "pos_std_n_m",
+            "pos_std_e_m",
+            "pos_std_d_m",
+            "vel_std_n_mps",
+            "vel_std_e_mps",
+            "vel_std_d_mps",
+            "heading_rad"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.06527566909790039,
+              "lat_deg": 43.481267232441034,
+              "lon_deg": -79.69373799911001,
+              "height_m": 152.35237798006298,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.05898870524149472,
+              "pos_std_n_m": 3.33146485775893,
+              "pos_std_e_m": 3.33146485775893,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.48388707637786865,
+              "vel_std_e_mps": 0.48388707637786865,
+              "vel_std_d_mps": 0.48388707637786865,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 1.065272569656372,
+              "lat_deg": 43.481267232441034,
+              "lon_deg": -79.69373799911001,
+              "height_m": 152.35237798006298,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.04925825975182251,
+              "pos_std_n_m": 3.2051064651821393,
+              "pos_std_e_m": 3.2051064651821393,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.39451563358306885,
+              "vel_std_e_mps": 0.39451563358306885,
+              "vel_std_d_mps": 0.39451563358306885,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 2.0652995109558105,
+              "lat_deg": 43.481267232441034,
+              "lon_deg": -79.69373799911001,
+              "height_m": 152.35237798006298,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.043476558567823134,
+              "pos_std_n_m": 3.086614160040949,
+              "pos_std_e_m": 3.086614160040949,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.43270498514175415,
+              "vel_std_e_mps": 0.43270498514175415,
+              "vel_std_d_mps": 0.43270498514175415,
+              "heading_rad": NaN
+            }
+          ],
+          "bounds": {
+            "lat_deg": [
+              43.44649973124869,
+              43.496474666176496
+            ],
+            "lon_deg": [
+              -79.70180253580226,
+              -79.66241291062609
+            ]
+          },
+          "speed_quantiles": [
+            0.0,
+            0.0,
+            5.760180593694165,
+            14.952118257435956,
+            20.696381138449713
+          ],
+          "position_std_quantiles": [
+            1.999999923464439,
+            2.0464973159973914,
+            3.201474705600873,
+            14.130639298166104
+          ]
+        },
+        "imu": {
+          "rows": 257734,
+          "time_start": 0.0026912689208984375,
+          "time_end": 2585.6685378551483,
+          "max_gap_s": 0.02006518840789795,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "gx_radps",
+            "gy_radps",
+            "gz_radps",
+            "ax_mps2",
+            "ay_mps2",
+            "az_mps2"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0026912689208984375,
+              "gx_radps": -0.007380152121186256,
+              "gy_radps": -0.003306314582005143,
+              "gz_radps": -0.002626675646752119,
+              "ax_mps2": 0.11148001480102539,
+              "ay_mps2": 5.191676662445068,
+              "az_mps2": 8.295459839630126
+            },
+            {
+              "t_s": 0.012717723846435547,
+              "gx_radps": -0.00624085171148181,
+              "gy_radps": -0.001427720650099218,
+              "gz_radps": -0.002888730727136135,
+              "ax_mps2": 0.13856442108154296,
+              "ay_mps2": 5.19661470336914,
+              "az_mps2": 8.277054414367676
+            },
+            {
+              "t_s": 0.022745251655578613,
+              "gx_radps": -0.0036639769095927477,
+              "gy_radps": -0.0013044163351878524,
+              "gz_radps": -0.0014327806420624256,
+              "ax_mps2": 0.12464812393188476,
+              "ay_mps2": 5.179556016540527,
+              "az_mps2": 8.251915296936035
+            }
+          ],
+          "first_10s_means": {
+            "gx_radps": -0.004220542168415143,
+            "gy_radps": -0.002023028671950914,
+            "gz_radps": -0.0029351653428747082,
+            "ax_mps2": 0.15563630240828336,
+            "ay_mps2": 5.190122710415643,
+            "az_mps2": 8.258909730380713
+          },
+          "accel_norm_quantiles": [
+            4.372215175736379,
+            9.468160809071286,
+            9.749072673664383,
+            10.14951675687128,
+            20.622360541175883
+          ]
+        }
+      }
+    },
+    {
+      "id": "ios-drive-20260521-130835",
+      "manifest": {
+        "created_utc": "2026-05-23T10:59:23Z",
+        "dataset_id": "ios-drive-20260521-130835",
+        "files": {
+          "gnss": {
+            "bytes": 22424,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.4640371799468994,
+            "last_t_s": 245.56920850276947,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 246,
+            "sha256": "507911bc57576722959a28cd85d7b99e107a504ce6ea6393b8d0a8c1ee20896f"
+          },
+          "imu": {
+            "bytes": 1523136,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 245.95713412761688,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 24518,
+            "sha256": "1d41ee013e396c5637c6590299d3585ebb2452a09357f5895b7add0ed7a65945"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 246,
+          "imu": 24518
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 245.95713412761688,
+          "start": 0.0
+        },
+        "title": "iOS drive 2026-05-21 13:08:35Z"
+      },
+      "streams": {
+        "gnss": {
+          "rows": 246,
+          "time_start": 0.4640371799468994,
+          "time_end": 245.56920850276947,
+          "max_gap_s": 1.104996919631958,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "lat_deg",
+            "lon_deg",
+            "height_m",
+            "vn_mps",
+            "ve_mps",
+            "vd_mps",
+            "pos_std_n_m",
+            "pos_std_e_m",
+            "pos_std_d_m",
+            "vel_std_n_mps",
+            "vel_std_e_mps",
+            "vel_std_d_mps",
+            "heading_rad"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.4640371799468994,
+              "lat_deg": 43.63430663320918,
+              "lon_deg": -79.43858236657579,
+              "height_m": 82.85108028436008,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.00856265761208089,
+              "pos_std_n_m": 14.063208796021419,
+              "pos_std_e_m": 14.063208796021419,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.5671075582504272,
+              "vel_std_e_mps": 0.5671075582504272,
+              "vel_std_d_mps": 0.5671075582504272,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 1.4640415906906128,
+              "lat_deg": 43.63431520293552,
+              "lon_deg": -79.4386410502569,
+              "height_m": 82.81309254468968,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.00856265761208089,
+              "pos_std_n_m": 7.568639000451748,
+              "pos_std_e_m": 7.568639000451748,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.40998023748397827,
+              "vel_std_e_mps": 0.40998023748397827,
+              "vel_std_d_mps": 0.40998023748397827,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 2.464044451713562,
+              "lat_deg": 43.63431733081494,
+              "lon_deg": -79.4386580040281,
+              "height_m": 82.80845602027183,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.006850126089664713,
+              "pos_std_n_m": 4.50975482308414,
+              "pos_std_e_m": 4.50975482308414,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 0.3397083282470703,
+              "vel_std_e_mps": 0.3397083282470703,
+              "vel_std_d_mps": 0.3397083282470703,
+              "heading_rad": NaN
+            }
+          ],
+          "bounds": {
+            "lat_deg": [
+              43.629992359075274,
+              43.634325939705555
+            ],
+            "lon_deg": [
+              -79.4386580040281,
+              -79.41529101360577
+            ]
+          },
+          "speed_quantiles": [
+            0.0,
+            0.0,
+            8.629473516248838,
+            15.943073686240812,
+            18.407340580628823
+          ],
+          "position_std_quantiles": [
+            1.9999999365666496,
+            2.030189713158252,
+            2.6860794703909057,
+            14.063208796021419
+          ]
+        },
+        "imu": {
+          "rows": 24518,
+          "time_start": 0.0,
+          "time_end": 245.95713412761688,
+          "max_gap_s": 0.010172247886657715,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "gx_radps",
+            "gy_radps",
+            "gz_radps",
+            "ax_mps2",
+            "ay_mps2",
+            "az_mps2"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0,
+              "gx_radps": -0.007152984384447336,
+              "gy_radps": 0.0011321097845211625,
+              "gz_radps": -0.0019214707426726818,
+              "ax_mps2": 0.03456628646850586,
+              "ay_mps2": 5.7888803390502925,
+              "az_mps2": 7.827842327880859
+            },
+            {
+              "t_s": 0.007340550422668457,
+              "gx_radps": -0.006090915761888027,
+              "gy_radps": -0.005585714243352413,
+              "gz_radps": 0.0006005428149364889,
+              "ax_mps2": 0.000748188018798828,
+              "ay_mps2": 5.793219829559326,
+              "az_mps2": 7.830236529541015
+            },
+            {
+              "t_s": 0.017372608184814453,
+              "gx_radps": -0.005555354058742523,
+              "gy_radps": 0.000538491178303957,
+              "gz_radps": -0.0005145227187313139,
+              "ax_mps2": 0.027084406280517576,
+              "ay_mps2": 5.7897781646728514,
+              "az_mps2": 7.854328183746337
+            }
+          ],
+          "first_10s_means": {
+            "gx_radps": -0.006212981859508893,
+            "gy_radps": -0.0011016603405290758,
+            "gz_radps": -0.0009645878649341863,
+            "ax_mps2": 0.02287955962737242,
+            "ay_mps2": 5.797706858547416,
+            "az_mps2": 7.832223800883932
+          },
+          "accel_norm_quantiles": [
+            6.088135761464446,
+            9.487106571975136,
+            9.755738747126873,
+            10.092678267558084,
+            14.336928000904946
+          ]
+        }
+      }
+    },
+    {
+      "id": "ios-drive-20260521-131420",
+      "manifest": {
+        "created_utc": "2026-05-23T10:59:30Z",
+        "dataset_id": "ios-drive-20260521-131420",
+        "files": {
+          "gnss": {
+            "bytes": 86312,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.03708481788635254,
+            "last_t_s": 1105.0368393659592,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 1106,
+            "sha256": "29a0600fede3f24dcbf827a82181ec9a1ab727854c5734e270e337be4da0088c"
+          },
+          "imu": {
+            "bytes": 6596788,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 1105.1669263839722,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 110166,
+            "sha256": "f2438218edc0246685ae863d6befe153d77d53a57a2726cd1c9b5cfc42823ca1"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 1106,
+          "imu": 110166
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 1105.1669263839722,
+          "start": 0.0
+        },
+        "title": "iOS drive 2026-05-21 13:14:20Z"
+      },
+      "streams": {
+        "gnss": {
+          "rows": 1106,
+          "time_start": 0.03708481788635254,
+          "time_end": 1105.0368393659592,
+          "max_gap_s": 1.0000516176223755,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "lat_deg",
+            "lon_deg",
+            "height_m",
+            "vn_mps",
+            "ve_mps",
+            "vd_mps",
+            "pos_std_n_m",
+            "pos_std_e_m",
+            "pos_std_d_m",
+            "vel_std_n_mps",
+            "vel_std_e_mps",
+            "vel_std_d_mps",
+            "heading_rad"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.03708481788635254,
+              "lat_deg": 43.63402373873998,
+              "lon_deg": -79.40903990329551,
+              "height_m": 78.20973765850067,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": 0.0063822468458301865,
+              "pos_std_n_m": 2.0004693431616394,
+              "pos_std_e_m": 2.0004693431616394,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 3.738564258146724,
+              "vel_std_e_mps": 3.738564258146724,
+              "vel_std_d_mps": 3.738564258146724,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 1.0370880365371704,
+              "lat_deg": 43.63402373873998,
+              "lon_deg": -79.40903990329551,
+              "height_m": 78.20973765850067,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.006516696823705403,
+              "pos_std_n_m": 2.000445876003557,
+              "pos_std_e_m": 2.000445876003557,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 3.7459993107237928,
+              "vel_std_e_mps": 3.7459993107237928,
+              "vel_std_d_mps": 3.7459993107237928,
+              "heading_rad": NaN
+            },
+            {
+              "t_s": 2.0370906591415405,
+              "lat_deg": 43.63402373873998,
+              "lon_deg": -79.40903990329551,
+              "height_m": 78.20973765850067,
+              "vn_mps": 0.0,
+              "ve_mps": 0.0,
+              "vd_mps": -0.006516696823705403,
+              "pos_std_n_m": 2.000423582203379,
+              "pos_std_e_m": 2.000423582203379,
+              "pos_std_d_m": 3.0,
+              "vel_std_n_mps": 3.7486004621426847,
+              "vel_std_e_mps": 3.7486004621426847,
+              "vel_std_d_mps": 3.7486004621426847,
+              "heading_rad": NaN
+            }
+          ],
+          "bounds": {
+            "lat_deg": [
+              43.63402373873998,
+              43.65676677184092
+            ],
+            "lon_deg": [
+              -79.41311248471817,
+              -79.40464072212244
+            ]
+          },
+          "speed_quantiles": [
+            0.0,
+            0.0,
+            1.7167576611506936,
+            8.330813842320644,
+            11.639005774839779
+          ],
+          "position_std_quantiles": [
+            2.000074795005627,
+            7.9938454878698675,
+            8.082836220165849,
+            16.47759714575583
+          ]
+        },
+        "imu": {
+          "rows": 110166,
+          "time_start": 0.0,
+          "time_end": 1105.1669263839722,
+          "max_gap_s": 0.010296821594238281,
+          "nonpositive_dt": 0,
+          "columns": [
+            "t_s",
+            "gx_radps",
+            "gy_radps",
+            "gz_radps",
+            "ax_mps2",
+            "ay_mps2",
+            "az_mps2"
+          ],
+          "first_rows": [
+            {
+              "t_s": 0.0,
+              "gx_radps": -0.004358529578894377,
+              "gy_radps": -0.0007257114048115909,
+              "gz_radps": -0.001669003046117723,
+              "ax_mps2": 0.0004489128112792969,
+              "ay_mps2": 5.758204630279541,
+              "az_mps2": 7.835773120880127
+            },
+            {
+              "t_s": 0.0044869184494018555,
+              "gx_radps": -0.006895989179611206,
+              "gy_radps": -0.0033332123421132565,
+              "gz_radps": -0.0023403859231621027,
+              "ax_mps2": -0.006284779357910156,
+              "ay_mps2": 5.7529673141479485,
+              "az_mps2": 7.872883246612548
+            },
+            {
+              "t_s": 0.014519095420837402,
+              "gx_radps": -0.006616889964789152,
+              "gy_radps": 0.0013190637109801173,
+              "gz_radps": -0.0019313243683427572,
+              "ax_mps2": 0.009576806640625,
+              "ay_mps2": 5.77122310180664,
+              "az_mps2": 7.8523828948974606
+            }
+          ],
+          "first_10s_means": {
+            "gx_radps": -0.006166833658531898,
+            "gy_radps": -0.001151602628563857,
+            "gz_radps": -0.000986383092922752,
+            "ax_mps2": -0.0007114533365131142,
+            "ay_mps2": 5.7675181467075385,
+            "az_mps2": 7.853377280256313
+          },
+          "accel_norm_quantiles": [
+            4.858729973214799,
+            9.535369095549033,
+            9.746683101815691,
+            10.045927341050584,
+            16.494184779862863
+          ]
+        }
+      }
+    }
+  ]
+}

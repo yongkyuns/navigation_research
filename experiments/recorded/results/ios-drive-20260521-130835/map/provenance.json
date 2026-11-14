@@ -1,0 +1,15 @@
+{
+  "endpoint": "https://overpass.kumi.systems/api/interpreter",
+  "query": "[out:json][timeout:90];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.6279924,-79.4416580,43.6363259,-79.4122910)->.roads;(.roads;rel(bw.roads)[\"type\"=\"restriction\"];);out geom;",
+  "bounds_s_w_n_e": [
+    43.62799235907527,
+    -79.4416580040281,
+    43.63632593970556,
+    -79.41229101360577
+  ],
+  "response_sha256": "c5df0ce3d02fbf814cea2c8401e5543289e27e6a8518d4b705c56b265ad7f546",
+  "osm_base_timestamp": "2026-07-15T15:22:01Z",
+  "attribution": "\u00a9 OpenStreetMap contributors; Open Database License (ODbL) 1.0; https://www.openstreetmap.org/copyright",
+  "selection": "Full-trip bounding box selects coverage only; no road geometry derived from GNSS",
+  "temporal_limit": "Map retrieval is not contemporaneous with the recording"
+}

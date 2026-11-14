@@ -1,0 +1,920 @@
+{
+  "source_repo": "yongkyuns/imu_gnss_fusion",
+  "source_sha": "8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6",
+  "routefusion_base_commit": "52b4a83a37493d9b1486c519b693fded9e94131b",
+  "independent_ground_truth": false,
+  "dataset_count": 4,
+  "datasets": [
+    {
+      "dataset": "urban-short-turn-loop-nominal-001",
+      "status": "completed",
+      "input_manifest": {
+        "created_utc": "2026-05-06T16:57:18Z",
+        "dataset_id": "urban-short-turn-loop-nominal-001",
+        "description": "Short urban drive with repeated low-speed turns and nominal GNSS coverage.",
+        "files": {
+          "gnss": {
+            "bytes": 18820,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.082,
+            "last_t_s": 176.418,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 354,
+            "sha256": "a418674086cdb42743706259232695c31c8bbe3556c2c60afa7365985579c195"
+          },
+          "imu": {
+            "bytes": 578953,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.03159082120656967,
+            "last_t_s": 176.8877995237708,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 17604,
+            "sha256": "db585024923ad4b4cc7f905b794901949d5465913f570da02704501d39db6308"
+          },
+          "reference_attitude": {
+            "bytes": 72362,
+            "columns": [
+              "t_s",
+              "roll_deg",
+              "pitch_deg",
+              "yaw_deg"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_attitude.csv.gz",
+            "rows": 5361,
+            "sha256": "d43e84633e0f550ef940dcb3de5c1b329fc5047dfc8a1bf4b2f6e57de70e4e50"
+          },
+          "reference_motion": {
+            "bytes": 105433,
+            "columns": [
+              "t_s",
+              "wx_radps",
+              "wy_radps",
+              "wz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_motion.csv.gz",
+            "rows": 5361,
+            "sha256": "d30d5e40222b914dca0e5075db345c42e0728a984490c4c0d1edf40a8852bd87"
+          },
+          "reference_mount": {
+            "bytes": 1772,
+            "columns": [
+              "t_s",
+              "roll_deg",
+              "pitch_deg",
+              "yaw_deg"
+            ],
+            "encoding": "gzip",
+            "first_t_s": -0.082,
+            "last_t_s": 176.418,
+            "media_type": "text/csv",
+            "path": "reference_mount.csv.gz",
+            "rows": 354,
+            "sha256": "bbaaab7033e524c040fda104019a7dc93e8fe62f6fdb5977ec4ef681188cd5b8"
+          },
+          "reference_position": {
+            "bytes": 141003,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 176.88,
+            "media_type": "text/csv",
+            "path": "reference_position.csv.gz",
+            "rows": 5361,
+            "sha256": "53d871801d686ee053ee1f22e4e79785afc154ae96dc98629a53058e9e9041e5"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 354,
+          "imu": 17604,
+          "reference_attitude": 5361,
+          "reference_motion": 5361,
+          "reference_mount": 354,
+          "reference_position": 5361
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 176.8877995237708,
+          "start": -0.082
+        },
+        "title": "Urban short turn loop 001"
+      },
+      "calibration": {
+        "cutoff_s": 44.080806884095075,
+        "up_body": [
+          -0.03442434751645059,
+          -0.02871974135658164,
+          0.9989945649273962
+        ],
+        "forward_body": [
+          0.9994053500508638,
+          -0.0029671189382084926,
+          0.03435320210572466
+        ],
+        "gyro_bias_radps": [
+          -0.002002697139739587,
+          -0.008926915973945607,
+          0.005458414970226407
+        ],
+        "accel_bias_planar": [
+          0.17365180250221032,
+          0.3200004591560376
+        ],
+        "gravity_norm": 9.928928205150823,
+        "stationary_samples": 1388,
+        "fit_intervals": 41,
+        "fit_singular_values": [
+          58.704574129233116,
+          14.162565298674313
+        ],
+        "fit_rms_mps2": 0.19414333262673897,
+        "method": "prefix-only stationary tilt/gyro bias and proper-rotation GNSS acceleration fit"
+      },
+      "origin_wgs84": [
+        -79.6870122,
+        43.4818437,
+        115.19800000000001
+      ],
+      "map": {
+        "download": "success",
+        "directed_edges": 498,
+        "loaded_tiles": 9,
+        "simple_restrictions": 0,
+        "unsupported_restrictions": 0,
+        "widths": "OSM width when parseable, otherwise 12 m road / 8 m service full-width prior",
+        "limitations": "No lane map, time-dependent restrictions, via-way restrictions, or reverse-driving mode",
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "query": "[out:json][timeout:90];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.4770755,-79.6960468,43.4853805,-79.6836568)->.roads;(.roads;rel(bw.roads)[\"type\"=\"restriction\"];);out geom;",
+        "bounds_s_w_n_e": [
+          43.4770755,
+          -79.69604679999999,
+          43.4853805,
+          -79.6836568
+        ],
+        "response_sha256": "83b0f6c35415f1ae4be6858c73b9ca1d7ca795adadba167b9422b3e82167dbcc",
+        "osm_base_timestamp": "2026-11-14T19:34:55Z",
+        "attribution": "\u00a9 OpenStreetMap contributors; Open Database License (ODbL) 1.0; https://www.openstreetmap.org/copyright",
+        "selection": "Full-trip bounding box selects coverage only; no road geometry derived from GNSS",
+        "temporal_limit": "Map retrieval is not contemporaneous with the recording"
+      },
+      "runs": [
+        {
+          "mode": "original",
+          "seed_time_s": 44.418,
+          "end_time_s": 176.418,
+          "evaluated_duration_s": 132.0,
+          "output_epochs": 264,
+          "input_imu_rows_total": 17604,
+          "input_gnss_rows_total": 354,
+          "evaluated_imu_rows": 13134,
+          "status_counts": {
+            "AMBIGUOUS": 116,
+            "LATCHED": 148
+          },
+          "latched_fraction": 0.5606060606060606,
+          "latched_moving_fraction": 0.5166666666666667,
+          "map_correction_m": {
+            "median": 0.5806671319606118,
+            "p95": 7.899376932189392,
+            "max": 8.077891044046002
+          },
+          "max_map_correction_change_m": 7.9020186246201725,
+          "raw_receiver_agreement_baseline_rms_m": 3.6921315557589525,
+          "raw_receiver_agreement_output_rms_m": 3.4458211417607973,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 0,
+          "max_branches": 12,
+          "max_pruned_mass": 0.40330121269104235,
+          "min_state_covariance_eigenvalue": 9.422529456110226e-07,
+          "runtime_s": 3.7512733519999983,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": {
+            "meaning": "Agreement with supplied fused reference, NOT independently surveyed truth",
+            "evaluated_epochs": 264,
+            "rms_m": {
+              "raw": 3.908809462041043,
+              "baseline": 4.775598900895008,
+              "output": 4.912242019136234
+            }
+          }
+        },
+        {
+          "mode": "withheld_gnss_30s",
+          "seed_time_s": 44.418,
+          "end_time_s": 176.418,
+          "evaluated_duration_s": 132.0,
+          "output_epochs": 264,
+          "input_imu_rows_total": 17604,
+          "input_gnss_rows_total": 354,
+          "evaluated_imu_rows": 13134,
+          "status_counts": {
+            "AMBIGUOUS": 119,
+            "LATCHED": 145
+          },
+          "latched_fraction": 0.5492424242424242,
+          "latched_moving_fraction": 0.5041666666666667,
+          "map_correction_m": {
+            "median": 0.5299745382073657,
+            "p95": 19.16992155167758,
+            "max": 21.258978689900005
+          },
+          "max_map_correction_change_m": 18.278706877239046,
+          "raw_receiver_agreement_baseline_rms_m": 4.5787397491780295,
+          "raw_receiver_agreement_output_rms_m": 5.235810326851787,
+          "withheld_fix_comparison_baseline_rms_m": 7.872915398225157,
+          "withheld_fix_comparison_output_rms_m": 9.690124946383916,
+          "withheld_epochs": 60,
+          "missing_map_epochs": 0,
+          "max_branches": 12,
+          "max_pruned_mass": 0.36254547901019074,
+          "min_state_covariance_eigenvalue": 9.425191198448157e-07,
+          "runtime_s": 3.956340647000019,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": {
+            "meaning": "Agreement with supplied fused reference, NOT independently surveyed truth",
+            "evaluated_epochs": 264,
+            "rms_m": {
+              "raw": 3.908809462041043,
+              "baseline": 5.497348276169046,
+              "output": 6.327794357042117
+            }
+          }
+        },
+        {
+          "mode": "missing_map_30s",
+          "seed_time_s": 44.418,
+          "end_time_s": 176.418,
+          "evaluated_duration_s": 132.0,
+          "output_epochs": 264,
+          "input_imu_rows_total": 17604,
+          "input_gnss_rows_total": 354,
+          "evaluated_imu_rows": 13134,
+          "status_counts": {
+            "AMBIGUOUS": 82,
+            "LATCHED": 122,
+            "MAP_UNAVAILABLE": 60
+          },
+          "latched_fraction": 0.4621212121212121,
+          "latched_moving_fraction": 0.4083333333333333,
+          "map_correction_m": {
+            "median": 0.0,
+            "p95": 4.670597897750811,
+            "max": 5.5596077278307465
+          },
+          "max_map_correction_change_m": 5.5596077278307465,
+          "raw_receiver_agreement_baseline_rms_m": 3.6921315557589525,
+          "raw_receiver_agreement_output_rms_m": 3.269208977914293,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 60,
+          "max_branches": 12,
+          "max_pruned_mass": 0.40064288415576244,
+          "min_state_covariance_eigenvalue": 9.443292954631475e-07,
+          "runtime_s": 2.7990644289999977,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": {
+            "meaning": "Agreement with supplied fused reference, NOT independently surveyed truth",
+            "evaluated_epochs": 264,
+            "rms_m": {
+              "raw": 3.908809462041043,
+              "baseline": 4.775598900895008,
+              "output": 4.774283181450982
+            }
+          }
+        }
+      ]
+    },
+    {
+      "dataset": "ios-mixed-drive-reverse-parking-001",
+      "status": "completed",
+      "input_manifest": {
+        "created_utc": "2026-05-23T11:00:03Z",
+        "dataset_id": "ios-mixed-drive-reverse-parking-001",
+        "files": {
+          "gnss": {
+            "bytes": 200827,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.06527566909790039,
+            "last_t_s": 2585.065373301506,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 2586,
+            "sha256": "7188c006748a6eb25ff386d4ba88ddffeef2bfa8531f77e978b09e8806ec9e11"
+          },
+          "imu": {
+            "bytes": 15605107,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0026912689208984375,
+            "last_t_s": 2585.6685378551483,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 257734,
+            "sha256": "d35084906e234f84a91445fe1c1433256c2e37a946e5f011150171e98482e4a1"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 2586,
+          "imu": 257734
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 2585.6685378551483,
+          "start": 0.0026912689208984375
+        },
+        "title": "iOS mixed drive with reverse parking 001"
+      },
+      "calibration": {
+        "cutoff_s": 90.0652756690979,
+        "up_body": [
+          0.016800955491476977,
+          0.5318921671849688,
+          0.8466454100636526
+        ],
+        "forward_body": [
+          -0.04508873292160678,
+          0.846306552488193,
+          -0.5307845376224455
+        ],
+        "gyro_bias_radps": [
+          -0.004496614448726177,
+          -0.001817474258132279,
+          -0.002888863906264305
+        ],
+        "accel_bias_planar": [
+          0.40485816032250427,
+          0.1713367517364527
+        ],
+        "gravity_norm": 9.752610570277689,
+        "stationary_samples": 5954,
+        "fit_intervals": 19,
+        "fit_singular_values": [
+          14.938927911743942,
+          2.779666592637101
+        ],
+        "fit_rms_mps2": 0.6042803026684876,
+        "method": "prefix-only stationary tilt/gyro bias and proper-rotation GNSS acceleration fit"
+      },
+      "origin_wgs84": [
+        -79.69373799911001,
+        43.481267232441034,
+        152.35237798006298
+      ],
+      "map": {
+        "download": "success",
+        "directed_edges": 9711,
+        "loaded_tiles": 286,
+        "simple_restrictions": 60,
+        "unsupported_restrictions": 9,
+        "widths": "OSM width when parseable, otherwise 12 m road / 8 m service full-width prior",
+        "limitations": "No lane map, time-dependent restrictions, via-way restrictions, or reverse-driving mode",
+        "endpoint": "https://overpass-api.de/api/interpreter",
+        "query": "[out:json][timeout:90];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.4444997,-79.7048025,43.4984747,-79.6594129)->.roads;(.roads;rel(bw.roads)[\"type\"=\"restriction\"];);out geom;",
+        "bounds_s_w_n_e": [
+          43.44449973124869,
+          -79.70480253580226,
+          43.4984746661765,
+          -79.65941291062609
+        ],
+        "response_sha256": "3270703a840443e4420ded208f89e14ed913fc0438545f806c850190cdf29b1b",
+        "osm_base_timestamp": "2026-11-14T19:35:57Z",
+        "attribution": "\u00a9 OpenStreetMap contributors; Open Database License (ODbL) 1.0; https://www.openstreetmap.org/copyright",
+        "selection": "Full-trip bounding box selects coverage only; no road geometry derived from GNSS",
+        "temporal_limit": "Map retrieval is not contemporaneous with the recording"
+      },
+      "runs": [
+        {
+          "mode": "original",
+          "seed_time_s": 91.06456577777863,
+          "end_time_s": 2585.065373301506,
+          "evaluated_duration_s": 2494.0008075237274,
+          "output_epochs": 2494,
+          "input_imu_rows_total": 257734,
+          "input_gnss_rows_total": 2586,
+          "evaluated_imu_rows": 248591,
+          "status_counts": {
+            "AMBIGUOUS": 1135,
+            "LATCHED": 1347,
+            "OFF_MAP": 3,
+            "MAP_UNAVAILABLE": 9
+          },
+          "latched_fraction": 0.5400962309542903,
+          "latched_moving_fraction": 0.43612903225806454,
+          "map_correction_m": {
+            "median": 2.022644916591794,
+            "p95": 25.947132449807,
+            "max": 95.75959778100017
+          },
+          "max_map_correction_change_m": 95.75959778100017,
+          "raw_receiver_agreement_baseline_rms_m": 18.581210570685677,
+          "raw_receiver_agreement_output_rms_m": 19.731121341724485,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 0,
+          "max_branches": 12,
+          "max_pruned_mass": 0.4591411215629907,
+          "min_state_covariance_eigenvalue": 9.223035332227156e-07,
+          "runtime_s": 65.38891405100003,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": null
+        }
+      ]
+    },
+    {
+      "dataset": "ios-drive-20260521-130835",
+      "status": "completed",
+      "input_manifest": {
+        "created_utc": "2026-05-23T10:59:23Z",
+        "dataset_id": "ios-drive-20260521-130835",
+        "files": {
+          "gnss": {
+            "bytes": 22424,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.4640371799468994,
+            "last_t_s": 245.56920850276947,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 246,
+            "sha256": "507911bc57576722959a28cd85d7b99e107a504ce6ea6393b8d0a8c1ee20896f"
+          },
+          "imu": {
+            "bytes": 1523136,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 245.95713412761688,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 24518,
+            "sha256": "1d41ee013e396c5637c6590299d3585ebb2452a09357f5895b7add0ed7a65945"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 246,
+          "imu": 24518
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 245.95713412761688,
+          "start": 0.0
+        },
+        "title": "iOS drive 2026-05-21 13:08:35Z"
+      },
+      "calibration": {
+        "cutoff_s": 61.74033001065254,
+        "up_body": [
+          0.0020811924855791684,
+          0.595205691521505,
+          0.8035706897456159
+        ],
+        "forward_body": [
+          0.20676885913546886,
+          0.7859508752485653,
+          -0.5826901926305528
+        ],
+        "gyro_bias_radps": [
+          -0.006110889371484518,
+          -0.0011610050569288433,
+          -0.0009865680476650596
+        ],
+        "accel_bias_planar": [
+          -0.3528604881856646,
+          -0.0758902108785468
+        ],
+        "gravity_norm": 9.74244114849652,
+        "stationary_samples": 1950,
+        "fit_intervals": 40,
+        "fit_singular_values": [
+          19.519786883875817,
+          5.381820471168824
+        ],
+        "fit_rms_mps2": 0.5014099066688028,
+        "method": "prefix-only stationary tilt/gyro bias and proper-rotation GNSS acceleration fit"
+      },
+      "origin_wgs84": [
+        -79.43858236657579,
+        43.63430663320918,
+        82.85108028436008
+      ],
+      "map": {
+        "download": "success",
+        "directed_edges": 1505,
+        "loaded_tiles": 16,
+        "simple_restrictions": 13,
+        "unsupported_restrictions": 4,
+        "widths": "OSM width when parseable, otherwise 12 m road / 8 m service full-width prior",
+        "limitations": "No lane map, time-dependent restrictions, via-way restrictions, or reverse-driving mode",
+        "endpoint": "https://overpass.kumi.systems/api/interpreter",
+        "query": "[out:json][timeout:90];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|motorway_link|trunk_link|primary_link|secondary_link|tertiary_link)$\"](43.6279924,-79.4416580,43.6363259,-79.4122910)->.roads;(.roads;rel(bw.roads)[\"type\"=\"restriction\"];);out geom;",
+        "bounds_s_w_n_e": [
+          43.62799235907527,
+          -79.4416580040281,
+          43.63632593970556,
+          -79.41229101360577
+        ],
+        "response_sha256": "c5df0ce3d02fbf814cea2c8401e5543289e27e6a8518d4b705c56b265ad7f546",
+        "osm_base_timestamp": "2026-07-15T15:22:01Z",
+        "attribution": "\u00a9 OpenStreetMap contributors; Open Database License (ODbL) 1.0; https://www.openstreetmap.org/copyright",
+        "selection": "Full-trip bounding box selects coverage only; no road geometry derived from GNSS",
+        "temporal_limit": "Map retrieval is not contemporaneous with the recording"
+      },
+      "runs": [
+        {
+          "mode": "original",
+          "seed_time_s": 62.568641781806946,
+          "end_time_s": 245.56920850276947,
+          "evaluated_duration_s": 183.00056672096252,
+          "output_epochs": 183,
+          "input_imu_rows_total": 24518,
+          "input_gnss_rows_total": 246,
+          "evaluated_imu_rows": 18241,
+          "status_counts": {
+            "AMBIGUOUS": 56,
+            "LATCHED": 127
+          },
+          "latched_fraction": 0.6939890710382514,
+          "latched_moving_fraction": 0.6,
+          "map_correction_m": {
+            "median": 7.022769892119373,
+            "p95": 10.88797827784759,
+            "max": 11.434553283093319
+          },
+          "max_map_correction_change_m": 11.434553283093319,
+          "raw_receiver_agreement_baseline_rms_m": 4.557649334472465,
+          "raw_receiver_agreement_output_rms_m": 4.678603073939062,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 0,
+          "max_branches": 12,
+          "max_pruned_mass": 0.39357051796504117,
+          "min_state_covariance_eigenvalue": 9.369674339768668e-07,
+          "runtime_s": 3.210552026000016,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": null
+        },
+        {
+          "mode": "withheld_gnss_30s",
+          "seed_time_s": 62.568641781806946,
+          "end_time_s": 245.56920850276947,
+          "evaluated_duration_s": 183.00056672096252,
+          "output_epochs": 183,
+          "input_imu_rows_total": 24518,
+          "input_gnss_rows_total": 246,
+          "evaluated_imu_rows": 18241,
+          "status_counts": {
+            "AMBIGUOUS": 55,
+            "LATCHED": 128
+          },
+          "latched_fraction": 0.6994535519125683,
+          "latched_moving_fraction": 0.6071428571428571,
+          "map_correction_m": {
+            "median": 1.5946088238422544,
+            "p95": 5.60517773999247,
+            "max": 6.570389008596341
+          },
+          "max_map_correction_change_m": 5.327893266114495,
+          "raw_receiver_agreement_baseline_rms_m": 23.755329298635523,
+          "raw_receiver_agreement_output_rms_m": 24.556566766787466,
+          "withheld_fix_comparison_baseline_rms_m": 57.523996641808026,
+          "withheld_fix_comparison_output_rms_m": 59.5198336704656,
+          "withheld_epochs": 30,
+          "missing_map_epochs": 0,
+          "max_branches": 12,
+          "max_pruned_mass": 0.42853246669254674,
+          "min_state_covariance_eigenvalue": 9.376026030614075e-07,
+          "runtime_s": 4.031948043999989,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": null
+        },
+        {
+          "mode": "missing_map_30s",
+          "seed_time_s": 62.568641781806946,
+          "end_time_s": 245.56920850276947,
+          "evaluated_duration_s": 183.00056672096252,
+          "output_epochs": 183,
+          "input_imu_rows_total": 24518,
+          "input_gnss_rows_total": 246,
+          "evaluated_imu_rows": 18241,
+          "status_counts": {
+            "AMBIGUOUS": 88,
+            "LATCHED": 65,
+            "MAP_UNAVAILABLE": 30
+          },
+          "latched_fraction": 0.3551912568306011,
+          "latched_moving_fraction": 0.37142857142857144,
+          "map_correction_m": {
+            "median": 0.0,
+            "p95": 9.160353616680037,
+            "max": 10.15764467808219
+          },
+          "max_map_correction_change_m": 10.15764467808219,
+          "raw_receiver_agreement_baseline_rms_m": 4.557649334472465,
+          "raw_receiver_agreement_output_rms_m": 3.9265202103943073,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 30,
+          "max_branches": 12,
+          "max_pruned_mass": 0.40145719066927,
+          "min_state_covariance_eigenvalue": 9.377276620103231e-07,
+          "runtime_s": 4.036083888000007,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": null
+        }
+      ]
+    },
+    {
+      "dataset": "ios-drive-20260521-131420",
+      "status": "completed_without_map",
+      "input_manifest": {
+        "created_utc": "2026-05-23T10:59:30Z",
+        "dataset_id": "ios-drive-20260521-131420",
+        "files": {
+          "gnss": {
+            "bytes": 86312,
+            "columns": [
+              "t_s",
+              "lat_deg",
+              "lon_deg",
+              "height_m",
+              "vn_mps",
+              "ve_mps",
+              "vd_mps",
+              "pos_std_n_m",
+              "pos_std_e_m",
+              "pos_std_d_m",
+              "vel_std_n_mps",
+              "vel_std_e_mps",
+              "vel_std_d_mps",
+              "heading_rad"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.03708481788635254,
+            "last_t_s": 1105.0368393659592,
+            "media_type": "text/csv",
+            "path": "gnss.csv.gz",
+            "rows": 1106,
+            "sha256": "29a0600fede3f24dcbf827a82181ec9a1ab727854c5734e270e337be4da0088c"
+          },
+          "imu": {
+            "bytes": 6596788,
+            "columns": [
+              "t_s",
+              "gx_radps",
+              "gy_radps",
+              "gz_radps",
+              "ax_mps2",
+              "ay_mps2",
+              "az_mps2"
+            ],
+            "encoding": "gzip",
+            "first_t_s": 0.0,
+            "last_t_s": 1105.1669263839722,
+            "media_type": "text/csv",
+            "path": "imu.csv.gz",
+            "rows": 110166,
+            "sha256": "f2438218edc0246685ae863d6befe153d77d53a57a2726cd1c9b5cfc42823ca1"
+          }
+        },
+        "manifest_version": 1,
+        "samples": {
+          "gnss": 1106,
+          "imu": 110166
+        },
+        "schema": "generic-replay-v1",
+        "source": {
+          "format": "generic"
+        },
+        "time_span_s": {
+          "end": 1105.1669263839722,
+          "start": 0.0
+        },
+        "title": "iOS drive 2026-05-21 13:14:20Z"
+      },
+      "calibration": {
+        "cutoff_s": 90.03708481788635,
+        "up_body": [
+          -0.00039927363299203824,
+          0.5919845876234647,
+          0.8059491848726212
+        ],
+        "forward_body": [
+          -0.07683007866244983,
+          0.8035488650017103,
+          -0.5902595705002887
+        ],
+        "gyro_bias_radps": [
+          -0.006129798013716936,
+          -0.0012013519881293178,
+          -0.0009914948605000973
+        ],
+        "accel_bias_planar": [
+          -0.039493633156825,
+          -0.11825545655426117
+        ],
+        "gravity_norm": 9.744138796742149,
+        "stationary_samples": 6881,
+        "fit_intervals": 20,
+        "fit_singular_values": [
+          12.99623326493232,
+          4.301155574735194
+        ],
+        "fit_rms_mps2": 0.26528548375226885,
+        "method": "prefix-only stationary tilt/gyro bias and proper-rotation GNSS acceleration fit"
+      },
+      "origin_wgs84": [
+        -79.40903990329551,
+        43.63402373873998,
+        78.20973765850067
+      ],
+      "map": {
+        "download": "failed",
+        "error": "Map download failed: https://overpass-api.de/api/interpreter: HTTP Error 504: Gateway Timeout; https://overpass.kumi.systems/api/interpreter: HTTP Error 504: Gateway Timeout"
+      },
+      "runs": [
+        {
+          "mode": "original",
+          "seed_time_s": 91.03706753253937,
+          "end_time_s": 1105.0368393659592,
+          "evaluated_duration_s": 1013.9997718334198,
+          "output_epochs": 1014,
+          "input_imu_rows_total": 110166,
+          "input_gnss_rows_total": 1106,
+          "evaluated_imu_rows": 101077,
+          "status_counts": {
+            "MAP_UNAVAILABLE": 1014
+          },
+          "latched_fraction": 0.0,
+          "latched_moving_fraction": 0.0,
+          "map_correction_m": {
+            "median": 0.0,
+            "p95": 0.0,
+            "max": 0.0
+          },
+          "max_map_correction_change_m": 0.0,
+          "raw_receiver_agreement_baseline_rms_m": 4.223456203620836,
+          "raw_receiver_agreement_output_rms_m": 4.223456203620836,
+          "withheld_fix_comparison_baseline_rms_m": null,
+          "withheld_fix_comparison_output_rms_m": null,
+          "withheld_epochs": 0,
+          "missing_map_epochs": 0,
+          "max_branches": 0,
+          "max_pruned_mass": 0.0,
+          "min_state_covariance_eigenvalue": 1.05203998313342e-06,
+          "runtime_s": 3.0292294339999444,
+          "absolute_accuracy_measured": false,
+          "wrong_road_rate_measured": false,
+          "receiver_agreement_is_not_accuracy": true,
+          "supplied_fused_reference_comparison": null
+        }
+      ]
+    }
+  ],
+  "environment": {
+    "python": "3.13.18 (main, Oct 26 2026, 14:20:56) [GCC 13.3.0]",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.1.158.2-microsoft-standard-x86_64-with-glibc2.39"
+  },
+  "experiment_source_hashes": {
+    "run.py": "05c5580fb0ae9ba9d6450ea92892b3f6e72b8abc2034a793cdd51a6a6bec77f6",
+    "adapter.py": "ad72c0a7772feb589d540cfd800f12608d7098d368d744d7a1f7034f61e798c2",
+    "test_recorded.py": "c9dab317950f6df34cd6a8aabeb18d46f403e33d26baf7c9ec26a7fba5f196bb",
+    "roads.py": "eda7257a84caf695c52d573c8efee5f613ec8111861ace734fdacc17143269e8"
+  },
+  "constraints": [
+    "Not a full 3D INS integration",
+    "No reference stream enters calibration, propagation or road compilation",
+    "First min(90 s,25% of recording) is calibration only",
+    "Receiver position/velocity cross-correlation is unavailable; diagonal covariance plus floors is approximate",
+    "Phone location is not established to be raw independent GNSS",
+    "Road widths and map alignment are not surveyed",
+    "No ground-truth road labels",
+    "GNSS outage and cache loss are injected tests, not claimed recording conditions"
+  ],
+  "execution_failures": 1
+}
