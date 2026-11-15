@@ -1,0 +1,72 @@
+name: Qualify map-only route latching comparison
+on:
+  pull_request:
+    paths: ['integration/imu_gnss/route_latch/**', '.github/workflows/qualify-route-latch.yml']
+  push:
+    branches: [main]
+    paths: ['integration/imu_gnss/route_latch/**', '.github/workflows/qualify-route-latch.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Build original 18-state runtime without receiver-bias extension
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-reproduce.txt
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python integration/imu_gnss/prepare_native.py --upstream .cache/upstream --output .cache/native
+          mkdir -p runs/route-latch-build
+          cargo test --manifest-path .cache/native/Cargo.toml --workspace --locked 2>&1 | tee runs/route-latch-build/rust-tests.txt
+          cargo build --manifest-path .cache/native/Cargo.toml --release --locked -p routefusion_native_bridge
+          cp .cache/native/source-provenance.json runs/route-latch-build/
+          rustc -Vv > runs/route-latch-build/rustc.txt
+      - name: Run isolation tests and all paired comparisons
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          export ROUTEFUSION_NATIVE_LIBRARY="$PWD/.cache/native/target/release/libroutefusion_native_bridge.so"
+          export ROUTEFUSION_DATASETS="$PWD/.cache/upstream/web/datasets"
+          export ROUTE_LATCH_MAP_CACHE="$PWD/integration/imu_gnss/map_cache"
+          python -m pytest -q integration/imu_gnss/tests | tee runs/route-latch-build/existing-tests.txt
+          python -m pytest -q integration/imu_gnss/route_latch/test_route_latch.py --junitxml=runs/route-latch-build/tests.xml | tee runs/route-latch-build/route-tests.txt
+          python integration/imu_gnss/route_latch/evaluate.py --library "$ROUTEFUSION_NATIVE_LIBRARY" --datasets "$ROUTEFUSION_DATASETS" --map-cache "$ROUTE_LATCH_MAP_CACHE" --output runs/route-latch
+          python integration/imu_gnss/route_latch/qualify.py --results runs/route-latch --tests runs/route-latch-build/tests.xml
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib,subprocess
+          r=Path('runs/route-latch')
+          (r/'execution-commit.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          (r/'SHA256SUMS.json').write_text(json.dumps({str(p.relative_to(r)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(r.rglob('*')) if p.is_file()},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: map-only-route-latch-${{ github.run_id }}
+          path: |
+            runs/route-latch
+            runs/route-latch-build
+          retention-days: 30
+          if-no-files-found: error
