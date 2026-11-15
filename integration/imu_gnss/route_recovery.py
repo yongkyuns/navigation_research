@@ -40,6 +40,33 @@ class RelocalizationConfig:
             raise ValueError('Invalid bounded re-localization policy')
 
 
+def require_search_coverage(roads, position, radius):
+    """Do not infer that competing roads are absent from an incomplete cache.
+
+    The complete square queried by TileStore.candidates must be loaded, including
+    known-empty tiles. When a bounded extract is declared, the query must also
+    lie inside its projected footprint; a loaded boundary tile alone is not proof
+    that its out-of-extract portion was downloaded. This is a conservative local
+    footprint check, not a substitute for map-version/coverage provenance.
+    """
+    position = np.asarray(position, dtype=float)
+    lo, hi = position - radius, position + radius
+    required = roads.store.tile_keys(lo, hi)
+    if any(key not in roads.store.loaded for key in required):
+        raise MissingTopology('Recovery search overlaps missing map tiles')
+    bbox = getattr(roads, 'bbox', None)
+    if bbox is not None:
+        south, west, north, east = bbox
+        footprint = roads.frame.project([[south, west, 0.], [south, east, 0.],
+                                         [north, east, 0.], [north, west, 0.]])[:, :2]
+        corners = np.array([[lo[0], lo[1]], [hi[0], lo[1]],
+                            [hi[0], hi[1]], [lo[0], hi[1]]])
+        for start, end in zip(footprint, np.roll(footprint, -1, axis=0)):
+            tangent, delta = end - start, corners - start
+            if np.any(tangent[0] * delta[:, 1] - tangent[1] * delta[:, 0] < -1e-6):
+                raise MissingTopology('Recovery search leaves the declared map extract')
+
+
 def inconsistent_edges(snapshot, roads, config, edge_ids=None):
     """Return rejected, reachable roads only if NONE of the candidates fits.
 
@@ -89,6 +116,11 @@ def inconsistent_edges(snapshot, roads, config, edge_ids=None):
         if logz >= config.reject_log_probability:
             return ()  # Existing local explanation; do not force another road.
         bad.append(edge.id)
+    if bad and edge_ids is None:
+        # The absence of a fitting competitor is meaningful ONLY after the
+        # entire search region is known. TileStore.candidates omits unloaded
+        # tiles; checking just the receiver tile allowed false one-road latches.
+        require_search_coverage(roads, p, config.max_corridor_excess_m + width)
     return tuple(sorted(bad))
 
 
@@ -211,6 +243,7 @@ class RelocalizingRoadBank(RoadBank):
             broaden_position(root, self.roads.frame, self.loss_config.position_sigma_m)
             p, _, v = snapshot.pose(self.roads.frame)
             width = max((e.half_width for e in self.roads.store.edges.values()),default=0.)
+            require_search_coverage(self.roads, p, self.loss_config.max_corridor_excess_m+width)
             edges = self.roads.store.candidates(p,self.loss_config.max_corridor_excess_m+width)
             candidates = []
             for edge in edges:
@@ -249,6 +282,7 @@ class RelocalizingRoadBank(RoadBank):
                         out.update(status='NO_CONSISTENT_ROUTE',latched=False,edge=None,group=None,branches=0,
                                    conditional_position=out['position'],conditional_covariance=out['covariance'])
             except (MissingTopology,HypothesisOverflow) as exc:
+                self.loss.clear_pending()
                 self.reset()
                 out.update(status='MAP_UNAVAILABLE' if isinstance(exc,MissingTopology) else 'HYPOTHESIS_OVERFLOW',
                            latched=False,edge=None,group=None,reason=str(exc),branches=0,
