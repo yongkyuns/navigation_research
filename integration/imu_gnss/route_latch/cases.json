@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "purpose": "Map-only internal-state convergence, not surveyed positioning accuracy",
+  "bias_model": "disabled; native.Library and original 18-state shared library only",
+  "map_period_s": 1.0,
+  "output_period_s": 0.1,
+  "withheld_gnss_duration_s": 10.0,
+  "inside_tolerance_m": 0.001,
+  "hold_duration_s": 5.0,
+  "cross_track_targets_m": [-20.0, -10.0, 10.0, 20.0],
+  "prior_modes": ["native", "additional_10m_cross_track_sigma"],
+  "route_provenance": "Explicit supplied OSM itineraries selected from unmodified GNSS and independent cached graph before disturbed replay. Not independent road truth. No position/reference coordinates enter the known-route update.",
+  "routes": [
+    {"name":"short2-turn", "dataset":"urban-short-turn-loop-nominal-002", "start_s":132.0,"end_s":185.0,
+      "segments":[[132.0,"32783279:2:4:1"],[151.8,"26361781:16:24:1"],[175.5,"26361781:24:27:1"]]},
+    {"name":"short1-route", "dataset":"urban-short-turn-loop-nominal-001", "start_s":115.0,"end_s":170.0,
+      "segments":[[115.0,"32783230:0:5:1"],[132.0,"32783230:5:7:1"],[139.0,"32783230:7:8:1"],[142.5,"32783230:8:9:1"],[147.0,"32783230:9:10:1"],[151.5,"32783230:10:12:1"],[162.5,"32783256:0:2:1"]]},
+    {"name":"medium-route", "dataset":"urban-medium-turn-loop-nominal-001", "start_s":142.0,"end_s":181.0,
+      "segments":[[142.0,"464848174:12:19:-1"],[156.0,"464848174:10:12:-1"],[163.0,"464848174:8:10:-1"],[165.5,"464848174:6:8:-1"],[170.0,"464848174:0:6:-1"]]}
+  ]
+}
