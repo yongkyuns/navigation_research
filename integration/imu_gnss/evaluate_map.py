@@ -26,8 +26,8 @@ def stress_gnss(gnss, mode):
         return z
     raise ValueError('Unknown stress mode')
 
-def run(library,directory,roads,out,max_branches=24,stress='none'):
-    imu,gnss,provenance=load_inputs(directory);gnss=stress_gnss(gnss,stress);bank=RoadBank(library.create(),roads,max_branches);control=library.create();rows=[];next_out=float(imu[0,0]);start=time.perf_counter();exact=True;peak=0;negative=0
+def run(library,directory,roads,out,max_branches=24,stress='none',*,bank_class=RoadBank):
+    imu,gnss,provenance=load_inputs(directory);gnss=stress_gnss(gnss,stress);bank=bank_class(library.create(),roads,max_branches);control=library.create();rows=[];next_out=float(imu[0,0]);start=time.perf_counter();exact=True;peak=0;negative=0
     for kind,row in events(imu,gnss):
         if kind=='imu':bank.imu(row);control.imu(row)
         else:bank.gnss(row);control.gnss(row)
