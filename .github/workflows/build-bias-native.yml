@@ -1,0 +1,40 @@
+name: Build opt-in correlated GNSS bias runtime
+on:
+  push:
+    branches: [research/urban-bias-robustness]
+    paths: ['integration/imu_gnss/bias_native/**','integration/imu_gnss/prepare_bias_native.py','.github/workflows/build-bias-native.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-slim
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with: {persist-credentials: false}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - name: Build pinned isolated research model
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python3 integration/imu_gnss/prepare_bias_native.py --upstream .cache/upstream --output .cache/bias-native
+          mkdir -p bias-build
+          cargo test --manifest-path .cache/bias-native/Cargo.toml --workspace --locked 2>&1 | tee bias-build/tests.txt
+          cargo build --manifest-path .cache/bias-native/Cargo.toml --release --locked -p routefusion_native_bridge
+          cp .cache/bias-native/target/release/libroutefusion_native_bridge.so bias-build/
+          cp .cache/bias-native/*provenance.json bias-build/
+          rustc -Vv > bias-build/rustc.txt
+          sha256sum bias-build/libroutefusion_native_bridge.so > bias-build/SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bias-native-build
+          path: bias-build
+          if-no-files-found: ignore
+          retention-days: 14
