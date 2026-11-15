@@ -181,12 +181,18 @@ def checkpoint(lib, imu, gnss, route):
 
 
 def run_case(lib, imu, gnss, provenance, roads, route, target, prior, feed, cfg,
-             output: Path, *, automatic: bool = True):
+             output: Path, *, automatic: bool = True, relocalize: bool = False):
     nav, t0 = checkpoint(lib, imu, gnss, route)
     original_hashes = (hashlib.sha256(imu.tobytes()).hexdigest(), hashlib.sha256(gnss.tobytes()).hexdigest())
     initial = perturb(nav, roads, supplied_edge(route,t0), target, prior)
     base, control, known = nav.clone(), nav.clone(), nav.clone()
-    bank = RoadBank(nav.clone(), roads) if automatic else None
+    if relocalize:
+        from route_recovery import RelocalizingRoadBank, TrustedRouteConditioner
+        bank = RelocalizingRoadBank(nav.clone(), roads) if automatic else None
+        known_recovery = TrustedRouteConditioner(roads)
+    else:
+        bank = RoadBank(nav.clone(), roads) if automatic else None
+        known_recovery = None
     assert np.array_equal(base.snapshot().raw, known.snapshot().raw)
     helper = RoadBank(nav, roads, recovery=False)
     helper._version = roads.store.version
@@ -239,17 +245,27 @@ def run_case(lib, imu, gnss, provenance, roads, route, target, prior, feed, cfg,
         rows.append(row)
 
     def map_step(t):
-        nonlocal last_out, accepted, rejected
+        nonlocal last_out, accepted, rejected, known
         branch.edge = supplied_edge(route,t)
         diag = factor_diagnostic(branch,helper)
         pre = known.snapshot()
-        ll = helper.condition(branch)  # THE ORIGINAL IMPLEMENTATION, unmodified.
-        post = known.snapshot()
-        applied = diag['reason']=='APPLIED'
-        assert np.isfinite(ll) == (diag['reason'] in ('APPLIED','REUSED_CELL'))
-        if not applied:
-            assert np.array_equal(pre.raw,post.raw), 'Rejected/reused factor mutated state'
+        was_recovered = bool(known_recovery and known_recovery.evidence.used)
+        old_updates = helper.map_updates
+        if known_recovery is None:
+            ll = helper.condition(branch)  # THE ORIGINAL IMPLEMENTATION, unmodified.
         else:
+            ll = known_recovery.condition(branch, helper, base, t)
+            known = branch.nav
+        recovered_now = bool(known_recovery and known_recovery.evidence.used and not was_recovered)
+        post = known.snapshot()
+        applied = helper.map_updates > old_updates
+        if recovered_now:
+            diag['reason'] = 'RECOVERY_PRIOR_AND_MAP' if applied else 'RECOVERY_PRIOR_ONLY'
+        else:
+            assert np.isfinite(ll) == (diag['reason'] in ('APPLIED','REUSED_CELL'))
+            if not applied:
+                assert np.array_equal(pre.raw,post.raw), 'Rejected/reused factor mutated state'
+        if applied:
             accepted += 1
         if not np.isfinite(ll): rejected += 1
         counters[diag['reason']] += 1
@@ -289,6 +305,9 @@ def run_case(lib, imu, gnss, provenance, roads, route, target, prior, feed, cfg,
         id=f"{route['name']}__{'clean' if target is None else 'cross'+str(int(target))}__{prior}__{feed}"
         summary={'id':id,'route':route,'target_cross_m':target,'prior':prior,'gnss_mode':feed,
             'bias_model_enabled':False,'native_error_states':18,'initial':initial,
+            'relocalization_enabled':relocalize,
+            'known_relocalization_t':known_recovery.evidence.activation_t if known_recovery else None,
+            'auto_relocalization_t':bank.loss.activation_t if relocalize and bank else None,
             'start_s':t0,'end_s':float(rows[-1]['t_s']),'input_provenance':provenance,
             'delivered_after_checkpoint':{'imu':imu_count,'gnss':gnss_count,'withheld':withheld},
             'input_arrays_unchanged':True,'fallback_bit_identical':exact,
