@@ -1,0 +1,23 @@
+[
+  {"name":"loop1-clean","dataset":"urban-short-turn-loop-nominal-001","fault":"none","start":80,"end":110,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"loop1-north20","dataset":"urban-short-turn-loop-nominal-001","fault":"position","start":80,"end":110,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"loop1-east20","dataset":"urban-short-turn-loop-nominal-001","fault":"position","start":80,"end":110,"metres":20,"bearing_deg":90,"ramp_s":5},
+  {"name":"loop1-south20","dataset":"urban-short-turn-loop-nominal-001","fault":"position","start":80,"end":110,"metres":20,"bearing_deg":180,"ramp_s":5},
+  {"name":"loop1-outage","dataset":"urban-short-turn-loop-nominal-001","fault":"outage","start":80,"end":110,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"loop1-coupled20","dataset":"urban-short-turn-loop-nominal-001","fault":"position_velocity","start":80,"end":110,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"stopgo-clean","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"none","start":170,"end":210,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"stopgo-north20","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"position","start":170,"end":210,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"stopgo-east20","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"position","start":170,"end":210,"metres":20,"bearing_deg":90,"ramp_s":5},
+  {"name":"stopgo-south20","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"position","start":170,"end":210,"metres":20,"bearing_deg":180,"ramp_s":5},
+  {"name":"stopgo-outage","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"outage","start":170,"end":210,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"stopgo-coupled20","dataset":"urban-stop-go-tight-turns-nominal-001","fault":"position_velocity","start":170,"end":210,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"medium-clean","dataset":"urban-medium-turn-loop-nominal-001","fault":"none","start":120,"end":160,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"medium-north20","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":120,"end":160,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"medium-east20","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":120,"end":160,"metres":20,"bearing_deg":90,"ramp_s":5},
+  {"name":"medium-south20","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":120,"end":160,"metres":20,"bearing_deg":180,"ramp_s":5},
+  {"name":"medium-outage","dataset":"urban-medium-turn-loop-nominal-001","fault":"outage","start":120,"end":160,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"medium-coupled20","dataset":"urban-medium-turn-loop-nominal-001","fault":"position_velocity","start":120,"end":160,"metres":20,"bearing_deg":0,"ramp_s":5},
+  {"name":"cold-start20","dataset":"urban-short-turn-loop-nominal-002","fault":"cold_start","metres":20},
+  {"name":"no-map-north20","dataset":"urban-short-turn-loop-nominal-002","fault":"position","metres":20,"start":90,"end":120,"missing_map":true},
+  {"name":"ios-clean","dataset":"ios-mixed-road-drive-001","fault":"none"}
+]
