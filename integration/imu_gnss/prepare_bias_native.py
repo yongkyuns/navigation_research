@@ -33,7 +33,7 @@ def prepare_bias(upstream: Path, output: Path):
     s=replace(s,'        let gate_failed = !gnss_group_passes_per_axis_sigma_gate(\n            &self.raw.p,','        let mut gate_p=self.raw.p;\n        if position_group && self.gnss_bias.enabled() {\n            for a in 0..3 {gate_p[6+a][6+a]+=2.*self.gnss_bias.cross[6+a][a]+self.gnss_bias.covariance[a][a];}\n        }\n        let gate_failed = !gnss_group_passes_per_axis_sigma_gate(\n            &gate_p,')
     s=replace(s,'        self.raw.p=p;\n        inject_error_state', '        assert!(!self.gnss_bias.enabled(), "Use augmented interval update");\n        self.raw.p=p;\n        inject_error_state')
     ekf.write_text(s)
-    shutil.copyfile(HERE/'bias_native/gnss_bias.rs',ekf.parent/'gnss_bias.rs')
+    (ekf.parent/'gnss_bias.rs').write_text((HERE/'bias_native/gnss_bias.rs').read_text()+(HERE/'bias_native/tests.rs').read_text())
     fusion=output/'sensor_fusion/src/fusion.rs';s=fusion.read_text()
     s=replace(s,'        self.ekf = crate::ekf::Filter::new(self.cfg.noise.ekf);','        let bias_settings=self.ekf.gnss_bias.settings;\n        self.ekf = crate::ekf::Filter::new(self.cfg.noise.ekf);\n        self.ekf.gnss_bias.settings=bias_settings;')
     s=replace(s,'            rotate_ekf_covariance_nav_blocks(&mut raw.p, r_n1_n0);', '            rotate_ekf_covariance_nav_blocks(&mut raw.p, r_n1_n0);\n            self.ekf.gnss_bias.reanchor(r_n1_n0);')
@@ -42,6 +42,13 @@ impl SensorFusion {
     pub fn research_enable_bias(&mut self, tau:f32, sigma:f32, initial:f32) -> bool {
         if self.ekf_initialized || !tau.is_finite() || tau<=0. || !sigma.is_finite() || sigma<0. || !initial.is_finite() || initial<0. {return false;}
         self.ekf.gnss_bias.settings=crate::ekf::gnss_bias::Settings{enabled:true,tau_s:tau,stationary_sigma_m:sigma,initial_sigma_m:initial};true
+    }
+    pub fn research_activate_bias(&mut self, tau:f32, sigma:f32, initial:f32, shock:f32) -> bool {
+        if self.ekf().is_none() || self.ekf.gnss_bias.enabled() || !tau.is_finite() || tau<=0. || !sigma.is_finite() || sigma<0. || !initial.is_finite() || initial<0. || !shock.is_finite() || shock<0. {return false;}
+        // New fault-mode prior; do not alter the physical navigation marginal.
+        self.ekf.gnss_bias.settings=crate::ekf::gnss_bias::Settings{enabled:true,tau_s:tau,stationary_sigma_m:sigma,initial_sigma_m:initial};
+        self.ekf.gnss_bias.mean=[0.;3];self.ekf.gnss_bias.cross=[[0.;3];18];self.ekf.gnss_bias.covariance=[[0.;3];3];
+        for a in 0..3 {self.ekf.gnss_bias.covariance[a][a]=shock*shock;}true
     }
     pub fn research_bias_snapshot(&self) -> &crate::ekf::gnss_bias::Model {&self.ekf.gnss_bias}
     pub fn research_bias_interval(&mut self,h:[f32;18],alpha:f32,beta:f32) -> bool {

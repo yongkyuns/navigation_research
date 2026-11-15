@@ -25,3 +25,8 @@ pub unsafe extern "C" fn rf_bias_interval(p:*mut Bridge,h:*const f64,len:usize,a
     let mut h32=[0f32;18];for i in 0..18{h32[i]=hh[i] as f32;}
     if unsafe{&mut *p}.fusion.research_bias_interval(h32,alpha as f32,beta as f32){0}else{-3}
 }
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn rf_activate_bias(p:*mut Bridge,tau:f64,sigma:f64,initial:f64,shock:f64) -> i32 {
+    if p.is_null() || [tau,sigma,initial,shock].iter().any(|x| !x.is_finite() || x.abs()>1e10) {return -1;}
+    if unsafe{&mut *p}.fusion.research_activate_bias(tau as f32,sigma as f32,initial as f32,shock as f32){0}else{-2}
+}
