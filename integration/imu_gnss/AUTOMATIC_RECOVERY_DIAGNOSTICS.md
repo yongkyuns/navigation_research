@@ -165,3 +165,30 @@ unchanged. The specific remaining diagnostic gap is observer-only capture of
 selected branch offsets/weights/covariances and junction reasons in these same
 cases. Until that evidence exists, “avoidable rejection” is unproven; it would be
 premature to weaken abstention or add recovery for every slow-converging case.
+
+## Diagnostic merge-review correction
+
+The pre-boundary completion diagnostic now uses the **actual confirming sample**,
+not merely the nominal `entry + 5 s` time. A review fixture accepts the route at
+4.99 s, remains accepted at 9.98 s, and has its first sample at or after the
+9.99 s endpoint at 10.05 s. The earlier diagnostic incorrectly called that a hold
+completed before the 10 s boundary. The corrected diagnostic reports the 10.05 s
+completion sample and rejects that pre-boundary claim. A completion exactly at
+the boundary is also not strictly before it. The original entry/retention
+metrics and the native evaluator are unchanged.
+
+All 21 original offline tests remain; five new completion-sample cases bring the
+diagnostic total to **26 passing tests**. Three new cases reproduce false
+pre-boundary claims on the previous code. The correction was applied to both
+the retained review evidence and the independently downloaded CI artifact from
+PR #8 run `43704292395`, tested head
+`7f00a42caf823a0873ce5729aa7172324eac08ce`. In each bundle all **54 automatic metric
+sets** still match the exact original evaluator, all prior diagnostic fields
+remain unchanged, and all **1,569 clean epochs** match. The additional
+`first_5s_hold_completion_sample_s` field makes the confirming sample explicit.
+The 2/6 and 5/6 outcomes, and zero complete pre-boundary automatic holds, remain
+unchanged. This is an offline reporting correction, not a navigation correction.
+
+That earlier CI artifact contains a fresh pinned native build, 95 passing Python
+tests and the full paired replays. Those passes qualify its stated head only;
+the corrected source requires fresh CI and must not inherit that earlier result.

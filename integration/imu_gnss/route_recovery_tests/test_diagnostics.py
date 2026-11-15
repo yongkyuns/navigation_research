@@ -105,3 +105,24 @@ def test_exact_hold_endpoint_required():
 def test_whole_interval_not_only_endpoints_required():
     result = diag.accepted_metrics([row(0.), row(2., latched=False), row(5.)], CFG)
     assert result['metrics']['first_5s_hold_entry_s'] is None
+
+
+@pytest.mark.parametrize('sample,completion,before_boundary', [
+    (9.989, 11., False),
+    (9.99, 9.99, True),
+    (10., 10., False),
+    (10.05, 10.05, False),
+])
+def test_hold_completion_requires_an_observed_sample_before_boundary(
+        sample, completion, before_boundary):
+    data = [row(0., latched=False), row(4.99), row(9.98), row(sample), row(11.)]
+    result = diag.accepted_metrics(data, CFG)
+    assert result['entry_before_boundary_with_full_sampled_hold']
+    assert result['hold_completed_before_boundary'] is before_boundary
+    assert result['first_5s_hold_completion_sample_s'] == completion
+
+
+def test_incomplete_hold_has_no_completion_sample():
+    result = diag.accepted_metrics([row(0.), row(4.999)], CFG)
+    assert not result['hold_completed_before_boundary']
+    assert result['first_5s_hold_completion_sample_s'] is None

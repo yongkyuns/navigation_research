@@ -7,6 +7,7 @@ A selected road, an inside native position and a completed hold are distinct.
 from __future__ import annotations
 
 import argparse
+from bisect import bisect_left
 import csv
 import hashlib
 import json
@@ -91,6 +92,10 @@ def accepted_metrics(rows: list[dict], cfg: dict) -> dict:
     # Use the same floating-point comparison as searchsorted(t_start + hold).
     first_hold = next((s['first_s'] for s in spans
                        if s['last_sample_s'] >= s['first_s'] + hold), None)
+    # A nominal endpoint before the boundary is not enough: the first
+    # accepted sample confirming the hold must also precede that boundary.
+    completion = (None if first_hold is None else
+                  times[bisect_left(times, first_hold + hold)])
     durations = [b - a for a, b in zip(times, times[1:])]
     before = [max(0., min(b, boundary) - a) for a, b in zip(times, times[1:])]
     if sum(before) <= 0:
@@ -109,7 +114,8 @@ def accepted_metrics(rows: list[dict], cfg: dict) -> dict:
     if spans and spans[0]['next_rejected_sample_s'] is not None:
         interruption_status = next(r['auto_status'] for r in data
                                    if number(r['elapsed_s']) == spans[0]['next_rejected_sample_s'])
-    return {'metrics': metrics, 'first_selected_route_s': first_selected,
+    return {'metrics': metrics, 'first_5s_hold_completion_sample_s': completion,
+            'first_selected_route_s': first_selected,
             'first_accepted_native_sample_s': first_accepted,
             'accepted_sample_intervals': spans,
             'first_interruption_status': interruption_status,
@@ -119,7 +125,7 @@ def accepted_metrics(rows: list[dict], cfg: dict) -> dict:
             'wrong_route_selected_samples': sum(boolean(r['auto_latched'])
                 and not boolean(r['auto_selected_on_supplied_route']) for r in data),
             'entry_before_boundary_with_full_sampled_hold': first_hold is not None and first_hold < boundary,
-            'hold_completed_before_boundary': first_hold is not None and first_hold + hold < boundary}
+            'hold_completed_before_boundary': completion is not None and completion < boundary}
 
 
 def classification(result: dict, boundary: float) -> str:
