@@ -1,0 +1,6 @@
+[
+  {"name":"sensitivity-small5","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":180,"end":240,"metres":5,"bearing_deg":0,"ramp_s":5},
+  {"name":"sensitivity-north10","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":180,"end":240,"metres":10,"bearing_deg":0,"ramp_s":2},
+  {"name":"sensitivity-east35","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":180,"end":240,"metres":35,"bearing_deg":90,"ramp_s":10},
+  {"name":"sensitivity-slow20","dataset":"urban-medium-turn-loop-nominal-001","fault":"position","start":180,"end":240,"metres":20,"bearing_deg":0,"ramp_s":20}
+]

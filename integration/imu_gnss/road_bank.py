@@ -61,6 +61,8 @@ class RoadBank:
     def gnss(self, row):
         score = row[0] - self.last_score >= 0.9
         for branch in self.branches:
+            if hasattr(branch.nav, "prepare_gnss"):
+                branch.nav.prepare_gnss(row)
             if score:
                 branch.logw += self.gnss_evidence(branch.nav.snapshot(), row)
             branch.nav.gnss(row)
@@ -78,12 +80,18 @@ class RoadBank:
         R = ned_rotation(s.anchor)
         pos = R @ (ecef(row[1:4]) - ecef(s.anchor))
         vel = R @ ned_rotation(row[1:4]).T @ row[4:7]
-        residual = np.r_[pos - s.position, vel - s.velocity]
+        position_mean = s.position + getattr(s, "gnss_bias", np.zeros(3))
+        residual = np.r_[pos - position_mean, vel - s.velocity]
         indices = [6, 7, 8, 3, 4, 5]
         ps = max(float(np.mean(row[7:10])), 0.1)
         vs = max(float(np.mean(row[10:13])), 0.01)
         sigmas = np.array([ps, ps, 2.5 * ps, vs, vs, vs])
         S = s.P[np.ix_(indices, indices)] + np.diag(sigmas**2)
+        if hasattr(s, "gnss_bias_cross"):
+            # Marginalize the receiver-error state jointly, including correlation.
+            hb = np.vstack((np.eye(3), np.zeros((3, 3))))
+            cross = s.gnss_bias_cross[indices]
+            S += cross @ hb.T + hb @ cross.T + hb @ s.gnss_bias_covariance @ hb.T
         evidence = []
         for prior, extra in [(0.95, np.zeros(6)),
                              (0.05, np.array([45.**2] * 3 + [3.**2] * 3))]:
@@ -189,7 +197,10 @@ class RoadBank:
         posterior = snapshot.P + np.outer(cross_cov, cross_cov) * (var - S) / S**2
         if np.linalg.norm(dx[:3]) > .25 or np.linalg.norm(dx[15:18]) > .15:
             return -np.inf
-        branch.nav.inject(dx, posterior)
+        if hasattr(branch.nav, "condition_interval"):
+            branch.nav.condition_interval(H, (mean - projection.cross) / S, (var - S) / S**2)
+        else:
+            branch.nav.inject(dx, posterior)
         branch.cells = branch.cells | {cell}
         self.map_updates += 1
         return logz

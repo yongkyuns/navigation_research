@@ -1,0 +1,81 @@
+name: Qualify selective GNSS fault model
+on:
+  pull_request:
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-bias.yml']
+  push:
+    branches: [main]
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-bias.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Build pinned isolated native model and test joint covariance
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-reproduce.txt
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python integration/imu_gnss/prepare_bias_native.py --upstream .cache/upstream --output .cache/bias-native
+          mkdir -p runs/bias/build
+          cargo test --manifest-path .cache/bias-native/Cargo.toml --workspace --locked 2>&1 | tee runs/bias/build/rust-tests.txt
+          cargo build --manifest-path .cache/bias-native/Cargo.toml --release --locked -p routefusion_native_bridge
+          cp .cache/bias-native/*provenance.json runs/bias/build/
+          rustc -Vv > runs/bias/build/rustc.txt
+          sha256sum .cache/bias-native/target/release/libroutefusion_native_bridge.so > runs/bias/build/library-sha256.txt
+      - name: Test interfaces, frozen policy, and replay ownership
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          export ROUTEFUSION_NATIVE_LIBRARY="$PWD/.cache/bias-native/target/release/libroutefusion_native_bridge.so"
+          export ROUTEFUSION_BIAS_LIBRARY="$ROUTEFUSION_NATIVE_LIBRARY"
+          export ROUTEFUSION_DATASETS="$PWD/.cache/upstream/web/datasets"
+          python -m pytest -q integration/imu_gnss/tests integration/imu_gnss/bias_tests --junitxml=runs/bias/python-tests.xml | tee runs/bias/python-tests.txt
+      - name: Replay all unmodified recordings and predeclared fault cases
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          library="$PWD/.cache/bias-native/target/release/libroutefusion_native_bridge.so"
+          datasets="$PWD/.cache/upstream/web/datasets"
+          python integration/imu_gnss/evaluate_bias_clean.py --library "$library" --datasets "$datasets" --output runs/bias/clean
+          for suite in development holdout sensitivity; do
+            python integration/imu_gnss/evaluate_bias.py --library "$library" --datasets "$datasets" \
+              --map-cache integration/imu_gnss/map_cache --cases "integration/imu_gnss/bias_cases_${suite}.json" \
+              --output "runs/bias/$suite"
+          done
+          export GITHUB_SHA="$(git rev-parse HEAD)"
+          python integration/imu_gnss/qualify_bias.py --results runs/bias
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          root=Path('runs/bias')
+          (root/'SHA256SUMS.json').write_text(json.dumps({str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file()},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: selective-bias-qualification-${{ github.run_id }}
+          path: runs/bias
+          retention-days: 30
+          if-no-files-found: error

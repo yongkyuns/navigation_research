@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "model": "fault-activated joint 21-state ESKF",
+  "tau_s": 90.0,
+  "stationary_sigma_m": 15.0,
+  "initial_sigma_m": 3.0,
+  "shock_sigma_m": 20.0,
+  "activation": "innovation",
+  "window_s": 2.0,
+  "max_gap_s": 1.1,
+  "consistency_floor_m": 1.5,
+  "consistency_nis": 16.0,
+  "prediction_nis": 9.0,
+  "velocity_nis": 16.0,
+  "tuned_on": "development short-loop-002 only; freeze before other drives",
+  "reference_streams_used_by_estimator": false,
+  "map_corridor_changed": false,
+  "default_enabled": false
+}

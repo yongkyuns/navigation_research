@@ -1,0 +1,5 @@
+[
+  {"name":"development-none","dataset":"urban-short-turn-loop-nominal-002","fault":"none","start":90,"end":120,"metres":20,"bearing_deg":0},
+  {"name":"development-position","dataset":"urban-short-turn-loop-nominal-002","fault":"position","start":90,"end":120,"metres":20,"bearing_deg":0},
+  {"name":"development-outage","dataset":"urban-short-turn-loop-nominal-002","fault":"outage","start":90,"end":120,"metres":20,"bearing_deg":0}
+]
