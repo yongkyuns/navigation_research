@@ -1,0 +1,83 @@
+name: Qualify connected map pseudomeasurements
+on:
+  pull_request:
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-map-support.yml']
+  push:
+    branches: [main]
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-map-support.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Build pinned original native runtime
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-reproduce.txt
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python integration/imu_gnss/prepare_native.py --upstream .cache/upstream --output .cache/native
+          mkdir -p runs/map-support-build
+          cargo test --manifest-path .cache/native/Cargo.toml --workspace --locked 2>&1 | tee runs/map-support-build/rust-tests.txt
+          cargo build --manifest-path .cache/native/Cargo.toml --release --locked -p routefusion_native_bridge
+          cp .cache/native/source-provenance.json runs/map-support-build/
+      - name: Preserve original checks and test support policy
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          export ROUTEFUSION_NATIVE_LIBRARY="$PWD/.cache/native/target/release/libroutefusion_native_bridge.so"
+          export ROUTEFUSION_DATASETS="$PWD/.cache/upstream/web/datasets"
+          export ROUTE_LATCH_MAP_CACHE="$PWD/integration/imu_gnss/map_cache"
+          python -m pytest -q integration/imu_gnss/tests integration/imu_gnss/route_latch/test_route_latch.py integration/imu_gnss/route_recovery_tests integration/imu_gnss/support_tests --junitxml=runs/map-support-build/tests.xml
+      - name: Replay fresh independent associations and two persistent map models
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          LIB="$PWD/.cache/native/target/release/libroutefusion_native_bridge.so"
+          python integration/imu_gnss/prepare_support_inputs.py --library "$LIB" --datasets .cache/upstream/web/datasets --map-cache integration/imu_gnss/map_cache --output runs/map-support-seeds
+          for arm in first repeat; do
+            python integration/imu_gnss/evaluate_support.py --playback runs/map-support-seeds/playback-data.json --library "$LIB" --datasets .cache/upstream/web/datasets --source-root .cache/upstream --sigma-m .05 .1 .25 .5 1 2 5 --output "runs/map-support-$arm"
+          done
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          first=Path('runs/map-support-first');repeat=Path('runs/map-support-repeat')
+          proof=json.loads((first/'verification.json').read_text())
+          assert proof['pinned_native_source_hashes_verified']==37
+          assert len(proof['datasets'])==4
+          for d in proof['datasets']:
+              assert d['baseline_bit_identical'] and d['skipped_factors_bit_identical']
+              assert d['native_instances_preserved'] and len(d['variants'])==14
+              name=d['id']+'.json'
+              assert (first/name).read_bytes()==(repeat/name).read_bytes(), name
+          manifest={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path('runs').rglob('*')) if p.is_file()}
+          Path('runs/map-support-build/SHA256SUMS.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: connected-map-support-${{ github.run_id }}
+          path: runs/map-support-*
+          retention-days: 30
+          if-no-files-found: error
