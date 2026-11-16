@@ -1,0 +1,93 @@
+name: Qualify native Schmidt transition tracing
+on:
+  pull_request:
+    paths:
+      - 'integration/imu_gnss/prepare_native_transition.py'
+      - 'integration/imu_gnss/native_schmidt.py'
+      - 'integration/imu_gnss/verify_native_transition.py'
+      - 'integration/imu_gnss/research_trace/**'
+      - 'integration/imu_gnss/schmidt_native_tests/**'
+      - '.github/workflows/qualify-native-transition.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'integration/imu_gnss/prepare_native_transition.py'
+      - 'integration/imu_gnss/native_schmidt.py'
+      - 'integration/imu_gnss/verify_native_transition.py'
+      - 'integration/imu_gnss/research_trace/**'
+      - 'integration/imu_gnss/schmidt_native_tests/**'
+      - '.github/workflows/qualify-native-transition.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-trace:
+    runs-on: ubuntu-slim
+    timeout-minutes: 30
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Validate independent Schmidt adapter and fail-closed source patch
+        run: |
+          set -euo pipefail
+          python -m pip install numpy==2.3.5 pytest==9.0.2
+          export PYTHONPATH="$PWD/integration/imu_gnss"
+          mkdir -p runs/native-transition
+          python -m pytest -q integration/imu_gnss/schmidt_native_tests --junitxml=runs/native-transition/tests.xml | tee runs/native-transition/tests.txt
+      - name: Build original pinned native and opt-in instrumented copy
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python integration/imu_gnss/prepare_native.py --upstream .cache/upstream --output .cache/native-control
+          python integration/imu_gnss/prepare_native_transition.py --upstream .cache/upstream --output .cache/native-transition
+          cargo test --manifest-path .cache/native-control/Cargo.toml --workspace --locked 2>&1 | tee runs/native-transition/base-rust-tests.txt
+          cargo test --manifest-path .cache/native-transition/Cargo.toml --workspace --locked 2>&1 | tee runs/native-transition/traced-rust-tests.txt
+          cargo build --manifest-path .cache/native-control/Cargo.toml --release --locked -p routefusion_native_bridge
+          cargo build --manifest-path .cache/native-transition/Cargo.toml --release --locked -p routefusion_native_bridge
+          cp .cache/native-control/source-provenance.json runs/native-transition/
+          cp .cache/native-transition/source-provenance.json runs/native-transition/traced-source-provenance.json
+          rustc -Vv > runs/native-transition/rustc.txt
+      - name: Compare event-by-event native baselines and apply one real-native map factor
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/integration/imu_gnss"
+          python integration/imu_gnss/verify_native_transition.py \
+            --control-library .cache/native-control/target/release/libroutefusion_native_bridge.so \
+            --traced-library .cache/native-transition/target/release/libroutefusion_native_bridge.so \
+            --dataset .cache/upstream/web/datasets/urban-short-turn-loop-nominal-001 \
+            --output runs/native-transition/replay.json
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          j=json.loads(Path('runs/native-transition/replay.json').read_text())
+          assert j['no_map_snapshots_bit_identical']
+          assert j['map_update_applied']
+          assert j['complete_input_replay']
+          assert j['native_reseeds_after_map']==0
+          assert j['total_operator_count']>0
+          hashes={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path('runs/native-transition').rglob('*')) if p.is_file()}
+          Path('runs/native-transition/SHA256SUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: native-schmidt-trace-${{ github.run_id }}
+          path: runs/native-transition
+          retention-days: 30
+          if-no-files-found: error
