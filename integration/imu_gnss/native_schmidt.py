@@ -20,12 +20,43 @@ MAP_DIM=2
 
 
 def covariance_psd(p, atol=1e-6):
+    """Validate raw and variance-normalized covariance without changing it.
+
+    Navigation coordinates have different units and scales. A tolerance based
+    only on the largest diagonal can hide impossible cross-correlations in a
+    low-variance state. Positive diagonal congruence preserves PSD, so also
+    check the dimensionless correlation matrix. Zero-variance directions must
+    have exactly zero cross covariance; no jitter, clipping or repair is used.
+    """
     p=np.asarray(p,float)
+    if p.ndim != 2 or p.shape[0] == 0 or p.shape[0] != p.shape[1]:
+        raise ValueError('Covariance must be a nonempty square matrix')
+    if not math.isfinite(atol) or atol < 0:
+        raise ValueError('Invalid covariance validation tolerance')
     if not np.all(np.isfinite(p)) or not np.allclose(p,p.T,rtol=0,atol=atol):
         raise ValueError('Nonfinite or asymmetric covariance')
-    scale=max(1.,float(np.max(np.diag(p))))
+    diagonal=np.diag(p)
+    if np.any(diagonal < 0.):
+        raise ValueError('Negative variance in navigation-map covariance')
+    zero=diagonal == 0.
+    if np.any(p[zero,:] != 0.) or np.any(p[:,zero] != 0.):
+        raise ValueError('Zero-variance state has nonzero cross covariance')
+    # Preserve the original check in addition to the scale-aware check.
+    scale=max(1.,float(np.max(diagonal)))
     if np.linalg.eigvalsh((p+p.T)*.5)[0] < -atol*scale:
         raise ValueError('Non-positive-semidefinite navigation-map covariance')
+    active=~zero
+    if not np.any(active):
+        return
+    std=np.sqrt(diagonal[active])
+    with np.errstate(over='ignore', invalid='ignore', divide='ignore'):
+        normalized=p[np.ix_(active,active)]/std[:,None]/std[None,:]
+    if not np.isfinite(normalized).all():
+        raise ValueError('Nonfinite variance-normalized covariance')
+    if not np.allclose(normalized,normalized.T,rtol=0,atol=atol):
+        raise ValueError('Asymmetric variance-normalized covariance')
+    if np.linalg.eigvalsh((normalized+normalized.T)*.5)[0] < -atol:
+        raise ValueError('Non-positive-semidefinite variance-normalized covariance')
 
 
 def compose_joint(p,c,u):

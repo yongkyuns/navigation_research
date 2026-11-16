@@ -17,7 +17,7 @@ from correlated_corridor import NativeCorridorSchmidt, map_patch_id
 from datasets import load_inputs, events
 from evaluate_support import load_roads
 from native import Library
-from native_schmidt import compose_joint
+from native_schmidt import compose_joint, covariance_psd
 from path_support import PathIndex, CausalSupport
 from verify_native_transition import compare_navigation_snapshots
 
@@ -163,6 +163,7 @@ def run(playback,datasets,control_library,traced_library,output,*,sigma_m=.25,ma
                         p,P,_=after.pose(roads.frame)
                         if not np.isfinite(after.raw).all():raise AssertionError('Nonfinite native state')
                         joint=compose_joint(after.P,arm.C,arm.U)
+                        covariance_psd(joint,atol=2e-5)
                         mineig=float(np.linalg.eigvalsh((joint+joint.T)*.5)[0])
                         min_eigen[name]=min(min_eigen[name],mineig)
                         if mineig < -2e-5*max(1.,float(np.diag(joint).max())):
