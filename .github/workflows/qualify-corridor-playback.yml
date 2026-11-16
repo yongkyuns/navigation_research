@@ -1,0 +1,70 @@
+name: Qualify correlated corridor playback
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths: ['web/corridor_playback/**', 'docs/corridor.html', 'artifacts/corridor-playback-pr13-ci.zip', '.github/workflows/qualify-corridor-playback.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  viewer:
+    if: github.repository == 'yongkyuns/navigation_research' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    # Used ONLY to stage immutable blobs after tests. No commit/ref/deployment API.
+    permissions:
+      contents: write
+      actions: read
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Obtain exact merged-research evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p runs/corridor-viewer
+          if [ -f artifacts/corridor-playback-pr13-ci.zip ]; then
+            cp artifacts/corridor-playback-pr13-ci.zip runs/corridor-evidence.zip
+          else
+            gh api repos/yongkyuns/navigation_research/actions/artifacts/14264310454/zip > runs/corridor-evidence.zip
+          fi
+          echo '21dbc3199646e78438af1a720bf759fb19a690250ab2494e0333348989670ad6  runs/corridor-evidence.zip' | sha256sum --check
+      - name: Install fixed browser-test dependencies
+        run: |
+          python -m pip install pytest==9.0.2 playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Verify data identity and deterministic HTML
+        env:
+          CORRIDOR_ARTIFACT: runs/corridor-evidence.zip
+        run: |
+          set -euo pipefail
+          python -m pytest -q web/corridor_playback/tests --junitxml=runs/corridor-viewer/tests.xml
+          python web/corridor_playback/build.py --artifact runs/corridor-evidence.zip --output runs/corridor-viewer/corridor.html > runs/corridor-viewer/build.json
+          if [ -f docs/corridor.html ]; then
+            cmp docs/corridor.html runs/corridor-viewer/corridor.html
+          fi
+          # The original seven-sigma experiment stays byte-identical.
+          echo 'd210c14d1ef9c5ef8e5f1f38159fa93b6cb569714b2d17cbb9160128cfe8eaed  docs/index.html' | sha256sum --check
+      - name: Exercise real Chromium, sandbox fallback, all recordings and export
+        run: python web/corridor_playback/browser_check.py --html runs/corridor-viewer/corridor.html --output runs/corridor-viewer/browser
+      - name: Stage tested immutable objects for guarded PR commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python web/corridor_playback/stage_blob.py --html runs/corridor-viewer/corridor.html --artifact runs/corridor-evidence.zip --browser-report runs/corridor-viewer/browser/browser-checks.json --unit-xml runs/corridor-viewer/tests.xml --output runs/corridor-viewer/ready-to-commit.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: correlated-corridor-viewer-${{ github.run_id }}
+          path: runs/corridor-viewer
+          retention-days: 30
+          if-no-files-found: error
