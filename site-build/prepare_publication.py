@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 import tarfile
+import urllib.request
 import zipfile
 
 REPO = 'yongkyuns/navigation_research'
@@ -27,6 +28,26 @@ ARTIFACTS = [
     (14167816067, 'navigation_full_replay_latest_ci.zip', 'navigation_full_replay_latest_ci', 'ce381a2b1c44b9b15c70c6ddd26209db678a4f81afe5f4912df26a54e47e8f29'),
     (14165099072, 'navigation_recovery_latest_ci.zip', 'navigation_recovery_latest_ci', 'c8dcfb34c500933e487313ddd420888f62db96259c8255ec1bdc668cd2681b65'),
 ]
+# Intel's versioned download and published SHA-256, checked before extraction.
+# https://www.intel.com/content/www/us/en/download/684897/intel-software-development-emulator.html
+SDE_URL = 'https://downloadmirror.intel.com/924984/sde-external-10.13.1-2026-07-28-lin.tar.xz'
+SDE_SHA256 = '94e97d623fec54385686e1e7ba65ebc9941748c05ee451423948334892bf2b50'
+SDE_DIRECTORY = 'sde-external-10.13.1-2026-07-28-lin'
+RUNTIME_PROBE = '''import ctypes, hashlib, json, pathlib, platform
+import numpy as np
+paths = list((pathlib.Path(np.__file__).parent.parent / "numpy.libs").glob("libscipy_openblas64_*.so"))
+if len(paths) != 1:
+    raise RuntimeError("Expected the pinned NumPy wheel's single OpenBLAS library")
+lib = ctypes.CDLL(str(paths[0]))
+core = lib.scipy_openblas_get_corename64_
+core.restype = ctypes.c_char_p
+config = lib.scipy_openblas_get_config64_
+config.restype = ctypes.c_char_p
+print(json.dumps({"python": platform.python_version(), "numpy": np.__version__,
+                  "openblas_core": core().decode(), "openblas_config": config().decode(),
+                  "openblas_sha256": hashlib.sha256(paths[0].read_bytes()).hexdigest(),
+                  "cpu_features": np._core._multiarray_umath.__cpu_features__}))
+'''
 
 
 def sha(path: Path) -> str:
@@ -39,8 +60,51 @@ def check(path: Path, expected: str) -> None:
         raise ValueError(f'Hash mismatch: {path.name}: {actual} != {expected}')
 
 
-def run(*args: object) -> None:
-    subprocess.run([str(x) for x in args], check=True)
+def run(*args: object, env: dict[str, str] | None = None) -> None:
+    subprocess.run([str(x) for x in args], check=True, env=env)
+
+
+def numerical_python(root: Path, evidence: Path) -> tuple[list[str], dict[str, str], dict]:
+    """Pin SkylakeX natively or via checked SDE; never substitute numeric data.
+
+    Child injection keeps host ptrace/security settings unchanged. SDE lives
+    only in temporary build storage, not in the repository, viewer or estimator.
+    All existing replay and HTML byte gates remain authoritative.
+    """
+    host_env = dict(os.environ)
+    host_env.pop('OPENBLAS_CORETYPE', None)
+    host = json.loads(subprocess.check_output([sys.executable, '-c', RUNTIME_PROBE], env=host_env))
+    proof = {'host': host, 'target_openblas_core': 'SkylakeX',
+             'security_settings_modified': False, 'mode': None}
+    evidence.write_text(json.dumps(proof, indent=2) + '\n')
+    env = dict(os.environ, OPENBLAS_CORETYPE='SkylakeX', OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1')
+    command = [sys.executable]
+    if host['cpu_features'].get('AVX512_SKX', False):
+        proof['mode'] = 'native-skylakex'
+    else:
+        archive = root / 'intel-sde.tar.xz'
+        with urllib.request.urlopen(SDE_URL, timeout=60) as response, archive.open('wb') as output:
+            while chunk := response.read(1024 * 1024):
+                output.write(chunk)
+        check(archive, SDE_SHA256)
+        with tarfile.open(archive) as bundle:
+            bundle.extractall(root, filter='data')
+        executable = root / SDE_DIRECTORY / 'sde64'
+        if not executable.is_file():
+            raise FileNotFoundError('Checked Intel SDE archive lacks sde64')
+        command = [str(executable), '-skx', '-injection', 'child', '--', sys.executable]
+        proof.update(mode='intel-sde-skylakex', sde_url=SDE_URL, sde_sha256=SDE_SHA256,
+                     sde_executable_sha256=sha(executable))
+    evidence.write_text(json.dumps(proof, indent=2) + '\n')
+    target = json.loads(subprocess.check_output([*command, '-c', RUNTIME_PROBE], env=env))
+    proof['target'] = target
+    evidence.write_text(json.dumps(proof, indent=2) + '\n')
+    if (target['python'] != '3.13.5' or target['numpy'] != '2.3.5'
+            or target['openblas_core'] != 'SkylakeX'
+            or not target['cpu_features'].get('AVX512_SKX', False)):
+        raise RuntimeError('Numeric runtime does not match the pinned reviewed target')
+    print(json.dumps(proof, indent=2), flush=True)
+    return command, env, proof
 
 
 def extract_zip(path: Path, dest: Path) -> None:
@@ -57,6 +121,9 @@ def extract_zip(path: Path, dest: Path) -> None:
 def build(repo: Path, root: Path, archives: Path, download: bool) -> None:
     root.mkdir(parents=True, exist_ok=False)
     archives.mkdir(parents=True, exist_ok=True)
+    out = root / 'publication'
+    out.mkdir()
+    numeric, numeric_env, numeric_proof = numerical_python(root, out / 'numerical-runtime.json')
     work = root / 'work'
     work.mkdir()
     sources = root / 'sources.tar.xz'
@@ -81,14 +148,12 @@ def build(repo: Path, root: Path, archives: Path, download: bool) -> None:
     shutil.copyfile(repo / 'integration/imu_gnss/map_cache/osm-roads.json.gz', cache / 'osm-roads.json.gz')
     lib = work / 'bridge/libroutefusion_native_bridge.so'
     check(lib, '5ad7955f748154e3ae66ed6fd5f04c0519991aac3ca3298dbcd772d4cd93affd')
-    out = root / 'publication'
-    out.mkdir()
-    run(sys.executable, '-m', 'pytest', '-q', src / 'source/test_centerline_experiment.py', src / 'source/test_persistent_map_ekf.py', f'--junitxml={out / "unit-tests.xml"}')
+    run(*numeric, '-m', 'pytest', '-q', src / 'source/test_centerline_experiment.py', src / 'source/test_persistent_map_ekf.py', f'--junitxml={out / "unit-tests.xml"}', env=numeric_env)
     original = root / 'original'
-    run(sys.executable, src / 'build_data.py', '--workdir', work, '--archives', archives, '--output', original)
+    run(*numeric, src / 'build_data.py', '--workdir', work, '--archives', archives, '--output', original, env=numeric_env)
     check(original / 'playback_data.json', EXPECTED_PLAYBACK)
     replays = root / 'replays'
-    run(sys.executable, src / 'source/replay_persistent_map.py', '--playback', original / 'playback_data.json', '--datasets', inspection / 'upstream/web/datasets', '--library', lib, '--source-root', inspection / 'upstream', '--output', replays)
+    run(*numeric, src / 'source/replay_persistent_map.py', '--playback', original / 'playback_data.json', '--datasets', inspection / 'upstream/web/datasets', '--library', lib, '--source-root', inspection / 'upstream', '--output', replays, env=numeric_env)
     expected = json.loads((src / 'expected-replays.json').read_text())
     for name, digest in expected.items():
         check(replays / name, digest)
@@ -109,6 +174,7 @@ def build(repo: Path, root: Path, archives: Path, download: bool) -> None:
         'fresh_native_build': False,
         'historical_metadata_retained_for_byte_identical_html': True,
         'branch_refs_modified_by_helper': False,
+        'numerical_runtime': numeric_proof,
     }
     (out / 'publication.json').write_text(json.dumps(proof, indent=2) + '\n')
     print(json.dumps(proof, indent=2), flush=True)
