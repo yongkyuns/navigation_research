@@ -107,7 +107,7 @@ Reproduce with `python integration/imu_gnss/evaluate_map_correlation.py
 | GNSS only | 1.057 | 1.066 | 0.98 | – |
 | Naively independent map | **4.469** | **0.226** | **391** | 0.722 |
 | Per-update inflated map noise | 1.124 | 0.977 | 1.32 | 0.613 |
-| **Schmidt shared map offset** | **0.997** | **1.061** | **0.88** | **0.196** |
+| **Schmidt shared map offset** | **0.997** | **1.061** | **0.88** | **0.173** |
 
 *These are only seeded toy-model results.* They demonstrate that pretending
 shared map shift is new independent centerline evidence can make uncertainty
