@@ -95,18 +95,18 @@ mod tests {
     #[test]
     fn scalar_then_reset_keeps_exact_operator_order() {
         let mut t=ResearchTrace::new();
-        let mut f=identity();f[6][3]=.04;f[7][4]=.04;
+        let mut f=identity();f[6][3]=0.04;f[7][4]=0.04;
         t.predict(&f);
         let mut h=[0f32;18];h[6]=1.;
-        let mut k=[0f32;18];k[6]=.8;k[3]=.2;
+        let mut k=[0f32;18];k[6]=0.8;k[3]=0.2;
         t.scalar(&h,&k);
-        let mut dx=[0f32;18];dx[0]=.1;dx[1]=-.07;
+        let mut dx=[0f32;18];dx[0]=0.1;dx[1]=-0.07;
         t.reset(&dx);
         let (valid,count,a)=t.take();
         assert!(valid);assert_eq!(count,3);
-        close(a[6][6],.2); close(a[6][3],.008);
-        close(a[3][6],-.2); close(a[3][3],.992);
-        close(a[0][2],.035);close(a[1][2],.05);
+        close(a[6][6],0.2); close(a[6][3],0.008);
+        close(a[3][6],-0.2); close(a[3][3],0.992);
+        close(a[0][2],0.035);close(a[1][2],0.05);
         assert_eq!(t.take().1,0);
     }
     #[test]

@@ -3,11 +3,11 @@
 No OSM association or claimed road accuracy: the only injected map factor is a
 single synthetic Gaussian lateral observation used to exercise cross-covariance
 through subsequent real recorded IMU/GNSS events. The no-map control must stay
-bit-identical to the existing native library for the full recording.
+bit-identical to the existing native library for the full recording. The ABI
+allocation-size metadata is reported separately because tracing adds storage.
 """
 from __future__ import annotations
 import argparse
-from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -21,6 +21,27 @@ from native_schmidt import NativeSchmidt, NativeTransition, compose_joint, covar
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def compare_navigation_snapshots(before, traced):
+    """Compare every ABI field except slot 7: sizeof(Bridge), not navigation.
+
+    Slot 7 necessarily changes when derivative-tracing storage is added. All
+    other 357 slots, including health, timing, event flags, nominal state and
+    the complete 18x18 covariance, must match bit for bit (no tolerance).
+    Return allocation sizes for separate provenance and constancy checks.
+    """
+    a = np.asarray(before.raw)
+    b = np.asarray(traced.raw)
+    for value in (a, b):
+        if value.shape != (358,) or value.dtype != np.float64:
+            raise AssertionError('Unexpected native snapshot ABI')
+        size = value[7]
+        if not np.isfinite(size) or size <= 0 or not size.is_integer():
+            raise AssertionError('Invalid native allocation-size metadata')
+    if a[:7].tobytes() != b[:7].tobytes() or a[8:].tobytes() != b[8:].tobytes():
+        raise AssertionError('Instrumented native navigation snapshot differs')
+    return int(a[7]), int(b[7])
+
+
 def verify(control_path,trace_path,dataset,output,*,max_events=None):
     imu,gnss,source=load_inputs(dataset)
     raw=Library(control_path).create()
@@ -28,10 +49,12 @@ def verify(control_path,trace_path,dataset,output,*,max_events=None):
     corrected=NativeSchmidt(Library(trace_path).create(),
         'synthetic-map-patch-fixture',np.diag([4.,4.]))
     transition=NativeTransition(traced)
-    outcomes=dict(schema=1,source='actual pinned native runtime events',
+    outcomes=dict(schema=2,source='actual pinned native runtime events',
         dataset=source['id'],inputs=source['input_sha256'],
         default_library_sha256=sha(control_path),trace_library_sha256=sha(trace_path),
-        no_map_snapshots_bit_identical=True,valid_operator_events=0,
+        no_map_navigation_bit_identical=True,valid_operator_events=0,
+        compared_snapshot_slots=357,excluded_metadata_slot=7,
+        control_allocation_bytes=None,traced_allocation_bytes=None,
         invalid_operator_events=0,total_operator_count=0,
         nontrivial_imu_operator_events=0,nontrivial_gnss_operator_events=0,
         map_update_applied=False,correlated_arm_imu=0,correlated_arm_gnss=0,
@@ -52,8 +75,14 @@ def verify(control_path,trace_path,dataset,output,*,max_events=None):
             if t.operators>1:
                 outcomes[f'nontrivial_{kind}_operator_events']+=1
             before=raw.snapshot();control=traced.snapshot()
-            if not np.array_equal(before.raw,control.raw):
-                raise AssertionError(f'Instrumented native state diverged at {kind} event {count}')
+            try:
+                sizes = compare_navigation_snapshots(before, control)
+            except AssertionError as exc:
+                raise AssertionError(f'Native snapshot check at {kind} event {count}: {exc}') from exc
+            if count == 0:
+                outcomes['control_allocation_bytes'], outcomes['traced_allocation_bytes'] = sizes
+            elif sizes != (outcomes['control_allocation_bytes'], outcomes['traced_allocation_bytes']):
+                raise AssertionError('Native allocation metadata changed during replay')
             if not first_ready and before.ready and before.usable:
                 first_ready=True
             try:

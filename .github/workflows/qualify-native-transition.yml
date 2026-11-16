@@ -76,7 +76,9 @@ jobs:
           from pathlib import Path
           import json,hashlib
           j=json.loads(Path('runs/native-transition/replay.json').read_text())
-          assert j['no_map_snapshots_bit_identical']
+          assert j['no_map_navigation_bit_identical']
+          assert j['compared_snapshot_slots']==357 and j['excluded_metadata_slot']==7
+          assert j['control_allocation_bytes']>0 and j['traced_allocation_bytes']>0
           assert j['map_update_applied']
           assert j['complete_input_replay']
           assert j['native_reseeds_after_map']==0
