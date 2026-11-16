@@ -1,0 +1,50 @@
+{
+  "experiment": "Synthetic linear lateral position with shared, fixed 4 m map offset and independent .3 m local noise",
+  "gaussian_assumptions": {
+    "independent_gnss_sigma_m": 2.0,
+    "local_geometry_sigma_m": 0.3,
+    "map_shift_sigma_m": 4.0
+  },
+  "results": {
+    "GNSS only": {
+      "largest_road_update_step_m": 0.0,
+      "map_updates_per_trial": 0,
+      "mean_absolute_error_m": 0.8196432774143954,
+      "mean_position_nees": 0.9828918006654371,
+      "mean_predicted_sigma_m": 1.0662293141997863,
+      "p95_road_update_step_m": 0.0,
+      "position_rmse_m": 1.0570693356795495
+    },
+    "correlated Schmidt map offset": {
+      "largest_road_update_step_m": 3.094897672064838,
+      "map_updates_per_trial": 45,
+      "mean_absolute_error_m": 0.8036572959499466,
+      "mean_position_nees": 0.8822692445065543,
+      "mean_predicted_sigma_m": 1.0612752434560666,
+      "p95_road_update_step_m": 0.17289730268493933,
+      "position_rmse_m": 0.9968472235227618
+    },
+    "independent inflated noise": {
+      "largest_road_update_step_m": 3.094897672064838,
+      "map_updates_per_trial": 45,
+      "mean_absolute_error_m": 0.8867080388643919,
+      "mean_position_nees": 1.324487787371985,
+      "mean_predicted_sigma_m": 0.9766479072164416,
+      "p95_road_update_step_m": 0.6134160664747077,
+      "position_rmse_m": 1.1239888495727124
+    },
+    "naive independent centerline": {
+      "largest_road_update_step_m": 15.675290788920153,
+      "map_updates_per_trial": 45,
+      "mean_absolute_error_m": 3.4156031663694675,
+      "mean_position_nees": 390.97040287637566,
+      "mean_predicted_sigma_m": 0.2259952288644494,
+      "p95_road_update_step_m": 0.7221970707698464,
+      "position_rmse_m": 4.468597224824962
+    }
+  },
+  "seconds": 45,
+  "seed": 20261116,
+  "source": "original controlled simulation, not an actual dataset",
+  "trials": 80
+}
