@@ -1,0 +1,48 @@
+name: Prepare reviewed continuous playback for Pages
+on:
+  push:
+    branches: [site/continuous-playback-publication]
+    paths: ['site-build/**', '.github/workflows/prepare-continuous-playback.yml']
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Install the original numeric environment
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 pytest==8.4.2
+      - name: Reproduce reviewed data and HTML without changing repository refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python site-build/prepare_publication.py build \
+            --root "$RUNNER_TEMP/continuous-site" \
+            --archives "$RUNNER_TEMP/continuous-site-archives" --download
+      - name: Store verified HTML as an unreferenced Git blob
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python site-build/prepare_publication.py upload --root "$RUNNER_TEMP/continuous-site"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: continuous-playback-publication-${{ github.run_id }}
+          path: ${{ runner.temp }}/continuous-site/publication
+          retention-days: 30
+          if-no-files-found: error
