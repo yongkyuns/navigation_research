@@ -1,0 +1,109 @@
+name: Qualify correlated native road corridors
+on:
+  pull_request:
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-correlated-corridor.yml']
+  push:
+    branches: [main]
+    paths: ['integration/imu_gnss/**', '.github/workflows/qualify-correlated-corridor.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  corridor:
+    runs-on: ubuntu-slim
+    timeout-minutes: 20
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: yongkyuns/imu_gnss_fusion
+          ref: 8a34212c7befe30f8d3eae4ad708cc0dcd4aa0d6
+          path: .cache/upstream
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Verify interval moments and unchanged research tests
+        run: |
+          set -euo pipefail
+          python -m pip install -r requirements-reproduce.txt
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          mkdir -p runs/correlated-corridor/build
+          python -m pytest -q integration/imu_gnss/correlated_corridor_tests integration/imu_gnss/schmidt_native_tests integration/imu_gnss/map_correlation_tests integration/imu_gnss/support_tests --junitxml=runs/correlated-corridor/build/tests.xml
+      - name: Build and test original and instrumented pinned native runtimes
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.90.0
+          export PATH="$HOME/.cargo/bin:$PATH"
+          python integration/imu_gnss/prepare_native.py --upstream .cache/upstream --output .cache/native-control
+          python integration/imu_gnss/prepare_native_transition.py --upstream .cache/upstream --output .cache/native-trace
+          for arm in control trace; do
+            cargo test --manifest-path ".cache/native-$arm/Cargo.toml" --workspace --locked 2>&1 | tee "runs/correlated-corridor/build/$arm-tests.txt"
+            cargo build --manifest-path ".cache/native-$arm/Cargo.toml" --release --locked -p routefusion_native_bridge
+            cp ".cache/native-$arm/source-provenance.json" "runs/correlated-corridor/build/$arm-provenance.json"
+            cp ".cache/native-$arm/target/release/libroutefusion_native_bridge.so" "runs/correlated-corridor/build/lib$arm.so"
+          done
+          rustc -Vv > runs/correlated-corridor/build/rustc.txt
+      - name: Regenerate causal road support without corrected-state feedback
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          python integration/imu_gnss/prepare_support_inputs.py \
+            --library "$PWD/.cache/native-control/target/release/libroutefusion_native_bridge.so" \
+            --datasets .cache/upstream/web/datasets --map-cache integration/imu_gnss/map_cache \
+            --output runs/correlated-corridor/seeds
+      - name: Replay all four recordings and independently repeat
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/routefusion_prototype:$PWD/integration/imu_gnss"
+          export GITHUB_SHA="$(git rev-parse HEAD)"
+          for arm in first repeat; do
+            python integration/imu_gnss/evaluate_correlated_corridor.py \
+              --playback runs/correlated-corridor/seeds/playback-data.json \
+              --datasets .cache/upstream/web/datasets --source-root .cache/upstream \
+              --control-library "$PWD/.cache/native-control/target/release/libroutefusion_native_bridge.so" \
+              --traced-library "$PWD/.cache/native-trace/target/release/libroutefusion_native_bridge.so" \
+              --sigma-m .25 --map-sigma-m 1.5 --output "runs/correlated-corridor/$arm"
+          done
+      - name: Require complete current-head evidence and exact repetition
+        run: |
+          set -euo pipefail
+          export GITHUB_SHA="$(git rev-parse HEAD)"
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path('runs/correlated-corridor')
+          a=json.loads((root/'first/verification.json').read_text())
+          assert a['complete'] and a['execution_commit']==os.environ['GITHUB_SHA']
+          assert a['pinned_sources_verified']==37 and len(a['recordings'])==4
+          assert sum(r['sensor_events'] for r in a['recordings'])==159075
+          assert sum(r['exported_epochs'] for r in a['recordings'])==1569
+          assert sum(r['models']['correlated']['counts']['initialized_outputs'] for r in a['recordings'])==1402
+          for r in a['recordings']:
+              assert r['raw_navigation_bit_identical'] and r['inputs_unmodified']
+              assert r['native_instances_preserved'] and r['skips_bit_identical']
+              assert r['compared_fields']==357 and r['excluded_metadata_slot']==7
+              assert r['models']['disabled']['map_updates']==0
+              for model in ('correlated','independent'):
+                  assert r['models'][model]['map_updates']>0
+                  assert r['models'][model]['counts']['initialized_outputs']==r['models']['disabled']['counts']['initialized_outputs']
+              name=r['dataset']+'.json'
+              assert (root/'first'/name).read_bytes()==(root/'repeat'/name).read_bytes(), name
+          manifest={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.rglob('*')) if p.is_file()}
+          (root/'SHA256SUMS.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: correlated-native-corridor-${{ github.run_id }}
+          path: runs/correlated-corridor
+          retention-days: 30
+          if-no-files-found: error
