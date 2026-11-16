@@ -167,8 +167,12 @@ class PathIndex:
             target = edges.get(next(iter(successors)))
             if target is None or len(incoming[target.id]) != 1 or target.id == edge.id:
                 continue
+            # Shared endpoints must be identical. Accepting a tiny gap here
+            # creates a phantom connector; gaps below Edge's minimum segment
+            # length can also make SmoothPath construction fail. Do not snap
+            # uncertain endpoints together merely because they are close.
             if (target.layer != edge.layer or target.half_width != edge.half_width
-                    or np.linalg.norm(edge.points[-1]-target.points[0]) > 1e-6):
+                    or not np.array_equal(edge.points[-1], target.points[0])):
                 continue
             if unit(edge.delta[-1])@unit(target.delta[0]) < .5:
                 continue
