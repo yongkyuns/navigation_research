@@ -1,0 +1,44 @@
+{
+  "reviewed_head_before_fix": "1653dc40e05debd8a3af54d0433aa8f007514ce3",
+  "live_main_at_review": "d5e67976b0d89753edfde39d9576efa7354ba8a3",
+  "fix": "Require identical endpoint coordinates; reject rather than snap nonidentical joins.",
+  "local_tests": {
+    "passed": 122,
+    "failed": 0,
+    "skipped": 0,
+    "support_tests": 69,
+    "unchanged_prior_artifact_tests": 53
+  },
+  "negative_control": {
+    "new_tests": 21,
+    "failed_on_old_code": 17,
+    "already_passing_controls": 4
+  },
+  "new_native_replays": 56,
+  "all_56_independently_repeated": true,
+  "byte_identical_repeat": true,
+  "byte_identical_to_prior_recordings": [
+    "ios-mixed-road-drive-001.json",
+    "urban-short-turn-loop-nominal-001.json",
+    "urban-short-turn-loop-nominal-002.json",
+    "urban-stop-go-tight-turns-nominal-001.json"
+  ],
+  "different_from_prior_recordings": [],
+  "pinned_source_hashes_verified": 37,
+  "library_sha256": "5ad7955f748154e3ae66ed6fd5f04c0519991aac3ca3298dbcd772d4cd93affd",
+  "fresh_native_build": false,
+  "recording_json_sha256": {
+    "ios-mixed-road-drive-001": "371834b7223b6fad491633e70f76aa56d1e2d6590ebc73754fac15e4c653a0dc",
+    "urban-short-turn-loop-nominal-001": "b725e08dfd1ba345014b7e798d2c0438852160c3cbfd9e9882e34869b8579cac",
+    "urban-short-turn-loop-nominal-002": "754d47931d88151862b4c5cd9adc41c042485ecfefd8134f63f4a309b0eb2891",
+    "urban-stop-go-tight-turns-nominal-001": "0e4dbf5195b20f2a73bc6b2ad5219c9a64dad99f71d0449dd72fca49313dd3c0"
+  },
+  "corrected_git_blobs": {
+    "path_support.py": "bc3dd1104e80dd04ddf5f8959d3081e0ebdc1068",
+    "support_tests/test_path_endpoints.py": "e68b27302d37ed9bce3471669ca6fbf607e28fd4"
+  },
+  "changes_to_estimator_defaults": false,
+  "changes_to_existing_workflows": false,
+  "changes_to_pages_publication": false,
+  "ci_qualified": false
+}
