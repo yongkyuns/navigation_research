@@ -1,0 +1,69 @@
+name: Verify public navigation playback
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'web/corridor_playback/verify_publication.py'
+      - 'web/corridor_playback/publication_tests/**'
+      - 'web/corridor_playback/PUBLICATION_VERIFICATION.md'
+      - '.github/workflows/verify-playback-publication.yml'
+  workflow_run:
+    workflows: ['pages build and deployment']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-site:
+    if: >-
+      github.repository == 'yongkyuns/navigation_research' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      EXPECTED_SHA: ${{ github.event.workflow_run.head_sha || github.event.pull_request.base.sha || github.sha }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          persist-credentials: false
+      # PR runs verify the existing published base, not an undeployed candidate.
+      # Deployment runs verify the exact successful Pages run's source revision.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.EXPECTED_SHA }}
+          path: .published-source
+          sparse-checkout: docs
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.13.5'
+      - name: Verify checkout identities and install fixed test dependencies
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(git -C .published-source rev-parse HEAD)" = "$EXPECTED_SHA"
+          python -m pip install pytest==9.0.2 playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Run public-response negative controls
+        run: |
+          mkdir -p runs/publication
+          python -m pytest -q web/corridor_playback/publication_tests --junitxml=runs/publication/tests.xml
+      - name: Verify canonical public HTTP bytes and real browser navigation
+        run: |
+          python web/corridor_playback/verify_publication.py \
+            --expected-docs .published-source/docs \
+            --expected-revision "$EXPECTED_SHA" \
+            --output runs/publication --browser
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: public-playback-${{ github.run_id }}
+          path: runs/publication
+          retention-days: 30
+          if-no-files-found: error
